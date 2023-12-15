@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+li::marker {
+  color: #d1d5db;
+}
+
+.product-title {
+  view-transition-name: product-title;
+}
+
+::view-transition-old(product-title),
+::view-transition-new(product-title) {
+  width: 100%;
+}
+
+.product-image {
+  view-transition-name: product-image;
+}
+
+::view-transition-old(product-image),
+::view-transition-new(product-image) {
+  height: 100%;
+}

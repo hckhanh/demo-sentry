@@ -1,0 +1,10 @@
+{
+  "name": "infra",
+  "description": "Infrastructure of demo-sentry application written by Terraform",
+  "private": true,
+  "scripts": {
+    "init": "terraform init",
+    "apply": "terraform apply",
+    "destroy": "terraform destroy"
+  }
+}

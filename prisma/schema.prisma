@@ -1,0 +1,75 @@
+// Refer to README.md of infra folder to know more information
+// about this schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id             String  @id @default(cuid()) @db.VarChar(30)
+  name           String
+  price          Decimal @db.Money
+  quantity       Int
+  remainQuantity Int
+
+  image        String
+  introduction String   @db.VarChar
+  highlights   String[] @db.VarChar
+  descriptions String[] @db.Text
+}
+
+enum OrderStatus {
+  CREATED
+  SUCCESS
+  CANCELED
+}
+
+model Order {
+  id                String @id @default(cuid()) @db.VarChar(30)
+  shippingAddressId String @db.VarChar(30)
+  billingAddressId  String @db.VarChar(30)
+
+  status           OrderStatus @default(CREATED)
+  assessmentId     String      @unique
+  fingerprintId    String
+  subFingerprintId String
+  ipAddress        String
+
+  email String
+
+  items           OrderItem[]
+  shippingAddress Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])
+  billingAddress  Address     @relation("billingAddress", fields: [billingAddressId], references: [id])
+}
+
+model OrderItem {
+  id        String @id @default(cuid()) @db.VarChar(30)
+  orderId   String @db.VarChar(30)
+  productId String @db.VarChar(30)
+  quantity  Int    @default(1)
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@unique([orderId, productId])
+}
+
+model Address {
+  id            String @id @default(cuid()) @db.VarChar(30)
+  firstName     String
+  lastName      String
+  stressAddress String
+  addressLevel4 String
+  addressLevel2 String
+  addressLevel3 String
+  country       String
+  postalCode    String
+  phone         String
+
+  shippingOrders Order[] @relation("shippingAddress")
+  billingOrders  Order[] @relation("billingAddress")
+}
