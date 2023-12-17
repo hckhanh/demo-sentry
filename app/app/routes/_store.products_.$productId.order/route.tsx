@@ -6,7 +6,6 @@ import Breadcrumb from '~/components/Breadcrumb'
 import prisma from '~/prisma.server'
 import OrderSummary from '~/routes/_store.products_.$productId.order/OrderSummary'
 import PersonalInformation from '~/routes/_store.products_.$productId.order/PersonalInformation'
-import { calculateTotal } from '~/routes/_store.products_.$productId.order/queries'
 import {
   defaultOrderSchema,
   fullOrderSchema,
@@ -54,7 +53,7 @@ export default function OrderConfirmation() {
 
 export async function action({ params, request }: ActionFunctionArgs) {
   if (!params.productId) {
-    return redirect('/', { status: 406 })
+    return json('Invalid url', 400)
   }
 
   const formData = await request.formData()
@@ -66,7 +65,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
     })
 
     if (!parsed.success) {
-      return json(flatten(parsed.issues), { status: 406 })
+      return json(flatten(parsed.issues), 422)
     }
 
     const product = await prisma.product.findUniqueOrThrow({
@@ -128,7 +127,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
     })
 
     if (!parsed.success) {
-      return json(flatten(parsed.issues), { status: 406 })
+      return json(flatten(parsed.issues), 422)
     }
 
     const product = await prisma.product.findUniqueOrThrow({
