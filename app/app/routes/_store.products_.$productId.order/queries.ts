@@ -1,4 +1,4 @@
-import prisma from '~/prisma'
+import prisma from '~/prisma.server'
 
 export async function calculateTotal(productId: string, quantity: number) {
   const product = await prisma.product.findUniqueOrThrow({

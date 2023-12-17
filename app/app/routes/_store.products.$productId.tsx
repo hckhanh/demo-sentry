@@ -1,10 +1,11 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
+
 import { json } from '@remix-run/node'
-import prisma from '~/prisma'
 import { Link, useLoaderData } from '@remix-run/react'
-import { formatCurrency } from '~/utils'
 import Breadcrumb from '~/components/Breadcrumb'
 import Button from '~/components/form/Button'
+import prisma from '~/prisma.server'
+import { formatCurrency } from '~/utils'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
@@ -25,9 +26,9 @@ export default function Product() {
       </Breadcrumb>
       <div className='col-span-5 col-start-2 row-span-2 2xl:col-span-7 2xl:col-start-1'>
         <img
-          className='product-image aspect-1 sticky top-4 rounded-2xl'
           alt={product.name}
           src={product.image}
+          className='product-image aspect-1 sticky top-4 rounded-2xl'
         />
       </div>
       <div className='col-span-5 mt-8 flex flex-col gap-6 lg:mt-0'>
@@ -43,7 +44,7 @@ export default function Product() {
         <div className='text-gray-500'>{product.introduction}</div>
 
         {product.remainQuantity > 0 ? (
-          <Link to='./order' unstable_viewTransition prefetch='intent'>
+          <Link unstable_viewTransition to='./order' prefetch='intent'>
             <Button className='w-full'>Buy now</Button>
           </Link>
         ) : (
@@ -65,7 +66,7 @@ export default function Product() {
           <div className='text-lg font-medium text-gray-900'>Description</div>
           <div className='mt-4 text-gray-500'>
             {product.descriptions.map((description) => (
-              <p key={description} className='mt-4'>
+              <p className='mt-4' key={description}>
                 {description}
               </p>
             ))}

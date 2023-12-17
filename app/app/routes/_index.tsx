@@ -1,7 +1,7 @@
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import prisma from '~/prisma'
 import ProductLink from '~/components/product/ProductLink'
+import prisma from '~/prisma.server'
 
 export async function loader() {
   const products = await prisma.product.findMany({ take: 10 })
@@ -19,8 +19,8 @@ export default function IndexForm() {
           {products.map((product) => (
             <ProductLink
               key={product.id}
-              link={`/products/${product.id}`}
               product={product}
+              link={`/products/${product.id}`}
             />
           ))}
         </div>

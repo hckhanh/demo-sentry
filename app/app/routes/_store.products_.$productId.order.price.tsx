@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
+
 import { json } from '@remix-run/node'
-import prisma from '~/prisma'
+import prisma from '~/prisma.server'
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const searchParams = new URL(request.url).searchParams
@@ -13,10 +14,10 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const tax = subtotal.times(0.029)
 
   return json({
-    unitPrice: product.price,
-    subtotal,
     tax,
+    subtotal,
     taxRate: 0.029,
+    unitPrice: product.price,
     total: subtotal.add(tax),
   })
 }
