@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
 import { json } from '@remix-run/node'
-import { Link, useLoaderData } from '@remix-run/react'
+import { NavLink, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
 import Button from '~/components/form/Button'
 import prisma from '~/prisma.server'
@@ -44,9 +44,13 @@ export default function Product() {
         <div className='text-gray-500'>{product.introduction}</div>
 
         {product.remainQuantity > 0 ? (
-          <Link unstable_viewTransition to='./order' prefetch='intent'>
-            <Button className='w-full'>Buy now</Button>
-          </Link>
+          <NavLink unstable_viewTransition to='./order' prefetch='intent'>
+            {({ isPending }) => (
+              <Button className='w-full' loading={isPending}>
+                Buy now
+              </Button>
+            )}
+          </NavLink>
         ) : (
           <Button disabled className='w-full'>
             Out of stock

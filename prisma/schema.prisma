@@ -22,6 +22,8 @@ model Product {
   introduction String   @db.VarChar
   highlights   String[] @db.VarChar
   descriptions String[] @db.Text
+
+  orderItems OrderItem[]
 }
 
 enum OrderStatus {
@@ -41,8 +43,12 @@ model Order {
   subFingerprintId String
   ipAddress        String
 
-  email String
-  total Decimal @db.Money
+  email       String
+  taxRate     Float
+  taxes       Decimal @db.Money
+  shippingFee Decimal @db.Money
+  subtotal    Decimal @db.Money
+  total       Decimal @db.Money
 
   items           OrderItem[]
   shippingAddress Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])
@@ -56,7 +62,8 @@ model OrderItem {
   quantity  Int     @default(1)
   price     Decimal @db.Money
 
-  order Order @relation(fields: [orderId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 
   @@unique([orderId, productId])
 }

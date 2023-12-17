@@ -19,6 +19,31 @@ module.exports = {
           {
             type: 'line-length',
             order: 'asc',
+            'partition-by-new-line': true,
+            groups: ['id', 'type', 'field', 'name', 'unknown', 'error'],
+            'custom-groups': {
+              id: 'id',
+              type: 'type',
+              field: 'field',
+              name: '*Name',
+              error: '*Error',
+            },
+          },
+        ],
+        'perfectionist/sort-interfaces': [
+          'error',
+          {
+            type: 'line-length',
+            order: 'asc',
+            'partition-by-new-line': true,
+            groups: ['id', 'type', 'field', 'name', 'unknown', 'error'],
+            'custom-groups': {
+              id: 'id',
+              type: 'type',
+              field: 'field',
+              name: '*Name',
+              error: '*Error',
+            },
           },
         ],
         'perfectionist/sort-jsx-props': [
@@ -35,6 +60,7 @@ module.exports = {
             type: 'line-length',
             order: 'asc',
             'partition-by-comment': true,
+            'partition-by-new-line': true,
             groups: ['id', 'type', 'field', 'name', 'unknown', 'error'],
             'custom-groups': {
               id: 'id',

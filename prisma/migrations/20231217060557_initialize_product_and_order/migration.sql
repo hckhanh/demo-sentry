@@ -27,6 +27,10 @@ CREATE TABLE "Order" (
     "subFingerprintId" TEXT NOT NULL,
     "ipAddress" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "taxRate" DOUBLE PRECISION NOT NULL,
+    "taxes" MONEY NOT NULL,
+    "shippingFee" MONEY NOT NULL,
+    "subtotal" MONEY NOT NULL,
     "total" MONEY NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
@@ -75,10 +79,31 @@ ALTER TABLE "Order" ADD CONSTRAINT "Order_billingAddressId_fkey" FOREIGN KEY ("b
 ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddCheck
-ALTER TABLE "Product" ADD CONSTRAINT "Product_quantity_check" CHECK ("quantity" >= 0);
+ALTER TABLE "Product" ADD CONSTRAINT "Product_quantity_check" CHECK ("quantity" > 0);
+
+-- AddCheck
+ALTER TABLE "Product" ADD CONSTRAINT "Product_price_check" CHECK ("price" >= 0::money);
 
 -- AddCheck
 ALTER TABLE "Product" ADD CONSTRAINT "Product_remainQuantity_check" CHECK ("remainQuantity" >= 0);
 
 -- AddCheck
 ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_quantity_check" CHECK ("quantity" > 0);
+
+-- AddCheck
+ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_price_check" CHECK ("price" >= 0::money);
+
+-- AddCheck
+ALTER TABLE "Order" ADD CONSTRAINT "Order_taxRate_check" CHECK ("taxRate" >= 0::float);
+
+-- AddCheck
+ALTER TABLE "Order" ADD CONSTRAINT "Order_taxes_check" CHECK ("taxes" >= 0::money);
+
+-- AddCheck
+ALTER TABLE "Order" ADD CONSTRAINT "Order_shippingFee_check" CHECK ("shippingFee" >= 0::money);
+
+-- AddCheck
+ALTER TABLE "Order" ADD CONSTRAINT "Order_subtotal_check" CHECK ("subtotal" >= 0::money);
+
+-- AddCheck
+ALTER TABLE "Order" ADD CONSTRAINT "Order_total_check" CHECK ("total" >= 0::money);

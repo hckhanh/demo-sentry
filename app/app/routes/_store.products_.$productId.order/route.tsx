@@ -73,17 +73,23 @@ export async function action({ params, request }: ActionFunctionArgs) {
     })
 
     const subtotal = product.price.times(parsed.output.quantity)
-    const tax = subtotal.times(0.029)
-    const total = subtotal.plus(tax)
+    const taxes = subtotal.times(0.029)
+    const total = subtotal.plus(taxes)
 
     const order = await prisma.order.create({
       data: {
+        taxes,
         total,
+        subtotal,
+        shippingFee: 0,
+        taxRate: 0.029,
+
         ipAddress: '',
         fingerprintId: '',
         subFingerprintId: '',
         email: parsed.output.email,
         assessmentId: Math.random().toString(32),
+
         items: {
           create: {
             price: product.price,
@@ -91,6 +97,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
             quantity: parsed.output.quantity,
           },
         },
+
         billingAddress: {
           create: {
             lastName: parsed.output.shippingLastName,
@@ -104,6 +111,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
             addressLevel2: parsed.output.shippingAddressLevel2,
           },
         },
+
         shippingAddress: {
           create: {
             lastName: parsed.output.shippingLastName,
@@ -135,17 +143,23 @@ export async function action({ params, request }: ActionFunctionArgs) {
     })
 
     const subtotal = product.price.times(parsed.output.quantity)
-    const tax = subtotal.times(0.029)
-    const total = subtotal.plus(tax)
+    const taxes = subtotal.times(0.029)
+    const total = subtotal.plus(taxes)
 
     const order = await prisma.order.create({
       data: {
+        taxes,
         total,
+        subtotal,
+        taxRate: 0.029,
+        shippingFee: 0,
+
         ipAddress: '',
         fingerprintId: '',
         subFingerprintId: '',
         email: parsed.output.email,
         assessmentId: Math.random().toString(32),
+
         items: {
           create: {
             price: product.price,
@@ -153,6 +167,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
             quantity: parsed.output.quantity,
           },
         },
+
         billingAddress: {
           create: {
             lastName: parsed.output.billingLastName,
@@ -166,6 +181,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
             addressLevel2: parsed.output.billingAddressLevel2,
           },
         },
+
         shippingAddress: {
           create: {
             lastName: parsed.output.shippingLastName,
