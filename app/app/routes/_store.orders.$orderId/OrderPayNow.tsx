@@ -1,3 +1,4 @@
+import { useNavigation } from '@remix-run/react'
 import Button from '~/components/form/Button'
 import { formatCurrency, formatPercent } from '~/utils'
 
@@ -24,6 +25,8 @@ export default function OrderPayNow({
   subtotal,
   shippingFee,
 }: OrderPayNowProps) {
+  const navigation = useNavigation()
+
   return (
     <div className='sticky top-4 rounded-lg border shadow-sm'>
       <div className='flex gap-6 p-6'>
@@ -62,7 +65,11 @@ export default function OrderPayNow({
       </div>
       <hr />
       <div className='p-6'>
-        <Button type='submit' className='w-full'>
+        <Button
+          type='submit'
+          className='w-full'
+          loading={navigation.state === 'submitting'}
+        >
           Pay now
         </Button>
       </div>

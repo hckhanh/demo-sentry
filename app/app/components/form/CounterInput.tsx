@@ -3,6 +3,7 @@ import { memo, useCallback } from 'react'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from '~/components/form/Button'
+import clsx from 'clsx'
 
 type CounterInputProps = Omit<
   React.DetailedHTMLProps<
@@ -70,69 +71,51 @@ export default function CounterInput({
   }
 
   return (
-    <div className={className}>
-      {label && (
-        <label
-          htmlFor={name}
-          className='block text-sm font-medium leading-6 text-gray-700'
-        >
-          {label}
-        </label>
-      )}
-      <div className='inline-flex'>
-        <MemoButton
-          noPadding
-          type='button'
-          variant='outline'
-          onClick={decreaseValue}
-          disabled={value === min}
-          className='h-9 w-9 rounded-r-none'
-        >
-          <FontAwesomeIcon
-            size='1x'
-            width={14}
-            height={16}
-            icon={faMinus}
-            className='h-4 w-3.5'
-          />
-        </MemoButton>
-        <input
-          {...props}
-          id={name}
-          min={min}
-          max={max}
-          name={name}
-          value={value}
-          type='number'
-          minLength={1}
-          onChange={changeValue}
-          className='z-10 block border border-x-0 border-gray-300 py-1 text-center text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-600 focus:outline-none focus:ring-0 sm:text-sm sm:leading-6'
+    <div className={clsx('inline-flex', className)}>
+      <MemoButton
+        noPadding
+        type='button'
+        variant='outline'
+        onClick={decreaseValue}
+        disabled={value === min}
+        className='h-9 w-9 rounded-r-none'
+      >
+        <FontAwesomeIcon
+          size='1x'
+          width={14}
+          height={16}
+          icon={faMinus}
+          className='h-4 w-3.5'
         />
-        <MemoButton
-          noPadding
-          type='button'
-          variant='outline'
-          onClick={increaseValue}
-          disabled={value === max}
-          className='h-9 w-9 rounded-l-none'
-        >
-          <FontAwesomeIcon
-            size='1x'
-            width={14}
-            height={16}
-            icon={faPlus}
-            className='h-4 w-3.5'
-          />
-        </MemoButton>
-      </div>
-      {description && !error && (
-        <p className='mt-1 text-xs text-gray-500'>{description}</p>
-      )}
-      {error && (
-        <p className='mt-1 flex items-center gap-x-1 text-xs text-red-500'>
-          {error}
-        </p>
-      )}
+      </MemoButton>
+      <input
+        {...props}
+        id={name}
+        min={min}
+        max={max}
+        name={name}
+        value={value}
+        type='number'
+        minLength={1}
+        onChange={changeValue}
+        className='z-10 block border border-x-0 border-gray-300 py-1 text-center text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-600 focus:outline-none focus:ring-0 sm:text-sm sm:leading-6'
+      />
+      <MemoButton
+        noPadding
+        type='button'
+        variant='outline'
+        onClick={increaseValue}
+        disabled={value === max}
+        className='h-9 w-9 rounded-l-none'
+      >
+        <FontAwesomeIcon
+          size='1x'
+          width={14}
+          height={16}
+          icon={faPlus}
+          className='h-4 w-3.5'
+        />
+      </MemoButton>
     </div>
   )
 }

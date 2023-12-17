@@ -1,13 +1,14 @@
 import { phone } from '~/validations'
+import cardValidator from 'card-validator'
 import {
   coerce,
+  custom,
   email,
   merge,
   minLength,
   minValue,
   number,
   object,
-  regex,
   string,
   value,
 } from 'valibot'
@@ -20,7 +21,7 @@ const address = string([minLength(1, 'Enter address')])
 const state = string([minLength(1, 'Enter state / province')])
 const postalCode = string([
   minLength(1, 'Enter postal code'),
-  regex(/\d+/, 'Must be numeric'),
+  custom((value) => cardValidator.postalCode(value).isValid, 'Must be numeric'),
 ])
 
 const shippingAddressSchema = object({

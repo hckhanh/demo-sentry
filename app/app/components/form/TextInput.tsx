@@ -26,6 +26,7 @@ export default function TextInput({
         className='block text-sm font-medium leading-6 text-gray-700'
       >
         {label}
+        {props.required && <span className='text-red-500'>&nbsp;*</span>}
       </label>
       <input
         {...props}

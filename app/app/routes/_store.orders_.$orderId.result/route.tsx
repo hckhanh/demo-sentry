@@ -24,7 +24,7 @@ export default function OrderResult() {
     <main className='gap-8 lg:grid lg:grid-cols-12'>
       <Breadcrumb className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
         <Breadcrumb.Item link='/'>Home</Breadcrumb.Item>
-        <Breadcrumb.ItemCurrent>Order result</Breadcrumb.ItemCurrent>
+        <Breadcrumb.ItemCurrent>Order Result</Breadcrumb.ItemCurrent>
       </Breadcrumb>
 
       <div className='col-span-full mx-auto flex max-w-[33.75rem] flex-col text-center'>
