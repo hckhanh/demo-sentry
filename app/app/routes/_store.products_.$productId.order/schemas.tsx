@@ -1,31 +1,32 @@
-import { phoneAsync } from '~/validations'
+import { phone } from '~/validations'
 import {
-  custom,
+  coerce,
   email,
-  mergeAsync,
+  merge,
   minLength,
-  objectAsync,
+  minValue,
+  number,
+  object,
   regex,
-  stringAsync,
-  transformAsync,
+  string,
   value,
 } from 'valibot'
 
-const lastName = stringAsync([minLength(1, 'Enter last name')])
-const firstName = stringAsync([minLength(1, 'Enter first name')])
-const addressLine2 = stringAsync('Must be string')
-const city = stringAsync([minLength(1, 'Enter city')])
-const address = stringAsync([minLength(1, 'Enter address')])
-const state = stringAsync([minLength(1, 'Enter state / province')])
-const postalCode = stringAsync([
+const lastName = string([minLength(1, 'Enter last name')])
+const firstName = string([minLength(1, 'Enter first name')])
+const addressLine2 = string('Must be string')
+const city = string([minLength(1, 'Enter city')])
+const address = string([minLength(1, 'Enter address')])
+const state = string([minLength(1, 'Enter state / province')])
+const postalCode = string([
   minLength(1, 'Enter postal code'),
   regex(/\d+/, 'Must be numeric'),
 ])
 
-const shippingAddressSchema = objectAsync({
+const shippingAddressSchema = object({
   shippingLastName: lastName,
   shippingFirstName: firstName,
-  shippingPhone: phoneAsync(),
+  shippingPhone: phone(),
   shippingAddressLevel2: city,
   shippingAddressLevel3: state,
   shippingStreetAddress: address,
@@ -33,10 +34,10 @@ const shippingAddressSchema = objectAsync({
   shippingAddressLevel4: addressLine2,
 })
 
-const billingAddressSchema = objectAsync({
+const billingAddressSchema = object({
   billingLastName: lastName,
   billingFirstName: firstName,
-  billingPhone: phoneAsync(),
+  billingPhone: phone(),
   billingAddressLevel2: city,
   billingAddressLevel3: state,
   billingStreetAddress: address,
@@ -44,22 +45,17 @@ const billingAddressSchema = objectAsync({
   billingAddressLevel4: addressLine2,
 })
 
-export const defaultOrderSchema = mergeAsync([
-  objectAsync({
-    email: stringAsync([minLength(1, 'Enter email'), email('Invalid email')]),
-    quantity: transformAsync(
-      stringAsync([
-        custom((value) => Number(value) > 0, 'Must be greater than 0'),
-      ]),
-      (value) => Number(value),
-    ),
+export const defaultOrderSchema = merge([
+  object({
+    email: string([minLength(1, 'Enter email'), email('Invalid email')]),
+    quantity: coerce(number([minValue(1, 'Must be greater than 0')]), Number),
   }),
   shippingAddressSchema,
 ])
 
-export const fullOrderSchema = mergeAsync([
-  objectAsync({
-    sameAsShipping: stringAsync([value('on')]),
+export const fullOrderSchema = merge([
+  object({
+    sameAsShipping: string([value('on')]),
   }),
   defaultOrderSchema,
   billingAddressSchema,

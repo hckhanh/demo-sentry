@@ -1,4 +1,5 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
+
 import { json, redirect } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
@@ -10,7 +11,7 @@ import {
   defaultOrderSchema,
   fullOrderSchema,
 } from '~/routes/_store.products_.$productId.order/schemas'
-import { flatten, safeParseAsync } from 'valibot'
+import { flatten, safeParse } from 'valibot'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
@@ -60,7 +61,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const data = Object.fromEntries(formData.entries())
 
   if (formData.has('sameAsShipping')) {
-    const parsed = await safeParseAsync(defaultOrderSchema, data, {
+    const parsed = safeParse(defaultOrderSchema, data, {
       abortPipeEarly: true,
     })
 
@@ -115,7 +116,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
     return redirect(`/orders/${order.id}`)
   } else {
-    const parsed = await safeParseAsync(fullOrderSchema, data, {
+    const parsed = safeParse(fullOrderSchema, data, {
       abortPipeEarly: true,
     })
 
