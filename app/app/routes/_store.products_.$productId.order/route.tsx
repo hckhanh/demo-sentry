@@ -69,7 +69,13 @@ export async function action({ params, request }: ActionFunctionArgs) {
       return json(flatten(parsed.issues), { status: 406 })
     }
 
-    const total = await calculateTotal(params.productId, parsed.output.quantity)
+    const product = await prisma.product.findUniqueOrThrow({
+      where: { id: params.productId },
+    })
+
+    const subtotal = product.price.times(parsed.output.quantity)
+    const tax = subtotal.times(0.029)
+    const total = subtotal.plus(tax)
 
     const order = await prisma.order.create({
       data: {
@@ -81,6 +87,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
         assessmentId: Math.random().toString(32),
         items: {
           create: {
+            price: product.price,
             productId: params.productId,
             quantity: parsed.output.quantity,
           },
@@ -124,7 +131,13 @@ export async function action({ params, request }: ActionFunctionArgs) {
       return json(flatten(parsed.issues), { status: 406 })
     }
 
-    const total = await calculateTotal(params.productId, parsed.output.quantity)
+    const product = await prisma.product.findUniqueOrThrow({
+      where: { id: params.productId },
+    })
+
+    const subtotal = product.price.times(parsed.output.quantity)
+    const tax = subtotal.times(0.029)
+    const total = subtotal.plus(tax)
 
     const order = await prisma.order.create({
       data: {
@@ -136,6 +149,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
         assessmentId: Math.random().toString(32),
         items: {
           create: {
+            price: product.price,
             productId: params.productId,
             quantity: parsed.output.quantity,
           },

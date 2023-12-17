@@ -8,5 +8,5 @@ export async function calculateTotal(productId: string, quantity: number) {
   const subtotal = product.price.times(quantity)
   const tax = subtotal.times(0.029)
 
-  return subtotal.plus(tax)
+  return { price: product.price, total: subtotal.plus(tax) }
 }

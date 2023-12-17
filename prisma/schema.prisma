@@ -50,10 +50,11 @@ model Order {
 }
 
 model OrderItem {
-  id        String @id @default(cuid()) @db.VarChar(30)
-  orderId   String @db.VarChar(30)
-  productId String @db.VarChar(30)
-  quantity  Int    @default(1)
+  id        String  @id @default(cuid()) @db.VarChar(30)
+  orderId   String  @db.VarChar(30)
+  productId String  @db.VarChar(30)
+  quantity  Int     @default(1)
+  price     Decimal @db.Money
 
   order Order @relation(fields: [orderId], references: [id])
 

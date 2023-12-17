@@ -27,6 +27,7 @@ CREATE TABLE "Order" (
     "subFingerprintId" TEXT NOT NULL,
     "ipAddress" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "total" MONEY NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -37,6 +38,7 @@ CREATE TABLE "OrderItem" (
     "orderId" VARCHAR(30) NOT NULL,
     "productId" VARCHAR(30) NOT NULL,
     "quantity" INTEGER NOT NULL DEFAULT 1,
+    "price" MONEY NOT NULL,
 
     CONSTRAINT "OrderItem_pkey" PRIMARY KEY ("id")
 );
