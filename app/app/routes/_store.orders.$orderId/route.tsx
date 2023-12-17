@@ -18,6 +18,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
     include: { items: { include: { product: true } } },
   })
 
+  if (order.status !== 'CREATED') {
+    return redirect(`/orders/${order.id}/result`)
+  }
+
   return json(order)
 }
 

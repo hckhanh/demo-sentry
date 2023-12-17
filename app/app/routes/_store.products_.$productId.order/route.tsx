@@ -76,57 +76,67 @@ export async function action({ params, request }: ActionFunctionArgs) {
     const taxes = subtotal.times(0.029)
     const total = subtotal.plus(taxes)
 
-    const order = await prisma.order.create({
-      data: {
-        taxes,
-        total,
-        subtotal,
-        shippingFee: 0,
-        taxRate: 0.029,
-
-        ipAddress: '',
-        fingerprintId: '',
-        subFingerprintId: '',
-        email: parsed.output.email,
-        assessmentId: Math.random().toString(32),
-
-        items: {
-          create: {
-            price: product.price,
-            productId: params.productId,
-            quantity: parsed.output.quantity,
+    const [, order] = await prisma.$transaction([
+      prisma.product.update({
+        where: { id: params.productId },
+        data: {
+          remainQuantity: {
+            decrement: parsed.output.quantity,
           },
         },
+      }),
+      prisma.order.create({
+        data: {
+          taxes,
+          total,
+          subtotal,
+          shippingFee: 0,
+          taxRate: 0.029,
 
-        billingAddress: {
-          create: {
-            lastName: parsed.output.shippingLastName,
-            firstName: parsed.output.shippingFirstName,
-            addressLevel1: '',
-            phone: parsed.output.shippingPhone,
-            postalCode: parsed.output.shippingPostalCode,
-            stressAddress: parsed.output.shippingStreetAddress,
-            addressLevel4: parsed.output.shippingAddressLevel4,
-            addressLevel3: parsed.output.shippingAddressLevel3,
-            addressLevel2: parsed.output.shippingAddressLevel2,
+          ipAddress: '',
+          fingerprintId: '',
+          subFingerprintId: '',
+          email: parsed.output.email,
+          assessmentId: Math.random().toString(32),
+
+          items: {
+            create: {
+              price: product.price,
+              productId: params.productId,
+              quantity: parsed.output.quantity,
+            },
+          },
+
+          billingAddress: {
+            create: {
+              lastName: parsed.output.shippingLastName,
+              firstName: parsed.output.shippingFirstName,
+              addressLevel1: '',
+              phone: parsed.output.shippingPhone,
+              postalCode: parsed.output.shippingPostalCode,
+              stressAddress: parsed.output.shippingStreetAddress,
+              addressLevel4: parsed.output.shippingAddressLevel4,
+              addressLevel3: parsed.output.shippingAddressLevel3,
+              addressLevel2: parsed.output.shippingAddressLevel2,
+            },
+          },
+
+          shippingAddress: {
+            create: {
+              lastName: parsed.output.shippingLastName,
+              firstName: parsed.output.shippingFirstName,
+              addressLevel1: '',
+              phone: parsed.output.shippingPhone,
+              postalCode: parsed.output.shippingPostalCode,
+              stressAddress: parsed.output.shippingStreetAddress,
+              addressLevel4: parsed.output.shippingAddressLevel4,
+              addressLevel3: parsed.output.shippingAddressLevel3,
+              addressLevel2: parsed.output.shippingAddressLevel2,
+            },
           },
         },
-
-        shippingAddress: {
-          create: {
-            lastName: parsed.output.shippingLastName,
-            firstName: parsed.output.shippingFirstName,
-            addressLevel1: '',
-            phone: parsed.output.shippingPhone,
-            postalCode: parsed.output.shippingPostalCode,
-            stressAddress: parsed.output.shippingStreetAddress,
-            addressLevel4: parsed.output.shippingAddressLevel4,
-            addressLevel3: parsed.output.shippingAddressLevel3,
-            addressLevel2: parsed.output.shippingAddressLevel2,
-          },
-        },
-      },
-    })
+      }),
+    ])
 
     return redirect(`/orders/${order.id}`)
   } else {
@@ -146,57 +156,67 @@ export async function action({ params, request }: ActionFunctionArgs) {
     const taxes = subtotal.times(0.029)
     const total = subtotal.plus(taxes)
 
-    const order = await prisma.order.create({
-      data: {
-        taxes,
-        total,
-        subtotal,
-        taxRate: 0.029,
-        shippingFee: 0,
-
-        ipAddress: '',
-        fingerprintId: '',
-        subFingerprintId: '',
-        email: parsed.output.email,
-        assessmentId: Math.random().toString(32),
-
-        items: {
-          create: {
-            price: product.price,
-            productId: params.productId,
-            quantity: parsed.output.quantity,
+    const [, order] = await prisma.$transaction([
+      prisma.product.update({
+        where: { id: params.productId },
+        data: {
+          remainQuantity: {
+            decrement: parsed.output.quantity,
           },
         },
+      }),
+      prisma.order.create({
+        data: {
+          taxes,
+          total,
+          subtotal,
+          taxRate: 0.029,
+          shippingFee: 0,
 
-        billingAddress: {
-          create: {
-            lastName: parsed.output.billingLastName,
-            firstName: parsed.output.billingFirstName,
-            addressLevel1: '',
-            phone: parsed.output.billingPhone,
-            postalCode: parsed.output.billingPostalCode,
-            stressAddress: parsed.output.billingStreetAddress,
-            addressLevel4: parsed.output.billingAddressLevel4,
-            addressLevel3: parsed.output.billingAddressLevel3,
-            addressLevel2: parsed.output.billingAddressLevel2,
+          ipAddress: '',
+          fingerprintId: '',
+          subFingerprintId: '',
+          email: parsed.output.email,
+          assessmentId: Math.random().toString(32),
+
+          items: {
+            create: {
+              price: product.price,
+              productId: params.productId,
+              quantity: parsed.output.quantity,
+            },
+          },
+
+          billingAddress: {
+            create: {
+              lastName: parsed.output.billingLastName,
+              firstName: parsed.output.billingFirstName,
+              addressLevel1: '',
+              phone: parsed.output.billingPhone,
+              postalCode: parsed.output.billingPostalCode,
+              stressAddress: parsed.output.billingStreetAddress,
+              addressLevel4: parsed.output.billingAddressLevel4,
+              addressLevel3: parsed.output.billingAddressLevel3,
+              addressLevel2: parsed.output.billingAddressLevel2,
+            },
+          },
+
+          shippingAddress: {
+            create: {
+              lastName: parsed.output.shippingLastName,
+              firstName: parsed.output.shippingFirstName,
+              addressLevel1: '',
+              phone: parsed.output.shippingPhone,
+              postalCode: parsed.output.shippingPostalCode,
+              stressAddress: parsed.output.shippingStreetAddress,
+              addressLevel4: parsed.output.shippingAddressLevel4,
+              addressLevel3: parsed.output.shippingAddressLevel3,
+              addressLevel2: parsed.output.shippingAddressLevel2,
+            },
           },
         },
-
-        shippingAddress: {
-          create: {
-            lastName: parsed.output.shippingLastName,
-            firstName: parsed.output.shippingFirstName,
-            addressLevel1: '',
-            phone: parsed.output.shippingPhone,
-            postalCode: parsed.output.shippingPostalCode,
-            stressAddress: parsed.output.shippingStreetAddress,
-            addressLevel4: parsed.output.shippingAddressLevel4,
-            addressLevel3: parsed.output.shippingAddressLevel3,
-            addressLevel2: parsed.output.shippingAddressLevel2,
-          },
-        },
-      },
-    })
+      }),
+    ])
 
     return redirect(`/orders/${order.id}`)
   }
