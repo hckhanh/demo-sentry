@@ -37,9 +37,10 @@ export default function OrderPayNow({
         />
         <div className='flex flex-1 flex-col justify-between'>
           <div className='font-medium text-gray-700'>{name}</div>
-          <div className='flex justify-between'>
-            <div>x {quantity}</div>
-            <div className='font-medium'>{formatCurrency(price)}</div>
+          <div className='flex justify-end'>
+            <div className='font-medium'>
+              {quantity} × {formatCurrency(price)}
+            </div>
           </div>
         </div>
       </div>

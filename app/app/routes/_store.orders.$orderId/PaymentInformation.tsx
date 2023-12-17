@@ -12,7 +12,7 @@ export default function PaymentInformation() {
           name='cardHolderName'
           autoComplete='cc-name'
           label='Card holder name'
-          className='col-span-full'
+          className='col-span-full [&>input]:uppercase'
         />
         <TextInput
           required
