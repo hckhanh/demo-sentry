@@ -1,6 +1,8 @@
-import TextInput from '~/components/form/TextInput'
-import CheckboxInput from '~/components/form/CheckboxInput'
 import { useCallback, useState } from 'react'
+
+import CheckboxInput from '~/components/form/CheckboxInput'
+import FormValidation from '~/components/form/FormValidation'
+import TextInput from '~/components/form/TextInput'
 
 export default function BillingInformation() {
   const [isShipping, setIsShipping] = useState(true)
@@ -16,58 +18,78 @@ export default function BillingInformation() {
     <>
       <CheckboxInput
         checked={isShipping}
-        onChange={handleIsShipping}
+        name='sameAsShipping'
         className='col-span-full'
+        onChange={handleIsShipping}
         label='Same as shipping information'
       />
+
       {!isShipping && (
-        <>
-          <div className='col-span-3 grid grid-cols-2 gap-x-4'>
-            <TextInput
-              type='text'
-              autoComplete='given-name'
-              label='First name'
-            />
-            <TextInput
-              type='text'
-              autoComplete='family-name'
-              label='Last name'
-            />
-          </div>
+        <FormValidation>
           <TextInput
-            className='col-span-full'
+            required
+            type='text'
+            label='First name'
+            className='col-span-3'
+            name='billingFirstName'
+            autoComplete='given-name'
+          />
+          <TextInput
+            required
+            type='text'
+            label='Last name'
+            className='col-span-3'
+            name='billingLastName'
+            autoComplete='family-name'
+          />
+          <TextInput
+            required
             type='text'
             label='Address'
+            className='col-span-full'
+            name='billingStreetAddress'
             autoComplete='billing street-address'
           />
           <TextInput
             type='text'
             className='col-span-full'
-            autoComplete='billing address-level4'
+            name='billingAddressLevel4'
             label='Apartment, suite, etc.'
+            autoComplete='billing address-level4'
           />
           <TextInput
+            required
             type='text'
-            autoComplete='billing address-level2'
             label='City'
+            className='col-span-2'
+            name='billingAddressLevel2'
+            autoComplete='billing address-level2'
           />
           <TextInput
+            required
             type='text'
-            autoComplete='billing address-level3'
+            className='col-span-2'
             label='State / Province'
+            name='billingAddressLevel3'
+            autoComplete='billing address-level3'
           />
           <TextInput
+            required
             type='text'
-            autoComplete='postal-code'
             label='Postal code'
+            className='col-span-2'
+            name='billingPostalCode'
+            autoComplete='postal-code'
           />
           <TextInput
+            required
             type='tel'
-            autoComplete='tel'
             label='Phone'
+            autoComplete='tel'
+            name='billingPhone'
             className='col-span-full'
           />
-        </>
+        </FormValidation>
       )}
     </>
   )

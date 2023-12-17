@@ -1,56 +1,91 @@
-import TextInput from '~/components/form/TextInput'
 import FormSection from '~/components/form/FormSection'
+import FormValidation from '~/components/form/FormValidation'
+import TextInput from '~/components/form/TextInput'
 import BillingInformation from '~/routes/_store.products_.$productId.order/BillingInformation'
 
 export default function PersonalInformation() {
   return (
     <div className='flex flex-col gap-12'>
-      <FormSection title='Contact information'>
-        <TextInput
-          className='col-span-full'
-          type='email'
-          autoComplete='email'
-          label='Email address'
-        />
-      </FormSection>
-      <FormSection title='Shipping information'>
-        <div className='col-span-3 grid grid-cols-2 gap-x-4'>
-          <TextInput type='text' autoComplete='given-name' label='First name' />
-          <TextInput type='text' autoComplete='family-name' label='Last name' />
-        </div>
-        <TextInput
-          className='col-span-full'
-          type='text'
-          label='Address'
-          autoComplete='shipping street-address'
-        />
-        <TextInput
-          type='text'
-          className='col-span-full'
-          autoComplete='shipping address-level4'
-          label='Apartment, suite, etc.'
-        />
-        <TextInput
-          type='text'
-          autoComplete='shipping address-level2'
-          label='City'
-        />
-        <TextInput
-          type='text'
-          autoComplete='shipping address-level3'
-          label='State / Province'
-        />
-        <TextInput type='text' autoComplete='postal-code' label='Postal code' />
-        <TextInput
-          type='tel'
-          autoComplete='tel'
-          label='Phone'
-          className='col-span-full'
-        />
-      </FormSection>
-      <FormSection title='Billing information'>
-        <BillingInformation />
-      </FormSection>
+      <FormValidation>
+        <FormSection title='Contact information'>
+          <TextInput
+            required
+            type='email'
+            name='email'
+            autoComplete='email'
+            label='Email address'
+            className='col-span-full'
+          />
+        </FormSection>
+        <FormSection title='Shipping information'>
+          <TextInput
+            required
+            type='text'
+            label='First name'
+            className='col-span-3'
+            name='shippingFirstName'
+            autoComplete='given-name'
+          />
+          <TextInput
+            required
+            type='text'
+            label='Last name'
+            className='col-span-3'
+            name='shippingLastName'
+            autoComplete='family-name'
+          />
+          <TextInput
+            required
+            type='text'
+            label='Address'
+            className='col-span-full'
+            name='shippingStreetAddress'
+            autoComplete='shipping street-address'
+          />
+          <TextInput
+            type='text'
+            className='col-span-full'
+            name='shippingAddressLevel4'
+            label='Apartment, suite, etc.'
+            autoComplete='shipping address-level4'
+          />
+          <TextInput
+            required
+            type='text'
+            label='City'
+            className='col-span-2'
+            name='shippingAddressLevel2'
+            autoComplete='shipping address-level2'
+          />
+          <TextInput
+            required
+            type='text'
+            className='col-span-2'
+            label='State / Province'
+            name='shippingAddressLevel3'
+            autoComplete='shipping address-level3'
+          />
+          <TextInput
+            required
+            type='text'
+            label='Postal code'
+            className='col-span-2'
+            name='shippingPostalCode'
+            autoComplete='postal-code'
+          />
+          <TextInput
+            required
+            type='tel'
+            label='Phone'
+            autoComplete='tel'
+            name='shippingPhone'
+            className='col-span-full'
+          />
+        </FormSection>
+        <FormSection title='Billing information'>
+          <BillingInformation />
+        </FormSection>
+      </FormValidation>
     </div>
   )
 }

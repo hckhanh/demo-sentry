@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Product {
@@ -41,6 +42,7 @@ model Order {
   ipAddress        String
 
   email String
+  total Decimal @db.Money
 
   items           OrderItem[]
   shippingAddress Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])
@@ -60,15 +62,15 @@ model OrderItem {
 
 model Address {
   id            String @id @default(cuid()) @db.VarChar(30)
+  phone         String
   firstName     String
   lastName      String
   stressAddress String
   addressLevel4 String
-  addressLevel2 String
   addressLevel3 String
-  country       String
+  addressLevel2 String
+  addressLevel1 String
   postalCode    String
-  phone         String
 
   shippingOrders Order[] @relation("shippingAddress")
   billingOrders  Order[] @relation("billingAddress")

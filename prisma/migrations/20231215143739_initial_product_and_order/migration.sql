@@ -44,15 +44,15 @@ CREATE TABLE "OrderItem" (
 -- CreateTable
 CREATE TABLE "Address" (
     "id" VARCHAR(30) NOT NULL,
+    "phone" TEXT NOT NULL,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "stressAddress" TEXT NOT NULL,
     "addressLevel4" TEXT NOT NULL,
-    "addressLevel2" TEXT NOT NULL,
     "addressLevel3" TEXT NOT NULL,
-    "country" TEXT NOT NULL,
+    "addressLevel2" TEXT NOT NULL,
+    "addressLevel1" TEXT NOT NULL,
     "postalCode" TEXT NOT NULL,
-    "phone" TEXT NOT NULL,
 
     CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
 );

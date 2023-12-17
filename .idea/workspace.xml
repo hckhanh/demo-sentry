@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/demo-sentry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo-sentry.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/app/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/components/form/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/components/form/CheckboxInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/CheckboxInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/components/form/CounterInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/CounterInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/components/form/FormSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/FormSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/TextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/OrderPayNow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/OrderPayNow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/PaymentInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/PaymentInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/BillingInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/BillingInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/OrderSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/OrderSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/PersonalInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/PersonalInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/tailwind.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/eslint-plugin-config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/eslint-plugin-config/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/infra/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/credentials.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/credentials.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/migrations/20231215091637_initialize_product_and_order/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="mySelectedFileTypes">
+      <set>
+        <option value="Prisma" />
+        <option value="Terraform" />
+      </set>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ZXSVVwgrFhO7yARfg6IXKMCQcy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.demo-sentry > dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/app/node_modules/typescript/lib"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/app" />
+      <recent name="$PROJECT_DIR$/app/app/routes/store/demo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order" />
+      <recent name="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId" />
+      <recent name="$PROJECT_DIR$/app/app/routes/store/products" />
+      <recent name="$PROJECT_DIR$/app/app/routes/_store/orders.$orderId" />
+      <recent name="$PROJECT_DIR$/app/app/routes/_store/products/$productId" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="demo-sentry &gt; dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-56bbcd2c060c-JavaScript-WS-233.11799.293" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="" />
+      <created>1702566955087</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702566955087</updated>
+      <workItem from="1702566956432" duration="74000" />
+      <workItem from="1702567035892" duration="7000" />
+      <workItem from="1702567048352" duration="1527000" />
+      <workItem from="1702568861868" duration="67000" />
+      <workItem from="1702568936237" duration="2550000" />
+      <workItem from="1702597202892" duration="13023000" />
+      <workItem from="1702619736028" duration="2439000" />
+      <workItem from="1702647907610" duration="36234000" />
+      <workItem from="1702771165733" duration="3609000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

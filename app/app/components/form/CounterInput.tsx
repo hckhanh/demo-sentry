@@ -1,24 +1,21 @@
-import {
-  MinusSmallIcon,
-  PlusSmallIcon,
-  XCircleIcon,
-} from '@heroicons/react/24/outline'
+import { memo, useCallback } from 'react'
+
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from '~/components/form/Button'
-import React, { memo, useCallback } from 'react'
-import clsx from 'clsx'
 
 type CounterInputProps = Omit<
   React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   >,
-  'value' | 'onChange'
+  'onChange' | 'value'
 > & {
-  value?: string | number
-  label?: React.ReactNode
-  description?: React.ReactNode
-  error?: React.ReactNode
   defaultValue?: number
+  value?: number | string
+  label?: React.ReactNode
+  error?: React.ReactNode
+  description?: React.ReactNode
   onValueChange?: React.Dispatch<React.SetStateAction<number>>
 }
 
@@ -29,14 +26,14 @@ const MemoButton = memo(
 
 export default function CounterInput({
   className,
+  min,
+  max,
   name,
   label,
   error,
+  value,
   description,
   defaultValue,
-  min,
-  max,
-  value,
   onValueChange,
   ...props
 }: CounterInputProps) {
@@ -73,66 +70,69 @@ export default function CounterInput({
   }
 
   return (
-    <div className={clsx('', className)}>
-      {(label || description || error) && (
-        <div className='mb-1'>
-          {label && (
-            <label
-              htmlFor={name}
-              className='block text-sm font-medium leading-6 text-gray-700'
-            >
-              {label}
-            </label>
-          )}
-          {description && !error && (
-            <p className='text-xs text-gray-500'>{description}</p>
-          )}
-          {error && (
-            <p className='flex items-center gap-x-1 text-xs text-red-500'>
-              <XCircleIcon
-                className='h-5 w-5 min-w-fit'
-                width={20}
-                height={20}
-              />
-              {error}
-            </p>
-          )}
-        </div>
+    <div className={className}>
+      {label && (
+        <label
+          htmlFor={name}
+          className='block text-sm font-medium leading-6 text-gray-700'
+        >
+          {label}
+        </label>
       )}
       <div className='inline-flex'>
         <MemoButton
-          onClick={decreaseValue}
           noPadding
-          disabled={value === min}
-          variant='outline'
           type='button'
-          className='h-9 w-9 rounded-r-none border-r-0'
+          variant='outline'
+          onClick={decreaseValue}
+          disabled={value === min}
+          className='h-9 w-9 rounded-r-none'
         >
-          <MinusSmallIcon width={24} height={24} />
+          <FontAwesomeIcon
+            size='1x'
+            width={14}
+            height={16}
+            icon={faMinus}
+            className='h-4 w-3.5'
+          />
         </MemoButton>
         <input
           {...props}
-          name={name}
           id={name}
-          value={value}
-          onChange={changeValue}
-          type='number'
           min={min}
-          minLength={1}
           max={max}
-          className='z-10 block border-0 py-1.5 text-center text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+          name={name}
+          value={value}
+          type='number'
+          minLength={1}
+          onChange={changeValue}
+          className='z-10 block border border-x-0 border-gray-300 py-1 text-center text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-600 focus:outline-none focus:ring-0 sm:text-sm sm:leading-6'
         />
         <MemoButton
-          onClick={increaseValue}
           noPadding
-          variant='outline'
           type='button'
+          variant='outline'
+          onClick={increaseValue}
           disabled={value === max}
-          className='h-9 w-9 rounded-l-none border-l-0'
+          className='h-9 w-9 rounded-l-none'
         >
-          <PlusSmallIcon width={24} height={24} />
+          <FontAwesomeIcon
+            size='1x'
+            width={14}
+            height={16}
+            icon={faPlus}
+            className='h-4 w-3.5'
+          />
         </MemoButton>
       </div>
+      {description && !error && (
+        <p className='mt-0.5 text-xs text-gray-500'>{description}</p>
+      )}
+      {error && (
+        <p className='mt-0.5 flex items-center gap-x-1 text-xs text-red-500'>
+          {error}
+        </p>
+      )}
     </div>
   )
 }

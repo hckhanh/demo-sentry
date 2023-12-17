@@ -1,10 +1,16 @@
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
+import { Form, useLoaderData } from '@remix-run/react'
+import Breadcrumb from '~/components/Breadcrumb'
+import prisma from '~/prisma'
 import OrderSummary from '~/routes/_store.products_.$productId.order/OrderSummary'
 import PersonalInformation from '~/routes/_store.products_.$productId.order/PersonalInformation'
-import Breadcrumb from '~/components/Breadcrumb'
-import type { LoaderFunctionArgs } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import prisma from '~/prisma'
-import { useLoaderData } from '@remix-run/react'
+import { calculateTotal } from '~/routes/_store.products_.$productId.order/queries'
+import {
+  defaultOrderSchema,
+  fullOrderSchema,
+} from '~/routes/_store.products_.$productId.order/schemas'
+import { flatten, safeParseAsync } from 'valibot'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
@@ -18,7 +24,10 @@ export default function OrderConfirmation() {
   const product = useLoaderData<typeof loader>()
 
   return (
-    <div className='gap-8 diagonal-fractions lg:grid lg:grid-cols-12'>
+    <Form
+      method='POST'
+      className='gap-8 diagonal-fractions lg:grid lg:grid-cols-12'
+    >
       <Breadcrumb className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
         <Breadcrumb.Item link='/'>Home</Breadcrumb.Item>
         <Breadcrumb.Item link='..'>{product.name}</Breadcrumb.Item>
@@ -31,13 +40,134 @@ export default function OrderConfirmation() {
       <div className='col-span-5 row-span-2 space-y-6'>
         <div className='text-lg font-medium leading-7'>Order summary</div>
         <OrderSummary
-          image={product.image}
           id={product.id}
           name={product.name}
+          image={product.image}
           price={product.price}
           maxQuantity={product.quantity}
         />
       </div>
-    </div>
+    </Form>
   )
+}
+
+export async function action({ params, request }: ActionFunctionArgs) {
+  if (!params.productId) {
+    return redirect('/', { status: 406 })
+  }
+
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData.entries())
+
+  if (formData.has('sameAsShipping')) {
+    const parsed = await safeParseAsync(defaultOrderSchema, data, {
+      abortPipeEarly: true,
+    })
+
+    if (!parsed.success) {
+      return json(flatten(parsed.issues), { status: 406 })
+    }
+
+    const total = await calculateTotal(params.productId, parsed.output.quantity)
+
+    const order = await prisma.order.create({
+      data: {
+        total,
+        ipAddress: '',
+        fingerprintId: '',
+        subFingerprintId: '',
+        email: parsed.output.email,
+        assessmentId: Math.random().toString(32),
+        items: {
+          create: {
+            productId: params.productId,
+            quantity: parsed.output.quantity,
+          },
+        },
+        billingAddress: {
+          create: {
+            lastName: parsed.output.shippingLastName,
+            firstName: parsed.output.shippingFirstName,
+            addressLevel1: '',
+            phone: parsed.output.shippingPhone,
+            postalCode: parsed.output.shippingPostalCode,
+            stressAddress: parsed.output.shippingStreetAddress,
+            addressLevel4: parsed.output.shippingAddressLevel4,
+            addressLevel3: parsed.output.shippingAddressLevel3,
+            addressLevel2: parsed.output.shippingAddressLevel2,
+          },
+        },
+        shippingAddress: {
+          create: {
+            lastName: parsed.output.shippingLastName,
+            firstName: parsed.output.shippingFirstName,
+            addressLevel1: '',
+            phone: parsed.output.shippingPhone,
+            postalCode: parsed.output.shippingPostalCode,
+            stressAddress: parsed.output.shippingStreetAddress,
+            addressLevel4: parsed.output.shippingAddressLevel4,
+            addressLevel3: parsed.output.shippingAddressLevel3,
+            addressLevel2: parsed.output.shippingAddressLevel2,
+          },
+        },
+      },
+    })
+
+    return redirect(`/orders/${order.id}`)
+  } else {
+    const parsed = await safeParseAsync(fullOrderSchema, data, {
+      abortPipeEarly: true,
+    })
+
+    if (!parsed.success) {
+      return json(flatten(parsed.issues), { status: 406 })
+    }
+
+    const total = await calculateTotal(params.productId, parsed.output.quantity)
+
+    const order = await prisma.order.create({
+      data: {
+        total,
+        ipAddress: '',
+        fingerprintId: '',
+        subFingerprintId: '',
+        email: parsed.output.email,
+        assessmentId: Math.random().toString(32),
+        items: {
+          create: {
+            productId: params.productId,
+            quantity: parsed.output.quantity,
+          },
+        },
+        billingAddress: {
+          create: {
+            lastName: parsed.output.billingLastName,
+            firstName: parsed.output.billingFirstName,
+            addressLevel1: '',
+            phone: parsed.output.billingPhone,
+            postalCode: parsed.output.billingPostalCode,
+            stressAddress: parsed.output.billingStreetAddress,
+            addressLevel4: parsed.output.billingAddressLevel4,
+            addressLevel3: parsed.output.billingAddressLevel3,
+            addressLevel2: parsed.output.billingAddressLevel2,
+          },
+        },
+        shippingAddress: {
+          create: {
+            lastName: parsed.output.shippingLastName,
+            firstName: parsed.output.shippingFirstName,
+            addressLevel1: '',
+            phone: parsed.output.shippingPhone,
+            postalCode: parsed.output.shippingPostalCode,
+            stressAddress: parsed.output.shippingStreetAddress,
+            addressLevel4: parsed.output.shippingAddressLevel4,
+            addressLevel3: parsed.output.shippingAddressLevel3,
+            addressLevel2: parsed.output.shippingAddressLevel2,
+          },
+        },
+      },
+    })
+
+    return redirect(`/orders/${order.id}`)
+  }
 }

@@ -1,22 +1,24 @@
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon'
+import { useFieldError } from '~/components/form/FormValidation'
+import clsx from 'clsx'
 
 type TextInputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
+  name: string
   label?: React.ReactNode
   description?: React.ReactNode
-  error?: React.ReactNode
 }
 
 export default function TextInput({
   className,
   name,
   label,
-  error,
   description,
   ...props
 }: TextInputProps) {
+  const error = useFieldError(name)
+
   return (
     <div className={className}>
       <label
@@ -25,23 +27,25 @@ export default function TextInput({
       >
         {label}
       </label>
+      <input
+        {...props}
+        id={name}
+        name={name}
+        className={clsx(
+          'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+          {
+            'bg-red-50 ring-red-500 focus:ring-red-500': error,
+          },
+        )}
+      />
       {description && !error && (
-        <p className='mt-0 text-xs text-gray-500'>{description}</p>
+        <p className='mt-0.5 text-xs text-gray-500'>{description}</p>
       )}
       {error && (
-        <p className='mt-0 flex items-center gap-x-1 text-xs text-red-500'>
-          <XCircleIcon className='h-5 w-5 min-w-fit' width={20} height={20} />
+        <p className='mt-0.5 flex items-center gap-x-1 text-xs text-red-500'>
           {error}
         </p>
       )}
-      <div className='mt-1'>
-        <input
-          {...props}
-          name={name}
-          id={name}
-          className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-        />
-      </div>
     </div>
   )
 }

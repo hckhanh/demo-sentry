@@ -1,6 +1,8 @@
-import { cssBundleHref } from '@remix-run/css-bundle'
 import type { LinksFunction } from '@remix-run/node'
+
+import { cssBundleHref } from '@remix-run/css-bundle'
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -8,20 +10,21 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+
 import stylesheet from '~/tailwind.css'
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
     rel: 'preconnect',
+    crossOrigin: 'anonymous',
     href: 'https://fonts.gstatic.com',
-    crossOrigin: undefined,
   },
   {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap',
   },
-  { rel: 'stylesheet', href: stylesheet },
+  { href: stylesheet, rel: 'stylesheet' },
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ]
 
@@ -64,15 +67,12 @@ export function ErrorBoundary() {
               Sorry, we couldn’t find the page you’re looking for.
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
-              <a
-                href='#'
+              <Link
+                to='/'
                 className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >
                 Go back home
-              </a>
-              <a href='#' className='text-sm font-semibold text-gray-900'>
-                Contact support <span aria-hidden='true'>&rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
         </main>

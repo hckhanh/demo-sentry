@@ -38,7 +38,9 @@ export default function OrderPayNow() {
       </div>
       <hr />
       <div className='p-6'>
-        <Button className='w-full'>Pay now</Button>
+        <Button type='submit' className='w-full'>
+          Pay now
+        </Button>
       </div>
     </div>
   )

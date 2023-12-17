@@ -26,11 +26,14 @@ export default function CheckboxInput({
           id={name}
           name={name}
           type='checkbox'
-          className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+          className='h-4 w-4 cursor-pointer rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
         />
       </div>
       <div className='text-sm leading-6'>
-        <label htmlFor={name} className='font-medium text-gray-900'>
+        <label
+          htmlFor={name}
+          className='cursor-pointer font-medium text-gray-900'
+        >
           {label}
         </label>
         <p className='text-gray-500'>{description}</p>

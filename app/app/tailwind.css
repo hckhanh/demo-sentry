@@ -3,31 +3,42 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'Inter fallback';
+    src: local('Arial');
+    size-adjust: 107.4014%;
+    ascent-override: 90.199%;
+    descent-override: 22.4836%;
+    line-gap-override: 0%;
+  }
+
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
+  li::marker {
+    color: #d1d5db;
+  }
 }
 
-li::marker {
-  color: #d1d5db;
-}
+@layer components {
+  .product-title {
+    view-transition-name: product-title;
+  }
 
-.product-title {
-  view-transition-name: product-title;
-}
+  ::view-transition-old(product-title),
+  ::view-transition-new(product-title) {
+    width: 100%;
+  }
 
-::view-transition-old(product-title),
-::view-transition-new(product-title) {
-  width: 100%;
-}
+  .product-image {
+    view-transition-name: product-image;
+  }
 
-.product-image {
-  view-transition-name: product-image;
-}
-
-::view-transition-old(product-image),
-::view-transition-new(product-image) {
-  height: 100%;
+  ::view-transition-old(product-image),
+  ::view-transition-new(product-image) {
+    height: 100%;
+  }
 }

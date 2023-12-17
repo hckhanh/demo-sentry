@@ -21,6 +21,8 @@ export default function PaymentInformation() {
           className='col-span-2'
           type='text'
           autoComplete='cc-exp'
+          placeholder='01/25'
+          pattern='^(0[1-9]|1[0-2])\/\d{2}$'
           label='Expiration date (MM/YY)'
         />
         <TextInput
@@ -28,6 +30,8 @@ export default function PaymentInformation() {
           type='password'
           autoComplete='cc-csc'
           label='CVC'
+          maxLength={3}
+          size={3}
         />
       </FormSection>
     </div>
