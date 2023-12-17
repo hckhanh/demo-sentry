@@ -126,10 +126,10 @@ export default function CounterInput({
         </MemoButton>
       </div>
       {description && !error && (
-        <p className='mt-0.5 text-xs text-gray-500'>{description}</p>
+        <p className='mt-1 text-xs text-gray-500'>{description}</p>
       )}
       {error && (
-        <p className='mt-0.5 flex items-center gap-x-1 text-xs text-red-500'>
+        <p className='mt-1 flex items-center gap-x-1 text-xs text-red-500'>
           {error}
         </p>
       )}
