@@ -19,19 +19,19 @@ export default function CanceledOrder({ orderId }: CanceledOrderProps) {
       <p className='mt-4 text-2xl font-semibold text-indigo-600'>
         Order canceled!
       </p>
-      <p className='mx-auto mt-2 max-w-md text-base leading-7 text-gray-600'>
+      <p className='message mx-auto mt-2 max-w-md text-base leading-7 text-gray-600'>
         Sorry, your order was canceled. Regularly, an order will be canceled in
         one of the following cases:
       </p>
       <ul className='mx-auto mt-4 list-inside list-disc rounded-md border border-red-500 bg-red-50 px-6 py-4 text-left shadow-sm'>
         <li>
           You did not finish the order within 24 hours after receiving order
-          confirmation email
+          confirmation email.
         </li>
         <li>Maybe, you are a bot ;)</li>
         <li>
           There are some activities (scalping, skewing and scraping) are related
-          to this order
+          to this order.
         </li>
       </ul>
       <div className='mt-8 text-lg font-bold text-gray-900 sm:text-xl'>

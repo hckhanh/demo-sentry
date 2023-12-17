@@ -1,10 +1,12 @@
 import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
+
 import aspectRatioPlugin from '@tailwindcss/aspect-ratio'
 import formPlugin from '@tailwindcss/forms'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   content: ['./app/**/*.{ts,tsx}'],
+  plugins: [aspectRatioPlugin, formPlugin],
   theme: {
     extend: {
       fontFamily: {
@@ -12,5 +14,4 @@ export default {
       },
     },
   },
-  plugins: [aspectRatioPlugin, formPlugin],
 } satisfies Config

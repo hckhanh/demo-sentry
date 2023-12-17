@@ -17,6 +17,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
     where: { id: params.productId },
   })
 
+  if (product.remainQuantity === 0) {
+    return redirect(`/products/${product.id}`)
+  }
+
   return json(product)
 }
 

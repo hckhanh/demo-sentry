@@ -19,7 +19,7 @@ export default function SuccessOrder({ orderId }: SuccessOrderProps) {
       <p className='mt-4 text-2xl font-semibold text-indigo-600'>
         Payment successful!
       </p>
-      <p className='mt-2 text-base leading-7 text-gray-600'>
+      <p className='message mt-2 max-w-md text-base leading-7 text-gray-600'>
         Thank you for your order. We will send you a confirmation email shortly.
       </p>
       <div className='mt-8 text-lg font-bold text-gray-900 sm:text-xl'>

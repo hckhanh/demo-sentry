@@ -27,7 +27,7 @@ export default function Button({
         {
           'px-8 py-3': !noPadding,
           'cursor-not-allowed': loading,
-          'cursor-not-allowed bg-gray-100 text-gray-400': disabled,
+          'cursor-not-allowed bg-gray-100 text-gray-600': disabled,
           'hover:bg-indigo-50': variant === 'outline' && !(disabled || loading),
           'border-transparent bg-indigo-600 text-white':
             variant === 'default' && !disabled,
