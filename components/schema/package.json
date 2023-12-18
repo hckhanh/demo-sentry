@@ -4,21 +4,22 @@
   "description": "Schema, database structure for entire app",
   "sideEffects": false,
   "type": "module",
-  "main": "index.ts",
-  "module": "index.ts",
-  "types": "index.ts",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
   "scripts": {
-    "dev": "bun build ./index.ts --outdir build --no-bundle --target node --watch",
+    "dev": "bun build ./index.ts --outfile build/index.js --no-bundle --watch",
+    "build:dev": "bun build ./index.ts --outfile build/index.js --no-bundle",
     "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "seed": "prisma db seed",
     "build": "prisma migrate deploy"
   },
   "prisma": {
-    "seed": "ts-node ./prisma/seed.ts"
+    "seed": "bun ./prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "5.7.0",
-    "prisma": "5.7.0",
-    "ts-node": "10.9.2"
+    "prisma": "5.7.0"
   },
   "devDependencies": {
     "eslint": "8.55.0",

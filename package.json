@@ -4,18 +4,23 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "migrate": "turbo migrate"
   },
   "workspaces": [
     "app",
     "infra",
-    "components/*"
+    "components/*",
+    "components/workers/*"
   ],
   "trustedDependencies": [
     "esbuild"
   ],
-  "prisma": {
-    "seed": "ts-node ./prisma/seed.ts"
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "volta": {
+    "node": "20.10.0"
   },
   "keywords": [
     "terraform",
@@ -34,9 +39,6 @@
   "author": {
     "name": "Khánh Hoàng",
     "url": "https://khanh.land"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "dependencies": {
     "@types/node": "20.10.4",

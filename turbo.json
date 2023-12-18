@@ -5,22 +5,19 @@
       "cache": false,
       "persistent": true
     },
-    "schema#dev": {
-      "persistent": false
-    },
     "app#dev": {
-      "dependsOn": ["schema#dev"]
+      "dependsOn": ["schema#build:dev", "schema#generate"]
     },
-    "db:dev": {
+    "schema#build:dev": {
       "cache": false
     },
-    "generate": {
+    "schema#generate": {
       "cache": false
     },
-    "init": {
+    "schema#migrate": {
       "cache": false
     },
-    "destroy": {
+    "schema#seed": {
       "cache": false
     }
   }

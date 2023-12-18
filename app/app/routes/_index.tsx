@@ -5,6 +5,8 @@ import { prisma } from 'schema'
 
 export async function loader() {
   const products = await prisma.product.findMany({ take: 10 })
+  console.log(products)
+  
   return json(products)
 }
 

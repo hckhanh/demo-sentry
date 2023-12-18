@@ -2,10 +2,11 @@
   "name": "email-worker",
   "private": true,
   "scripts": {
-    "dev": "email dev --port 3002",
-    "export": "email export"
+    "dev": "bun ./index.ts"
   },
-  "dependencies": {},
+  "dependencies": { 
+    "@types/bun": "1.0.0"
+  },
   "devDependencies": {
     "eslint": "8.55.0",
     "eslint-plugin-config": "workspace:*"
