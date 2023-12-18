@@ -45,3 +45,6 @@ public/build
 
 # Operating System Files
 .DS_Store
+
+# React Email
+.react-email

@@ -1,0 +1,5 @@
+$ bun build ./index.ts --outdir build --no-bundle --target node --watch
+
+      0.08 KB
+error: failed to write file ""
+ENOENT: No such file or directory (open())

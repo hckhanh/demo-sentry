@@ -1,7 +1,7 @@
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import ProductLink from '~/components/product/ProductLink'
-import prisma from '~/prisma.server'
+import { prisma } from 'schema'
 
 export async function loader() {
   const products = await prisma.product.findMany({ take: 10 })

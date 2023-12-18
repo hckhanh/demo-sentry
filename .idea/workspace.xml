@@ -5,37 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/emails/notion-magic-link.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/emails/plaid-verify-identity.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/emails/stripe-welcome.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/emails/vercel-invite-user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/notion-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/plaid-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/plaid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/stripe-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/vercel-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/vercel-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/vercel-team.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/email-editor/static/vercel-user.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/demo-sentry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo-sentry.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/app/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/form/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/form/CheckboxInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/CheckboxInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/form/CounterInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/CounterInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/form/FormSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/FormSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/form/TextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/OrderPayNow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/OrderPayNow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/PaymentInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/PaymentInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/prisma.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/BillingInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/BillingInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders_.$orderId.result/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders_.$orderId.result/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products.$productId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products.$productId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order.price.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order.price.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/OrderSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/OrderSummary.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/PersonalInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/PersonalInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/queries.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/tailwind.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/tailwind.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/eslint-plugin-config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/eslint-plugin-config/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/infra/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/credentials.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/credentials.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20231215091637_initialize_product_and_order/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-workspace.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/migrations/20231217060557_initialize_product_and_order/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/migrations/20231217062155_add_product_reference_to_order_item/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/seed.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +80,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/components/schema",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -86,21 +93,28 @@
     "npm.demo-sentry > dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
     "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
-    "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/app/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/schema" />
+      <recent name="$PROJECT_DIR$/components/workers/email-worker" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$/components/email-editor" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/app" />
-      <recent name="$PROJECT_DIR$/app/app/routes/store/demo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/email-editor" />
       <recent name="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order" />
       <recent name="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId" />
       <recent name="$PROJECT_DIR$/app/app/routes/store/products" />
       <recent name="$PROJECT_DIR$/app/app/routes/_store/orders.$orderId" />
-      <recent name="$PROJECT_DIR$/app/app/routes/_store/products/$productId" />
     </key>
   </component>
   <component name="RunManager">
@@ -139,6 +153,9 @@
       <workItem from="1702619736028" duration="2439000" />
       <workItem from="1702647907610" duration="36234000" />
       <workItem from="1702771165733" duration="3609000" />
+      <workItem from="1702825023520" duration="1335000" />
+      <workItem from="1702838800947" duration="1954000" />
+      <workItem from="1702860022862" duration="8394000" />
     </task>
     <servers />
   </component>

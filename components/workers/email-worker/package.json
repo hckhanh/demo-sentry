@@ -1,0 +1,13 @@
+{
+  "name": "email-worker",
+  "private": true,
+  "scripts": {
+    "dev": "email dev --port 3002",
+    "export": "email export"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "8.55.0",
+    "eslint-plugin-config": "workspace:*"
+  }
+}

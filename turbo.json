@@ -5,6 +5,18 @@
       "cache": false,
       "persistent": true
     },
+    "schema#dev": {
+      "persistent": false
+    },
+    "app#dev": {
+      "dependsOn": ["schema#dev"]
+    },
+    "db:dev": {
+      "cache": false
+    },
+    "generate": {
+      "cache": false
+    },
     "init": {
       "cache": false
     },
