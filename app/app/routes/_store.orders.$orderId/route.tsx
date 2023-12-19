@@ -11,6 +11,7 @@ import PaymentInformation from '~/routes/_store.orders.$orderId/PaymentInformati
 import { cardSchema } from '~/routes/_store.orders.$orderId/schemas'
 import { prisma } from 'schema'
 import { flatten, safeParse } from 'valibot'
+import { emailQueue } from '~/queues'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const order = await prisma.order.findUniqueOrThrow({
@@ -75,6 +76,12 @@ export async function action({ params, request }: ActionFunctionArgs) {
     data: {
       status: 'SUCCESS',
     },
+  })
+  await emailQueue.add(params.orderId,{ 
+    template: "order-receipt",
+    data: {
+      orderId: params.orderId
+    }
   })
 
   return redirect(`/orders/${params.orderId}/result`)

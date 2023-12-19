@@ -2,11 +2,13 @@
   "name": "email-worker",
   "private": true,
   "scripts": {
-    "dev": "bun ./index.ts",
+    "dev": "bun ./index.ts --watch",
     "start": "bun ./build/index.js"
   },
   "dependencies": {
+    "@types/bun": "1.0.0",
     "bullmq": "4.16.0",
+    "handlebars": "4.7.8",
     "schema": "workspace:*"
   },
   "devDependencies": {

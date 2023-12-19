@@ -1,4 +1,3 @@
-export default `<mjml>
 <mj-head>
   <mj-preview>You have an order receipt</mj-preview>
   <mj-title>Order Receipt</mj-title>
@@ -100,4 +99,4 @@ export default `<mjml>
     </mj-column>
   </mj-section>
 </mj-body>
-</mjml>`
+</mjml>

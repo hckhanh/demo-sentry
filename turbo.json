@@ -8,6 +8,9 @@
     "app#dev": {
       "dependsOn": ["schema#build:dev", "schema#generate"]
     },
+    "email-worker#dev": {
+      "dependsOn": ["schema#build:dev", "schema#generate"]
+    },
     "schema#build:dev": {
       "cache": false
     },
