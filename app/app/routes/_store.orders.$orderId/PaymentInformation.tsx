@@ -27,10 +27,10 @@ export default function PaymentInformation() {
           type='text'
           placeholder='01/25'
           autoComplete='cc-exp'
-          className='col-span-3'
           name='cardExpirationDate'
           label='Expiration date (MM/YY)'
           pattern='^(0[1-9]|1[0-2])\/\d{2}$'
+          className='col-span-3 2xl:col-span-2'
         />
         <TextInput
           required

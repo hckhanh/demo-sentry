@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "turbo dev",
-    "migrate": "turbo migrate"
+    "generate": "prisma generate",
+    "seed": "prisma db seed"
   },
   "workspaces": [
     "app",
@@ -38,8 +39,13 @@
     "name": "Khánh Hoàng",
     "url": "https://khanh.land"
   },
+  "prisma": {
+    "seed": "bun ./prisma/seed.ts"
+  },
   "dependencies": {
+    "@prisma/client": "5.7.0",
     "@types/node": "20.10.4",
+    "prisma": "5.7.0",
     "turbo": "1.11.2"
   },
   "devDependencies": {

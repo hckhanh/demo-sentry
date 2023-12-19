@@ -1,17 +1,15 @@
-import {Queue} from 'bullmq'
+import { Queue } from 'bullmq'
+import Redis from 'ioredis'
+
+const connection = new Redis(process.env.REDIS_URL as string, {
+  maxRetriesPerRequest: null,
+})
 
 type EmailQueueData = {
-  template: string,
-  data: any
+  template: string
+  data: Record<string, any>
 }
 
-export const emailQueue = new Queue<EmailQueueData>("{email_queue}", {
-  connection: {
-    host: process.env.REDIS_HOST,
-    port: Number(process.env.REDIS_PORT),
-    username: process.env.REDIS_USERNAME,
-    password: process.env.REDIS_PASSWORD,
-    db: 0,
-    tls: {},
-  },
+export const emailQueue = new Queue<EmailQueueData>('{email_queue}', {
+  connection,
 })

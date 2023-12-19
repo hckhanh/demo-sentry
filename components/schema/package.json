@@ -9,17 +9,11 @@
   "scripts": {
     "dev": "bun build ./index.ts --outfile build/index.js --no-bundle --watch",
     "build:dev": "bun build ./index.ts --outfile build/index.js --no-bundle",
-    "generate": "prisma generate",
-    "migrate": "prisma migrate dev",
     "seed": "prisma db seed",
     "build": "prisma migrate deploy"
   },
-  "prisma": {
-    "seed": "bun ./prisma/seed.ts"
-  },
   "dependencies": {
-    "@prisma/client": "5.7.0",
-    "prisma": "5.7.0"
+    "@prisma/client": "5.7.0"
   },
   "devDependencies": {
     "eslint": "8.55.0",

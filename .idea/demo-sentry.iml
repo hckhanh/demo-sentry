@@ -7,6 +7,15 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/app/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/components/workers/email-worker/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/public/build" />
+      <excludeFolder url="file://$MODULE_DIR$/components/schema/build" />
+      <excludeFolder url="file://$MODULE_DIR$/components/workers/email-worker/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/infra/.terraform/providers" />
+      <excludeFolder url="file://$MODULE_DIR$/infra/ssh_key" />
+      <excludeFolder url="file://$MODULE_DIR$/infra/terraform.tfstate.d" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

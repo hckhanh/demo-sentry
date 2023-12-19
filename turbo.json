@@ -6,21 +6,15 @@
       "persistent": true
     },
     "app#dev": {
-      "dependsOn": ["schema#build:dev", "schema#generate"]
+      "dependsOn": ["schema#build:dev", "//#generate"]
     },
     "email-worker#dev": {
-      "dependsOn": ["schema#build:dev", "schema#generate"]
+      "dependsOn": ["schema#build:dev", "//#generate"]
     },
     "schema#build:dev": {
       "cache": false
     },
-    "schema#generate": {
-      "cache": false
-    },
-    "schema#migrate": {
-      "cache": false
-    },
-    "schema#seed": {
+    "//#generate": {
       "cache": false
     }
   }

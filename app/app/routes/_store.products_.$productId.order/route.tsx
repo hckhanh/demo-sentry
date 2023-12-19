@@ -97,11 +97,17 @@ export async function action({ params, request }: ActionFunctionArgs) {
           shippingFee: 0,
           taxRate: 0.029,
 
-          ipAddress: '',
-          fingerprintId: '',
-          subFingerprintId: '',
+          paymentMethod: 'VISA',
           email: parsed.output.email,
-          assessmentId: Math.random().toString(32),
+
+          assessment: {
+            create: {
+              fingerprintId: '',
+              subFingerprintId: '',
+              ipAddress: '127.0.0.1',
+              assessmentId: Math.random().toString(32),
+            },
+          },
 
           items: {
             create: {
@@ -177,11 +183,17 @@ export async function action({ params, request }: ActionFunctionArgs) {
           taxRate: 0.029,
           shippingFee: 0,
 
-          ipAddress: '',
-          fingerprintId: '',
-          subFingerprintId: '',
+          paymentMethod: 'VISA',
           email: parsed.output.email,
-          assessmentId: Math.random().toString(32),
+
+          assessment: {
+            create: {
+              fingerprintId: '',
+              subFingerprintId: '',
+              ipAddress: '127.0.0.1',
+              assessmentId: Math.random().toString(32),
+            },
+          },
 
           items: {
             create: {

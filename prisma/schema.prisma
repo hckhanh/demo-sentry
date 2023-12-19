@@ -34,25 +34,34 @@ enum OrderStatus {
 
 model Order {
   id                String @id @default(cuid()) @db.VarChar(30)
+  assessmentId      String @unique @db.VarChar(30)
   shippingAddressId String @db.VarChar(30)
   billingAddressId  String @db.VarChar(30)
 
-  status           OrderStatus @default(CREATED)
-  assessmentId     String      @unique
-  fingerprintId    String
-  subFingerprintId String
-  ipAddress        String
+  status OrderStatus @default(CREATED)
 
-  email       String
-  taxRate     Float
-  taxes       Decimal @db.Money
-  shippingFee Decimal @db.Money
-  subtotal    Decimal @db.Money
-  total       Decimal @db.Money
+  email         String
+  taxRate       Float
+  taxes         Decimal @db.Money
+  shippingFee   Decimal @db.Money
+  subtotal      Decimal @db.Money
+  total         Decimal @db.Money
+  paymentMethod String
 
   items           OrderItem[]
   shippingAddress Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])
   billingAddress  Address     @relation("billingAddress", fields: [billingAddressId], references: [id])
+  assessment      Assessment  @relation(fields: [assessmentId], references: [id])
+}
+
+model Assessment {
+  id               String @id @default(cuid()) @db.VarChar(30)
+  assessmentId     String @unique
+  fingerprintId    String
+  subFingerprintId String
+  ipAddress        String @db.Inet
+
+  orders Order[]
 }
 
 model OrderItem {

@@ -6,12 +6,12 @@ import {
 } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
+import { emailQueue } from '~/queues'
 import OrderPayNow from '~/routes/_store.orders.$orderId/OrderPayNow'
 import PaymentInformation from '~/routes/_store.orders.$orderId/PaymentInformation'
 import { cardSchema } from '~/routes/_store.orders.$orderId/schemas'
 import { prisma } from 'schema'
 import { flatten, safeParse } from 'valibot'
-import { emailQueue } from '~/queues'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const order = await prisma.order.findUniqueOrThrow({
@@ -30,7 +30,10 @@ export default function OrderDetails() {
   const order = useLoaderData<typeof loader>()
 
   return (
-    <Form method='POST' className='gap-8 lg:grid lg:grid-cols-12'>
+    <Form
+      method='POST'
+      className='gap-8 lg:grid lg:grid-cols-12'
+    >
       <Breadcrumb className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
         <Breadcrumb.Item link='/'>Home</Breadcrumb.Item>
         <Breadcrumb.ItemCurrent>Order {order.id}</Breadcrumb.ItemCurrent>
@@ -77,11 +80,11 @@ export async function action({ params, request }: ActionFunctionArgs) {
       status: 'SUCCESS',
     },
   })
-  await emailQueue.add(params.orderId,{ 
-    template: "order-receipt",
+  await emailQueue.add(params.orderId, {
+    template: 'order-receipt',
     data: {
-      orderId: params.orderId
-    }
+      orderId: params.orderId,
+    },
   })
 
   return redirect(`/orders/${params.orderId}/result`)
