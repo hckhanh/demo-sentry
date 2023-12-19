@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7304e2d-b54c-45bc-a80b-ebbdf1610c5d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b7304e2d-b54c-45bc-a80b-ebbdf1610c5d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/demo-sentry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo-sentry.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/schema/.turbo/turbo-dev.log" beforeDir="false" afterPath="$PROJECT_DIR$/components/schema/.turbo/turbo-dev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "wip",
-    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/components/schema",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/components/workers/email-worker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -57,8 +62,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
     "npm.demo-sentry > dev.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khanh10x/demo-sentry/node_modules/prettier",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
+    "settings.editor.selected.configurable": "actions.on.save",
     "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -92,8 +97,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/components/schema" />
       <recent name="$PROJECT_DIR$/components/workers/email-worker" />
+      <recent name="$PROJECT_DIR$/components/schema" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$/components/email-editor" />
       <recent name="$PROJECT_DIR$/app" />
@@ -118,6 +123,13 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-56bbcd2c060c-JavaScript-WS-233.11799.293" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -139,10 +151,22 @@
       <workItem from="1702838800947" duration="1954000" />
       <workItem from="1702860022862" duration="8394000" />
       <workItem from="1702872269109" duration="459000" />
+      <workItem from="1702945835674" duration="5959000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

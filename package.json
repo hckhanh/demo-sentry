@@ -13,9 +13,7 @@
     "components/*",
     "components/workers/*"
   ],
-  "trustedDependencies": [
-    "esbuild"
-  ],
+  "trustedDependencies": [],
   "engines": {
     "node": ">=20.0.0"
   },

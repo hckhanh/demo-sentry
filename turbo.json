@@ -3,8 +3,7 @@
   "pipeline": {
     "dev": {
       "cache": false,
-      "persistent": true,
-      "dependsOn": ["^dev"]
+      "persistent": true
     },
     "app#dev": {
       "dependsOn": ["schema#build:dev", "schema#generate"]

@@ -2,12 +2,15 @@
   "name": "email-worker",
   "private": true,
   "scripts": {
-    "dev": "bun ./index.ts"
+    "dev": "bun ./index.ts",
+    "start": "bun ./build/index.js"
   },
-  "dependencies": { 
-    "@types/bun": "1.0.0"
+  "dependencies": {
+    "bullmq": "4.16.0",
+    "schema": "workspace:*"
   },
   "devDependencies": {
+    "@remix-run/eslint-config": "2.4.0",
     "eslint": "8.55.0",
     "eslint-plugin-config": "workspace:*"
   }
