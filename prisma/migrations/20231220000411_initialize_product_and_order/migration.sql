@@ -19,21 +19,32 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" VARCHAR(30) NOT NULL,
+    "assessmentId" VARCHAR(30) NOT NULL,
     "shippingAddressId" VARCHAR(30) NOT NULL,
     "billingAddressId" VARCHAR(30) NOT NULL,
     "status" "OrderStatus" NOT NULL DEFAULT 'CREATED',
-    "assessmentId" TEXT NOT NULL,
-    "fingerprintId" TEXT NOT NULL,
-    "subFingerprintId" TEXT NOT NULL,
-    "ipAddress" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "taxRate" DOUBLE PRECISION NOT NULL,
     "taxes" MONEY NOT NULL,
     "shippingFee" MONEY NOT NULL,
     "subtotal" MONEY NOT NULL,
     "total" MONEY NOT NULL,
+    "paymentMethod" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Assessment" (
+    "id" VARCHAR(30) NOT NULL,
+    "assessmentId" TEXT NOT NULL,
+    "fingerprintId" TEXT NOT NULL,
+    "subFingerprintId" TEXT NOT NULL,
+    "ipAddress" INET NOT NULL,
+
+    CONSTRAINT "Assessment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -67,6 +78,9 @@ CREATE TABLE "Address" (
 CREATE UNIQUE INDEX "Order_assessmentId_key" ON "Order"("assessmentId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Assessment_assessmentId_key" ON "Assessment"("assessmentId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "OrderItem_orderId_productId_key" ON "OrderItem"("orderId", "productId");
 
 -- AddForeignKey
@@ -76,7 +90,13 @@ ALTER TABLE "Order" ADD CONSTRAINT "Order_shippingAddressId_fkey" FOREIGN KEY ("
 ALTER TABLE "Order" ADD CONSTRAINT "Order_billingAddressId_fkey" FOREIGN KEY ("billingAddressId") REFERENCES "Address"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Order" ADD CONSTRAINT "Order_assessmentId_fkey" FOREIGN KEY ("assessmentId") REFERENCES "Assessment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddCheck
 ALTER TABLE "Product" ADD CONSTRAINT "Product_quantity_check" CHECK ("quantity" > 0);

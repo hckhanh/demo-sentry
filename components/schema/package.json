@@ -1,0 +1,22 @@
+{
+  "name": "schema",
+  "private": true,
+  "description": "Schema, database structure for entire app",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "scripts": {
+    "dev": "bun build ./index.ts --outfile build/index.js --no-bundle --watch",
+    "build:dev": "bun build ./index.ts --outfile build/index.js --no-bundle",
+    "seed": "prisma db seed",
+    "build": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "5.7.1"
+  },
+  "devDependencies": {
+    "eslint": "8.55.0",
+    "eslint-plugin-config": "workspace:*"
+  }
+}

@@ -107,6 +107,7 @@ export default function OrderSummary({
         <Button
           type='submit'
           className='w-full'
+          disabled={navigation.state === 'loading'}
           loading={navigation.state === 'submitting'}
         >
           Confirm order

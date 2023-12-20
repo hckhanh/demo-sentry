@@ -5,10 +5,23 @@
       "cache": false,
       "persistent": true
     },
-    "init": {
+    "app#dev": {
+      "dependsOn": ["schema#build:dev", "//#generate"]
+    },
+    "email-worker#dev": {
+      "dependsOn": ["schema#build:dev", "//#generate"]
+    },
+    "schema#build:dev": {
       "cache": false
     },
-    "destroy": {
+    "//#generate": {
+      "cache": false
+    },
+
+    "build": {
+      "cache": false
+    },
+    "start": {
       "cache": false
     }
   }

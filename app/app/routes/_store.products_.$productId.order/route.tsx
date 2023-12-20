@@ -3,13 +3,13 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
-import prisma from '~/prisma.server'
 import OrderSummary from '~/routes/_store.products_.$productId.order/OrderSummary'
 import PersonalInformation from '~/routes/_store.products_.$productId.order/PersonalInformation'
 import {
   defaultOrderSchema,
   fullOrderSchema,
 } from '~/routes/_store.products_.$productId.order/schemas'
+import { prisma } from 'schema'
 import { flatten, safeParse } from 'valibot'
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -97,11 +97,17 @@ export async function action({ params, request }: ActionFunctionArgs) {
           shippingFee: 0,
           taxRate: 0.029,
 
-          ipAddress: '',
-          fingerprintId: '',
-          subFingerprintId: '',
+          paymentMethod: 'VISA',
           email: parsed.output.email,
-          assessmentId: Math.random().toString(32),
+
+          assessment: {
+            create: {
+              fingerprintId: '',
+              subFingerprintId: '',
+              ipAddress: '127.0.0.1',
+              assessmentId: Math.random().toString(32),
+            },
+          },
 
           items: {
             create: {
@@ -177,11 +183,17 @@ export async function action({ params, request }: ActionFunctionArgs) {
           taxRate: 0.029,
           shippingFee: 0,
 
-          ipAddress: '',
-          fingerprintId: '',
-          subFingerprintId: '',
+          paymentMethod: 'VISA',
           email: parsed.output.email,
-          assessmentId: Math.random().toString(32),
+
+          assessment: {
+            create: {
+              fingerprintId: '',
+              subFingerprintId: '',
+              ipAddress: '127.0.0.1',
+              assessmentId: Math.random().toString(32),
+            },
+          },
 
           items: {
             create: {

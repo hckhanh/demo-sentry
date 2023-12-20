@@ -4,8 +4,8 @@ import { json } from '@remix-run/node'
 import { NavLink, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
 import Button from '~/components/form/Button'
-import prisma from '~/prisma.server'
 import { formatCurrency } from '~/utils'
+import { prisma } from 'schema'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({

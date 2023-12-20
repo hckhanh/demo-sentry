@@ -104,10 +104,11 @@ async function main() {
   }
 }
 
-main()
-  .then(() => prisma.$disconnect())
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+try {
+  await main()
+  await prisma.$disconnect()
+} catch (e) {
+  console.error(e)
+  await prisma.$disconnect()
+  process.exit(1)
+}
