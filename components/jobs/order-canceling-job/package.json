@@ -7,7 +7,7 @@
     "start": "bun build/index.js"
   },
   "dependencies": {
-    "cron": "3.1.6",
+    "croner": "8.0.0",
     "schema": "workspace:*"
   },
   "devDependencies": {

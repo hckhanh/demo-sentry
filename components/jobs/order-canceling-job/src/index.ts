@@ -1,8 +1,12 @@
-import { CronJob } from 'cron'
+import { Cron } from 'croner'
 import { prisma } from 'schema'
 
-const job = new CronJob(
+const job = new Cron(
   '0 0 0 * * *', // cronTime
+  {
+    protect: true,
+    timezone: 'America/Los_Angeles',
+  },
   async () => {
     const orders = await prisma.order.findMany({
       where: { status: 'CREATED' },
@@ -12,13 +16,8 @@ const job = new CronJob(
       data: { status: 'CANCELED' },
       where: { id: { in: orders.map((order) => order.id) } },
     })
-  }, // onTick
-  null, // onComplete
-  false, // start
-  'America/Los_Angeles', // timeZone
+  }
 )
-
-job.start()
 
 process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
