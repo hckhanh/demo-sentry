@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/jobs/order-canceling-job/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/build/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +155,7 @@
       <workItem from="1702987342987" duration="9465000" />
       <workItem from="1703028695449" duration="305000" />
       <workItem from="1703029009683" duration="2554000" />
-      <workItem from="1703031572302" duration="8099000" />
+      <workItem from="1703031572302" duration="8435000" />
     </task>
     <servers />
   </component>
