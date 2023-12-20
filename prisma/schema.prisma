@@ -48,8 +48,9 @@ model Order {
   total         Decimal @db.Money
   paymentMethod String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  purchasedAt DateTime?
 
   items           OrderItem[]
   shippingAddress Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])

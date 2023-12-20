@@ -11,6 +11,9 @@ import {
 } from '~/routes/_store.products_.$productId.order/schemas'
 import { prisma } from 'schema'
 import { flatten, safeParse } from 'valibot'
+import { emailQueue } from '~/queues'
+import { formatCurrency, formatPercent } from '~/utils'
+import { format } from 'date-fns'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
@@ -145,8 +148,28 @@ export async function action({ params, request }: ActionFunctionArgs) {
             },
           },
         },
+        include: { items: { include: { product: true } } },
       }),
     ])
+    await emailQueue.add(`order-reminder-${order.id}`, {
+      email: order.email,
+      template: 'order-reminder',
+      subject: 'Your Awaiting Order',
+      data: {
+        total: order.total,
+        email: order.email,
+        orderId: params.orderId,
+        paymentMethod: order.paymentMethod,
+        taxRate: formatPercent(order.taxRate),
+        taxes: formatCurrency(order.taxes.toString()),
+        items: order.items.map((item) => ({
+          name: item.product.name,
+          quantity: item.quantity,
+          price: formatCurrency(item.price.toString()),
+        })),
+        paymentLink: 'https://google.com',
+      },
+    }, {delay: 1000 * 60 * 30})
 
     return redirect(`/orders/${order.id}`)
   } else {
@@ -231,8 +254,28 @@ export async function action({ params, request }: ActionFunctionArgs) {
             },
           },
         },
+        include: { items: { include: { product: true } } },
       }),
     ])
+    await emailQueue.add(`order-reminder-${order.id}`, {
+      email: order.email,
+      template: 'order-reminder',
+      subject: 'Your Awaiting Order',
+      data: {
+        total: order.total,
+        email: order.email,
+        orderId: params.orderId,
+        paymentMethod: order.paymentMethod,
+        taxRate: formatPercent(order.taxRate),
+        taxes: formatCurrency(order.taxes.toString()),
+        items: order.items.map((item) => ({
+          name: item.product.name,
+          quantity: item.quantity,
+          price: formatCurrency(item.price.toString()),
+        })),
+        paymentLink: 'https://google.com',
+      },
+    }, {delay: 1000 * 60 * 30})
 
     return redirect(`/orders/${order.id}`)
   }

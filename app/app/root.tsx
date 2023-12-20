@@ -37,7 +37,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className='text-sm text-gray-900'>
+      <body className='text-sm text-gray-900 subpixel-antialiased'>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -56,7 +56,7 @@ export function ErrorBoundary() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Links />
       </head>
-      <body className='text-sm text-gray-900'>
+      <body className='text-sm text-gray-900 subpixel-antialiased'>
         <main className='grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8'>
           <div className='text-center'>
             <p className='text-base font-semibold text-indigo-600'>404</p>

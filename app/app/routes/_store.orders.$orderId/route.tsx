@@ -78,7 +78,8 @@ export async function action({ params, request }: ActionFunctionArgs) {
     },
     include: { items: { include: { product: true } } },
   })
-  await emailQueue.add(params.orderId, {
+  await emailQueue.remove(`order-reminder-${params.orderId}`)
+  await emailQueue.add(`order-receipt-${params.orderId}`, {
     email: order.email,
     template: 'order-receipt',
     subject: 'Your Purchase Confirmation',
@@ -89,7 +90,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
       paymentMethod: order.paymentMethod,
       taxRate: formatPercent(order.taxRate),
       taxes: formatCurrency(order.taxes.toString()),
-      createdAt: format(order.createdAt, 'MMMM dd, yyyy'),
+      purchasedAt: format(order.createdAt, 'MMMM dd, yyyy'),
       items: order.items.map((item) => ({
         name: item.product.name,
         quantity: item.quantity,
