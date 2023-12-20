@@ -4,6 +4,7 @@ import mjml2html from 'mjml'
 import { Resend } from 'resend'
 
 import { asyncRenderFile } from './utils.ts'
+import { prisma } from 'schema/index.ts'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
@@ -59,6 +60,7 @@ async function cleanup() {
   console.log('\nGracefully shutting down from SIGINT (Ctrl+C) or SIGTERM')
 
   await worker.close()
+  await prisma.$disconnect()
 
   process.exit()
 }
