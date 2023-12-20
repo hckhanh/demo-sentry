@@ -51,3 +51,14 @@ worker.on('failed', (job, error) => {
 worker.on('completed', (job) => {
   console.log('Completed ' + job.id)
 })
+
+process.on('SIGINT', cleanup)
+process.on('SIGTERM', cleanup)
+
+async function cleanup() {
+  console.log('\nGracefully shutting down from SIGINT (Ctrl+C) or SIGTERM')
+
+  await worker.close()
+
+  process.exit()
+}
