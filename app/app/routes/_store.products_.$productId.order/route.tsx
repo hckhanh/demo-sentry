@@ -11,7 +11,7 @@ import {
 } from '~/routes/_store.products_.$productId.order/schemas'
 import { prisma } from 'schema'
 import { flatten, safeParse } from 'valibot'
-import { emailQueue } from '~/queues'
+import { emailQueue, orderCanceledQueue } from '~/queues'
 import { formatCurrency, formatPercent } from '~/utils'
 import { format } from 'date-fns'
 
@@ -159,7 +159,6 @@ export async function action({ params, request }: ActionFunctionArgs) {
         total: order.total,
         email: order.email,
         orderId: params.orderId,
-        paymentMethod: order.paymentMethod,
         taxRate: formatPercent(order.taxRate),
         taxes: formatCurrency(order.taxes.toString()),
         items: order.items.map((item) => ({
@@ -168,8 +167,12 @@ export async function action({ params, request }: ActionFunctionArgs) {
           price: formatCurrency(item.price.toString()),
         })),
         paymentLink: 'https://google.com',
+        billingFirstName: parsed.output.shippingFirstName
       },
     }, {delay: 1000 * 60 * 30})
+    await orderCanceledQueue.add(`order-canceled-${order.id}`, {
+      orderId: order.id,
+    }, {delay: 1000 * 60 * 60 * 24})
 
     return redirect(`/orders/${order.id}`)
   } else {
@@ -265,7 +268,6 @@ export async function action({ params, request }: ActionFunctionArgs) {
         total: order.total,
         email: order.email,
         orderId: params.orderId,
-        paymentMethod: order.paymentMethod,
         taxRate: formatPercent(order.taxRate),
         taxes: formatCurrency(order.taxes.toString()),
         items: order.items.map((item) => ({
@@ -276,6 +278,9 @@ export async function action({ params, request }: ActionFunctionArgs) {
         paymentLink: 'https://google.com',
       },
     }, {delay: 1000 * 60 * 30})
+    await orderCanceledQueue.add(`order-canceled-${order.id}`, {
+      orderId: order.id,
+    }, {delay: 1000 * 60 * 60 * 24})
 
     return redirect(`/orders/${order.id}`)
   }

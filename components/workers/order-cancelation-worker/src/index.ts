@@ -1,29 +1,17 @@
 import { Worker } from 'bullmq'
 import Redis from 'ioredis'
-import mjml2html from 'mjml'
-import { Resend } from 'resend'
-
-import { asyncRenderFile } from './utils.ts'
-import { type EmailQueueData, prisma } from 'schema'
+import { prisma, type OrderCanceledQueueData } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
 })
 
-const resend = new Resend(Bun.env.RESEND_API_KEY)
-
-
-const worker = new Worker<EmailQueueData>(
-  '{email_queue}',
+const worker = new Worker<OrderCanceledQueueData>(
+  '{order_canceled_queue}',
   async (job) => {
-    const content = await asyncRenderFile(job.data.template, job.data.data)
-    const htmlOutput = mjml2html(content, { validationLevel: 'strict' })
-
-    return resend.emails.send({
-      to: job.data.email,
-      html: htmlOutput.html,
-      subject: job.data.subject,
-      from: 'onboarding@resend.dev',
+    return prisma.order.update({
+      where: { id: job.data.orderId, },
+      data: { status: 'CANCELED', },
     })
   },
   {
@@ -36,10 +24,6 @@ const worker = new Worker<EmailQueueData>(
       count: 100,
       age: 2592000,
     },
-    limiter: {
-      max: 100,
-      duration: 1000 * 60 * 60 * 24,
-    }
   },
 )
 
