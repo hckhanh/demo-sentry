@@ -2,7 +2,6 @@ import { Worker } from 'bullmq'
 import Redis from 'ioredis'
 import mjml2html from 'mjml'
 import { Resend } from 'resend'
-import { prisma } from 'schema'
 
 import { asyncRenderFile } from './utils.ts'
 
@@ -13,6 +12,8 @@ const connection = new Redis(Bun.env.REDIS_URL as string, {
 const resend = new Resend(Bun.env.RESEND_API_KEY)
 
 type EmailQueueData = {
+  email: string
+  subject: string
   template: string
   data: Record<string, any>
 }
@@ -20,21 +21,15 @@ type EmailQueueData = {
 const worker = new Worker<EmailQueueData>(
   '{email_queue}',
   async (job) => {
-    const order = await prisma.order.findUnique({
-      where: { id: job.data.data.orderId },
+    const content = await asyncRenderFile(job.data.template, job.data.data)
+    const htmlOutput = mjml2html(content, { validationLevel: 'strict' })
+
+    return resend.emails.send({
+      to: job.data.email,
+      html: htmlOutput.html,
+      subject: job.data.subject,
+      from: 'onboarding@resend.dev',
     })
-
-    if (order) {
-      const content = await asyncRenderFile(job.data.template, job.data.data)
-      const htmlOutput = mjml2html(content, { validationLevel: 'strict' })
-
-      return resend.emails.send({
-        to: order.email,
-        html: htmlOutput.html,
-        from: 'onboarding@resend.dev',
-        subject: `Your Purchase Confirmation`,
-      })
-    }
   },
   {
     connection,

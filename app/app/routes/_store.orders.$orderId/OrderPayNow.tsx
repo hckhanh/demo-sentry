@@ -69,6 +69,7 @@ export default function OrderPayNow({
         <Button
           type='submit'
           className='w-full'
+          disabled={navigation.state === 'loading'}
           loading={navigation.state === 'submitting'}
         >
           Pay now

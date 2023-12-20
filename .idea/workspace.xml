@@ -5,16 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/demo.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/src/emails/order-receipt.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/src/emails/order-receipt.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Liquid File" />
+      </list>
+    </option>
+  </component>
   <component name="FormatOnSaveOptions">
     <option name="mySelectedFileTypes">
       <set>
+        <option value="Handlebars/Mustache" />
         <option value="Prisma" />
         <option value="Terraform" />
       </set>
@@ -55,7 +64,7 @@
     "nodejs_package_manager_path": "pnpm",
     "npm.demo-sentry > dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Other File Types",
     "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -144,7 +153,10 @@
       <workItem from="1702860022862" duration="8394000" />
       <workItem from="1702872269109" duration="459000" />
       <workItem from="1702945835674" duration="8307000" />
-      <workItem from="1702987342987" duration="9070000" />
+      <workItem from="1702987342987" duration="9465000" />
+      <workItem from="1703028695449" duration="305000" />
+      <workItem from="1703029009683" duration="2554000" />
+      <workItem from="1703031572302" duration="2612000" />
     </task>
     <servers />
   </component>

@@ -6,6 +6,8 @@ const connection = new Redis(process.env.REDIS_URL as string, {
 })
 
 type EmailQueueData = {
+  email: string
+  subject: string
   template: string
   data: Record<string, any>
 }

@@ -30,6 +30,8 @@ CREATE TABLE "Order" (
     "subtotal" MONEY NOT NULL,
     "total" MONEY NOT NULL,
     "paymentMethod" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );

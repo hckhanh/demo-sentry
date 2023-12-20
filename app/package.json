@@ -30,6 +30,7 @@
     "bullmq": "^4.16.0",
     "card-validator": "9.0.0",
     "clsx": "2.0.0",
+    "date-fns": "3.0.1",
     "ioredis": "5.3.2",
     "isbot": "3.6.8",
     "libphonenumber-js": "1.10.51",
