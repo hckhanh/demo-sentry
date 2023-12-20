@@ -1,9 +1,8 @@
+import { asyncRenderFile } from '~/utils.ts'
 import { Worker } from 'bullmq'
 import Redis from 'ioredis'
 import mjml2html from 'mjml'
 import { Resend } from 'resend'
-
-import { asyncRenderFile } from './utils.ts'
 import { type EmailQueueData, prisma } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
@@ -11,7 +10,6 @@ const connection = new Redis(Bun.env.REDIS_URL as string, {
 })
 
 const resend = new Resend(Bun.env.RESEND_API_KEY)
-
 
 const worker = new Worker<EmailQueueData>(
   '{email_queue}',
@@ -28,18 +26,18 @@ const worker = new Worker<EmailQueueData>(
   },
   {
     connection,
-    removeOnComplete: {
-      age: 604800,
-      count: 100,
-    },
     removeOnFail: {
       count: 100,
       age: 2592000,
     },
+    removeOnComplete: {
+      count: 10,
+      age: 604800,
+    },
     limiter: {
       max: 100,
       duration: 1000 * 60 * 60 * 24,
-    }
+    },
   },
 )
 

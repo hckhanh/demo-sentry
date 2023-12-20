@@ -1,5 +1,5 @@
 {
-  "name": "order-cancelation-worker",
+  "name": "order-cancel-worker",
   "private": true,
   "scripts": {
     "dev": "bun src/index.ts --watch",

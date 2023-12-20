@@ -1,15 +1,22 @@
-export function formatCurrency(value: string | number) {
+export function formatCurrency(
+  value: { toString: () => string } | number | string,
+) {
   const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
     currency: 'USD',
+    style: 'currency',
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   })
 
-  return formatter.format(Number(value))
+  const currencyValue =
+    typeof value === 'number'
+      ? value
+      : Number(typeof value === 'string' ? value : value.toString())
+
+  return formatter.format(currencyValue)
 }
 
-export function formatPercent(value: string | number) {
+export function formatPercent(value: number | string) {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'percent',
     maximumFractionDigits: 2,

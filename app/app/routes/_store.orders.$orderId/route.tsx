@@ -1,7 +1,12 @@
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/node'
+import {
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+  json,
+  redirect,
+} from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import Breadcrumb from '~/components/Breadcrumb'
-import { emailQueue } from '~/queues'
+import { emailQueue, orderCancelQueue } from '~/queues'
 import OrderPayNow from '~/routes/_store.orders.$orderId/OrderPayNow'
 import PaymentInformation from '~/routes/_store.orders.$orderId/PaymentInformation'
 import { cardSchema } from '~/routes/_store.orders.$orderId/schemas'
@@ -78,26 +83,30 @@ export async function action({ params, request }: ActionFunctionArgs) {
     },
     include: { items: { include: { product: true } } },
   })
-  await emailQueue.remove(`order-reminder-${params.orderId}`)
-  await emailQueue.add(`order-receipt-${params.orderId}`, {
-    email: order.email,
-    template: 'order-receipt',
-    subject: 'Your Purchase Confirmation',
-    data: {
-      total: order.total,
+
+  await Promise.all([
+    orderCancelQueue.remove(`order-cancel-${params.orderId}`),
+    emailQueue.remove(`order-reminder-${params.orderId}`),
+    emailQueue.add(`order-receipt-${params.orderId}`, {
       email: order.email,
-      orderId: params.orderId,
-      paymentMethod: order.paymentMethod,
-      taxRate: formatPercent(order.taxRate),
-      taxes: formatCurrency(order.taxes.toString()),
-      purchasedAt: format(order.createdAt, 'MMMM dd, yyyy'),
-      items: order.items.map((item) => ({
-        name: item.product.name,
-        quantity: item.quantity,
-        price: formatCurrency(item.price.toString()),
-      })),
-    },
-  })
+      template: 'order-receipt',
+      subject: 'Your Purchase Confirmation',
+      data: {
+        email: order.email,
+        orderId: params.orderId,
+        paymentMethod: order.paymentMethod,
+        total: formatCurrency(order.total),
+        taxes: formatCurrency(order.taxes),
+        taxRate: formatPercent(order.taxRate),
+        purchasedAt: format(order.createdAt, 'MMMM dd, yyyy'),
+        items: order.items.map((item) => ({
+          name: item.product.name,
+          quantity: item.quantity,
+          price: formatCurrency(item.price),
+        })),
+      },
+    }),
+  ])
 
   return redirect(`/orders/${params.orderId}/result`)
 }

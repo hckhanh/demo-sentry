@@ -9,6 +9,6 @@ export type EmailQueueData = {
   data: Record<string, any>
 }
 
-export type OrderCanceledQueueData = {
+export type OrderCancelQueueData = {
   orderId: string
 }

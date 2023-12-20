@@ -1,28 +1,28 @@
 import { Worker } from 'bullmq'
 import Redis from 'ioredis'
-import { prisma, type OrderCanceledQueueData } from 'schema'
+import { type OrderCancelQueueData, prisma } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
 })
 
-const worker = new Worker<OrderCanceledQueueData>(
-  '{order_canceled_queue}',
+const worker = new Worker<OrderCancelQueueData>(
+  '{order_cancel_queue}',
   async (job) => {
     return prisma.order.update({
-      where: { id: job.data.orderId, },
-      data: { status: 'CANCELED', },
+      data: { status: 'CANCELED' },
+      where: { id: job.data.orderId },
     })
   },
   {
     connection,
-    removeOnComplete: {
-      age: 604800,
-      count: 100,
-    },
     removeOnFail: {
       count: 100,
       age: 2592000,
+    },
+    removeOnComplete: {
+      count: 10,
+      age: 604800,
     },
   },
 )
