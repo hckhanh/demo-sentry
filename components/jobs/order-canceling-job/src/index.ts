@@ -9,6 +9,7 @@ const job = new Cron(
   },
   async () => {
     const orders = await prisma.order.findMany({
+      select: { id: true },
       where: { status: 'CREATED' },
     })
 
@@ -16,7 +17,7 @@ const job = new Cron(
       data: { status: 'CANCELED' },
       where: { id: { in: orders.map((order) => order.id) } },
     })
-  }
+  },
 )
 
 process.on('SIGINT', cleanup)

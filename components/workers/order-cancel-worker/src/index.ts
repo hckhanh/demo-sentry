@@ -10,6 +10,7 @@ const worker = new Worker<OrderCancelQueueData>(
   '{order_cancel_queue}',
   async (job) => {
     return prisma.order.update({
+      select: { id: true },
       data: { status: 'CANCELED' },
       where: { id: job.data.orderId },
     })

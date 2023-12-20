@@ -16,6 +16,14 @@ import { flatten, safeParse } from 'valibot'
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: params.productId },
+    select: {
+      id: true,
+      name: true,
+      image: true,
+      price: true,
+      quantity: true,
+      remainQuantity: true,
+    },
   })
 
   if (product.remainQuantity === 0) {

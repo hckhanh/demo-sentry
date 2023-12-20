@@ -8,6 +8,7 @@ import { prisma } from 'schema'
 export async function loader({ params }: LoaderFunctionArgs) {
   const order = await prisma.order.findUniqueOrThrow({
     where: { id: params.orderId },
+    select: { id: true, status: true },
   })
 
   if (order.status === 'CREATED') {

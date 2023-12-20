@@ -10,6 +10,16 @@ import { prisma } from 'schema'
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: params.productId },
+    select: {
+      id: true,
+      name: true,
+      image: true,
+      price: true,
+      highlights: true,
+      introduction: true,
+      descriptions: true,
+      remainQuantity: true,
+    },
   })
 
   return json(product)

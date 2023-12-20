@@ -6,6 +6,7 @@ import { prisma } from 'schema'
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const searchParams = new URL(request.url).searchParams
   const product = await prisma.product.findUniqueOrThrow({
+    select: { price: true },
     where: { id: params.productId },
   })
 

@@ -18,7 +18,25 @@ import { flatten, safeParse } from 'valibot'
 export async function loader({ params }: LoaderFunctionArgs) {
   const order = await prisma.order.findUniqueOrThrow({
     where: { id: params.orderId },
-    include: { items: { include: { product: true } } },
+    select: {
+      id: true,
+      email: true,
+      total: true,
+      taxes: true,
+      status: true,
+      taxRate: true,
+      subtotal: true,
+      createdAt: true,
+      shippingFee: true,
+      purchasedAt: true,
+      items: {
+        select: {
+          price: true,
+          quantity: true,
+          product: { select: { name: true, image: true } },
+        },
+      },
+    },
   })
 
   if (order.status !== 'CREATED') {
@@ -32,10 +50,7 @@ export default function OrderDetails() {
   const order = useLoaderData<typeof loader>()
 
   return (
-    <Form
-      method='POST'
-      className='gap-8 lg:grid lg:grid-cols-12'
-    >
+    <Form method='POST' className='gap-8 lg:grid lg:grid-cols-12'>
       <Breadcrumb className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
         <Breadcrumb.Item link='/'>Home</Breadcrumb.Item>
         <Breadcrumb.ItemCurrent>Order {order.id}</Breadcrumb.ItemCurrent>
@@ -77,11 +92,23 @@ export async function action({ params, request }: ActionFunctionArgs) {
   }
 
   const order = await prisma.order.update({
+    data: { status: 'SUCCESS' },
     where: { id: params.orderId },
-    data: {
-      status: 'SUCCESS',
+    select: {
+      email: true,
+      total: true,
+      taxes: true,
+      taxRate: true,
+      createdAt: true,
+      paymentMethod: true,
+      items: {
+        select: {
+          price: true,
+          quantity: true,
+          product: { select: { name: true } },
+        },
+      },
     },
-    include: { items: { include: { product: true } } },
   })
 
   await Promise.all([

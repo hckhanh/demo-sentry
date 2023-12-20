@@ -4,7 +4,10 @@ import ProductLink from '~/components/product/ProductLink'
 import { prisma } from 'schema'
 
 export async function loader() {
-  const products = await prisma.product.findMany({ take: 10 })
+  const products = await prisma.product.findMany({
+    take: 10,
+    select: { id: true, name: true, image: true, price: true },
+  })
 
   return json(products)
 }

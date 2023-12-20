@@ -25,6 +25,7 @@ type Order = {
 export async function createOrder(data: Order) {
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: data.productId },
+    select: { name: true, price: true },
   })
 
   const subtotal = product.price.times(data.quantity)

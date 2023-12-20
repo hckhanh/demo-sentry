@@ -6,23 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/components/product/ProductLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/components/product/ProductLink.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/queues.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/queues.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.orders_.$orderId.result/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.orders_.$orderId.result/route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products.$productId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products.$productId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order.price.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order.price.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/route.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/schema/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/build.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/build.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/src/emails/order-receipt.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/src/emails/order-reminder.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/src/utils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/workers/order-cancelation-worker/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/jobs/order-canceling-job/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/jobs/order-canceling-job/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/order-cancel-worker/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/order-cancel-worker/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
