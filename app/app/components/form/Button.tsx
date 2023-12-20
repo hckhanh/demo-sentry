@@ -23,7 +23,7 @@ export default function Button({
       {...props}
       disabled={disabled || loading}
       className={clsx(
-        'flex select-none items-center justify-center rounded-md border text-base font-medium focus:outline-none',
+        'appearance-auto flex select-none items-center justify-center rounded-md border text-base font-medium focus:outline-none',
         {
           'px-8 py-3': !noPadding,
           'cursor-not-allowed': loading,

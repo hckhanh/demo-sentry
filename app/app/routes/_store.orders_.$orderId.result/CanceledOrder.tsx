@@ -19,7 +19,7 @@ export default function CanceledOrder({ orderId }: CanceledOrderProps) {
       <p className='mt-4 text-2xl font-semibold text-indigo-600'>
         Order canceled!
       </p>
-      <p className='message mx-auto mt-2 max-w-md text-base leading-7 text-gray-600'>
+      <p className='text-balance mx-auto mt-2 max-w-md text-base leading-7 text-gray-600'>
         Sorry, your order was canceled. Regularly, an order will be canceled in
         one of the following cases:
       </p>
