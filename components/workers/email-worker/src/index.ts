@@ -34,6 +34,10 @@ const worker = new Worker<EmailQueueData>(
   },
   {
     connection,
+    removeOnComplete: {
+      age: 604800,
+      count: 100,
+    },
     removeOnFail: {
       count: 100,
       age: 2592000,
