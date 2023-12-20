@@ -6,7 +6,6 @@
     "build": "bun build.ts"
   },
   "dependencies": {
-    "@types/mjml": "4.7.4",
     "bullmq": "4.16.0",
     "handlebars": "4.7.8",
     "ioredis": "5.3.2",
@@ -16,6 +15,7 @@
   },
   "devDependencies": {
     "@remix-run/eslint-config": "2.4.0",
+    "@types/mjml": "4.7.4",
     "eslint": "8.55.0",
     "eslint-plugin-config": "workspace:*"
   }
