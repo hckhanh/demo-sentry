@@ -6,6 +6,7 @@ import Button from '~/components/form/Button'
 import CounterInput from '~/components/form/CounterInput'
 import useDebounce from '~/hooks/useDebounce'
 import { formatCurrency, formatPercent } from '~/utils'
+import ConfirmOrderButton from './ConfirmOrderButton'
 
 type OrderSummaryProps = {
   id: string
@@ -40,7 +41,7 @@ export default function OrderSummary({
     fetch(`/products/${id}/order/price?quantity=${debouncedQuantity}`, {
       signal: controller.signal,
     })
-      .then((res) => res.json())
+      .then((res) => res.json() as Promise<Price>)
       .then((data) => {
         setPrice(data)
       })
@@ -104,14 +105,7 @@ export default function OrderSummary({
       </div>
       <hr />
       <div className='p-6'>
-        <Button
-          type='submit'
-          className='w-full'
-          disabled={navigation.state === 'loading'}
-          loading={navigation.state === 'submitting'}
-        >
-          Confirm order
-        </Button>
+        <ConfirmOrderButton />
       </div>
     </div>
   )

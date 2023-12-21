@@ -1,8 +1,12 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 
 import { json, redirect } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
+import { Form, useLoaderData, useFetcher } from '@remix-run/react'
+import { prisma } from 'schema'
+import { flatten, safeParse } from 'valibot'
 import Breadcrumb from '~/components/Breadcrumb'
+import useCaptcha, { CaptchaContext } from '~/hooks/useCaptcha'
+import { createAssessment } from '~/recaptcha'
 import OrderSummary from '~/routes/_store.products_.$productId.order/OrderSummary'
 import PersonalInformation from '~/routes/_store.products_.$productId.order/PersonalInformation'
 import {
@@ -10,8 +14,6 @@ import {
   fullOrderSchema,
 } from '~/routes/_store.products_.$productId.order/schemas'
 import { createOrder } from '~/routes/_store.products_.$productId.order/utils'
-import { prisma } from 'schema'
-import { flatten, safeParse } from 'valibot'
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const product = await prisma.product.findUniqueOrThrow({
@@ -30,15 +32,32 @@ export async function loader({ params }: LoaderFunctionArgs) {
     return redirect(`/products/${product.id}`)
   }
 
-  return json(product)
+  return json({
+    product,
+    ENV: {
+      GCP_RECAPTCHA_SITE_KEY: process.env.GCP_RECAPTCHA_SITE_KEY as string
+    }
+  })
 }
 
 export default function OrderConfirmation() {
-  const product = useLoaderData<typeof loader>()
+  const fetcher = useFetcher()
+  const {product, ENV} = useLoaderData<typeof loader>()
+  const getToken = useCaptcha(ENV.GCP_RECAPTCHA_SITE_KEY, 'LOGIN')
+
+  const submitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    console.log(fetcher)
+    const formData = new FormData(e.target as never)
+    formData.set('token', await getToken())
+    fetcher.submit(formData, { method: 'POST' })
+  }
 
   return (
-    <Form
+    <fetcher.Form
       method='POST'
+      onSubmit={submitOrder}
       className='gap-8 diagonal-fractions lg:grid lg:grid-cols-12'
     >
       <Breadcrumb className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
@@ -52,15 +71,17 @@ export default function OrderConfirmation() {
       </div>
       <div className='col-span-5 row-span-2 space-y-6'>
         <div className='text-lg font-medium leading-7'>Order summary</div>
-        <OrderSummary
-          id={product.id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-          maxQuantity={product.quantity}
-        />
+        <CaptchaContext.Provider value={ENV.GCP_RECAPTCHA_SITE_KEY}>
+          <OrderSummary
+            id={product.id}
+            name={product.name}
+            image={product.image}
+            price={product.price}
+            maxQuantity={product.quantity}
+          />
+        </CaptchaContext.Provider>
       </div>
-    </Form>
+    </fetcher.Form>
   )
 }
 
@@ -71,6 +92,8 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
   const formData = await request.formData()
   const data = Object.fromEntries(formData.entries())
+
+  console.log(await createAssessment(formData.get('token') as string, 'LOGIN'))
 
   if (formData.has('sameAsShipping')) {
     const parsed = safeParse(defaultOrderSchema, data, {
