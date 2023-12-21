@@ -1,7 +1,8 @@
 {
   "extends": "astro/tsconfigs/strictest",
-
-  "types": [
-    "bun-types" // add Bun global
-  ]
+  "compilerOptions": {
+    "types": [
+      "bun-types" // add Bun global
+    ]
+  }
 }
