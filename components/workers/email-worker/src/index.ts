@@ -7,6 +7,7 @@ import { type EmailQueueData, prisma } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
+  retryStrategy: (times) => Math.max(Math.min(Math.exp(times), 20000), 1000),
 })
 
 const resend = new Resend(Bun.env.RESEND_API_KEY)

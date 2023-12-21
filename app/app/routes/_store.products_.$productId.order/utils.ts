@@ -22,6 +22,8 @@ type Order = {
   shippingAddress: Address
 }
 
+const TAX_RATE = 0.029
+
 export async function createOrder(data: Order) {
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: data.productId },
@@ -29,7 +31,7 @@ export async function createOrder(data: Order) {
   })
 
   const subtotal = product.price.times(data.quantity)
-  const taxes = subtotal.times(0.029)
+  const taxes = subtotal.times(TAX_RATE)
   const total = subtotal.plus(taxes)
 
   const [, order] = await prisma.$transaction([
@@ -48,7 +50,6 @@ export async function createOrder(data: Order) {
         taxRate: 0.029,
 
         email: data.email,
-        paymentMethod: 'VISA',
 
         assessment: {
           create: {
@@ -111,8 +112,8 @@ export async function createOrder(data: Order) {
           email: data.email,
           total: formatCurrency(total),
           taxes: formatCurrency(taxes),
-          taxRate: formatPercent(0.029),
-          paymentLink: 'https://google.com',
+          taxRate: formatPercent(TAX_RATE),
+          paymentLink: `${process.env.APP_URL}/orders/${order.id}`,
           items: [
             {
               name: product.name,

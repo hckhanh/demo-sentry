@@ -4,6 +4,7 @@ import { type OrderCancelQueueData, prisma } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
+  retryStrategy: (times) => Math.max(Math.min(Math.exp(times), 20000), 1000),
 })
 
 const worker = new Worker<OrderCancelQueueData>(

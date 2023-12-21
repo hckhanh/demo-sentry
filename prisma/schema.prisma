@@ -46,7 +46,7 @@ model Order {
   shippingFee   Decimal @db.Money
   subtotal      Decimal @db.Money
   total         Decimal @db.Money
-  paymentMethod String
+  paymentMethod String?
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
