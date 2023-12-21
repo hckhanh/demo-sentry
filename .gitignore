@@ -35,10 +35,9 @@ ssh_key
 # Dependencies
 node_modules
 
-# Remix
-.cache
+# Astro
+.astro
 build
-public/build
 
 # Dotenv
 .env*

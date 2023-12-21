@@ -11,6 +11,7 @@
   "workspaces": [
     "app",
     "infra",
+    "app-old",
     "components/*",
     "components/jobs/*",
     "components/workers/*"

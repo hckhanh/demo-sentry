@@ -1,41 +1,54 @@
-# Welcome to Remix!
-
-- [Remix Docs](https://remix.run/docs)
-
-## Fly Setup
-
-1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
-
-2. Sign up and log in to Fly
+# Astro Starter Kit: Basics
 
 ```sh
-flyctl auth signup
+npm create astro@latest -- --template basics
 ```
 
-3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-```sh
-flyctl launch
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-## Development
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-From your terminal:
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-```sh
-npm run dev
-```
+Any static assets, like images, can be placed in the `public/` directory.
 
-This starts your app in development mode, rebuilding assets on file changes.
+## 🧞 Commands
 
-## Deployment
+All commands are run from the root of the project, from a terminal:
 
-If you've followed the setup instructions already, all you need to do is run this:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-```sh
-npm run deploy
-```
+## 👀 Want to learn more?
 
-You can run `flyctl info` to get the url and ip address of your server.
-
-Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

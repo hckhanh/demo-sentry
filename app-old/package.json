@@ -1,0 +1,49 @@
+{
+  "name": "app-old",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "6.5.1",
+    "@fortawesome/free-brands-svg-icons": "6.5.1",
+    "@fortawesome/free-regular-svg-icons": "6.5.1",
+    "@fortawesome/free-solid-svg-icons": "6.5.1",
+    "@fortawesome/react-fontawesome": "0.2.0",
+    "@google-cloud/recaptcha-enterprise": "5.1.0",
+    "@headlessui/react": "1.7.17",
+    "@heroicons/react": "2.0.18",
+    "@remix-run/css-bundle": "2.4.0",
+    "@remix-run/node": "2.4.0",
+    "@remix-run/react": "2.4.0",
+    "@remix-run/serve": "2.4.0",
+    "bullmq": "^4.16.0",
+    "card-validator": "9.0.0",
+    "clsx": "2.0.0",
+    "date-fns": "3.0.1",
+    "ioredis": "5.3.2",
+    "isbot": "3.6.8",
+    "libphonenumber-js": "1.10.51",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "schema": "workspace:*",
+    "valibot": "0.24.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "2.4.0",
+    "@remix-run/eslint-config": "2.4.0",
+    "@tailwindcss/aspect-ratio": "0.4.2",
+    "@tailwindcss/forms": "0.5.7",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.18",
+    "eslint": "8.55.0",
+    "eslint-plugin-config": "workspace:*",
+    "tailwindcss": "3.4.0",
+    "typescript": "5.3.3"
+  }
+}
