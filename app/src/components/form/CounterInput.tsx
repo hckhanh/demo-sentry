@@ -12,11 +12,7 @@ type CounterInputProps = Omit<
   >,
   'onChange' | 'value'
 > & {
-  defaultValue?: number
   value?: number | string
-  label?: React.ReactNode
-  error?: React.ReactNode
-  description?: React.ReactNode
   onValueChange?: React.Dispatch<React.SetStateAction<number>>
 }
 
@@ -30,11 +26,7 @@ export default function CounterInput({
   min,
   max,
   name,
-  label,
-  error,
   value,
-  description,
-  defaultValue,
   onValueChange,
   ...props
 }: CounterInputProps) {

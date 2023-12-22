@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="finish astro configurations">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/astro.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/astro.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/Card.astro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/layouts/Layout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/layouts/Layout.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-old/app/components/product/ProductImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app-old/app/components/product/ProductImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/form/Button.astro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/form/CounterInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/form/CounterInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/form/FormSection.astro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/form/TextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/header/BreadcrumbItem.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/header/BreadcrumbItem.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/order/OrderSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/order/OrderSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/order/PersonalInformation.astro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +38,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="migrate-to-astro" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -62,7 +68,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "migrate-to-astro",
-    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app/src",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app/src/components/form",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -108,11 +114,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/components/form" />
+      <recent name="$PROJECT_DIR$/app/src/components/order" />
       <recent name="$PROJECT_DIR$/app/src" />
       <recent name="$PROJECT_DIR$/app/src/components/product" />
       <recent name="$PROJECT_DIR$/app/app/components/form" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/components" />
@@ -176,7 +182,8 @@
       <workItem from="1703208623759" duration="691000" />
       <workItem from="1703209316549" duration="2460000" />
       <workItem from="1703211787252" duration="25000" />
-      <workItem from="1703211875248" duration="1282000" />
+      <workItem from="1703211875248" duration="1542000" />
+      <workItem from="1703246752648" duration="2997000" />
     </task>
     <task id="LOCAL-00001" summary="finish astro configurations">
       <option name="closed" value="true" />

@@ -7,13 +7,13 @@ type ProductImageProps = {
   image: string
 }
 
-export default function ProductImage({ link, image, name }: ProductImageProps) {
+export default function ProductImage({ link, name, image }: ProductImageProps) {
   const isViewTransition = unstable_useViewTransitionState(link)
 
   return (
     <img
-      src={image}
       alt={name}
+      src={image}
       className={clsx(
         'h-full w-full object-cover object-center group-hover:opacity-75',
         isViewTransition && 'product-image',

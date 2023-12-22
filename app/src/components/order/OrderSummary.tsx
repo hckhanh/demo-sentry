@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import type { Decimal } from 'schema'
 
 import Skeleton from '~/components/Skeleton'
 import Button from '~/components/form/Button'
@@ -11,8 +10,8 @@ type OrderSummaryProps = {
   id: string
   name: string
   image: string
+  price: string
   maxQuantity: number
-  price: Decimal
 }
 
 type Price = {

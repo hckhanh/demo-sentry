@@ -1,5 +1,6 @@
-import { useFieldError } from './FormValidation'
 import clsx from 'clsx'
+
+import { useFieldError } from './FormValidation'
 
 type TextInputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

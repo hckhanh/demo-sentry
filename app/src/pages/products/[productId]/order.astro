@@ -1,14 +1,14 @@
 ---
-import { prisma } from 'schema'
-import { flatten, safeParse, type FlatErrors } from 'valibot'
 import Breadcrumb from '~/components/header/Breadcrumb.astro'
 import BreadcrumbItem from '~/components/header/BreadcrumbItem.astro'
 import BreadcrumbItemCurrent from '~/components/header/BreadcrumbItemCurrent.astro'
 import OrderSummary from '~/components/order/OrderSummary'
-import PersonalInformation from '~/components/order/PersonalInformation.astro'
+import PersonalInformation from '~/components/order/PersonalInformation'
 import { createOrder } from '~/components/order/actions'
 import Layout from '~/layouts/Layout.astro'
 import { defaultOrderSchema, fullOrderSchema } from '~/schemas'
+import { prisma } from 'schema'
+import { type FlatErrors, flatten, safeParse } from 'valibot'
 
 let errors: FlatErrors = { nested: {} }
 
@@ -39,95 +39,89 @@ if (Astro.request.method === 'POST') {
   const formData = await Astro.request.formData()
   const data = Object.fromEntries(formData.entries())
 
-  if (formData.has('sameAsShipping')) {
-    const parsed = safeParse(defaultOrderSchema, data, {
-      abortPipeEarly: true,
-    })
+  const parsed = safeParse(
+    formData.has('sameAsShipping') ? defaultOrderSchema : fullOrderSchema,
+    data,
+    { abortPipeEarly: true },
+  )
 
-    if (!parsed.success) {
-      errors = flatten(parsed.issues)
-      return
-    }
-
-    const orderId = await createOrder({
-      email: parsed.output.email,
-      productId,
-      quantity: parsed.output.quantity,
-      billingAddress: {
-        lastName: parsed.output.shippingLastName,
-        firstName: parsed.output.shippingFirstName,
-        addressLevel1: '',
-        phone: parsed.output.shippingPhone,
-        postalCode: parsed.output.shippingPostalCode,
-        stressAddress: parsed.output.shippingStreetAddress,
-        addressLevel4: parsed.output.shippingAddressLevel4,
-        addressLevel3: parsed.output.shippingAddressLevel3,
-        addressLevel2: parsed.output.shippingAddressLevel2,
-      },
-      shippingAddress: {
-        lastName: parsed.output.shippingLastName,
-        firstName: parsed.output.shippingFirstName,
-        addressLevel1: '',
-        phone: parsed.output.shippingPhone,
-        postalCode: parsed.output.shippingPostalCode,
-        stressAddress: parsed.output.shippingStreetAddress,
-        addressLevel4: parsed.output.shippingAddressLevel4,
-        addressLevel3: parsed.output.shippingAddressLevel3,
-        addressLevel2: parsed.output.shippingAddressLevel2,
-      },
-    })
-
-    return Astro.redirect(`/orders/${orderId}`)
+  if (!parsed.success) {
+    errors = flatten(parsed.issues)
   } else {
-    const parsed = safeParse(fullOrderSchema, data, {
-      abortPipeEarly: true,
-    })
+    if (formData.has('sameAsShipping')) {
+      const orderId = await createOrder({
+        productId,
+        email: parsed.output.email,
+        quantity: parsed.output.quantity,
+        billingAddress: {
+          lastName: parsed.output.shippingLastName,
+          firstName: parsed.output.shippingFirstName,
+          addressLevel1: '',
+          phone: parsed.output.shippingPhone,
+          postalCode: parsed.output.shippingPostalCode,
+          stressAddress: parsed.output.shippingStreetAddress,
+          addressLevel4: parsed.output.shippingAddressLevel4,
+          addressLevel3: parsed.output.shippingAddressLevel3,
+          addressLevel2: parsed.output.shippingAddressLevel2,
+        },
+        shippingAddress: {
+          lastName: parsed.output.shippingLastName,
+          firstName: parsed.output.shippingFirstName,
+          addressLevel1: '',
+          phone: parsed.output.shippingPhone,
+          postalCode: parsed.output.shippingPostalCode,
+          stressAddress: parsed.output.shippingStreetAddress,
+          addressLevel4: parsed.output.shippingAddressLevel4,
+          addressLevel3: parsed.output.shippingAddressLevel3,
+          addressLevel2: parsed.output.shippingAddressLevel2,
+        },
+      })
 
-    if (!parsed.success) {
-      errors = flatten(parsed.issues)
-      return
+      return Astro.redirect(`/orders/${orderId}`)
+    } else {
+      const orderId = await createOrder({
+        productId,
+        email: parsed.output.email,
+        quantity: parsed.output.quantity,
+        billingAddress: {
+          lastName: parsed.output.billingLastName,
+          firstName: parsed.output.billingFirstName,
+          addressLevel1: '',
+          phone: parsed.output.billingPhone,
+          postalCode: parsed.output.billingPostalCode,
+          stressAddress: parsed.output.billingStreetAddress,
+          addressLevel4: parsed.output.billingAddressLevel4,
+          addressLevel3: parsed.output.billingAddressLevel3,
+          addressLevel2: parsed.output.billingAddressLevel2,
+        },
+        shippingAddress: {
+          lastName: parsed.output.shippingLastName,
+          firstName: parsed.output.shippingFirstName,
+          addressLevel1: '',
+          phone: parsed.output.shippingPhone,
+          postalCode: parsed.output.shippingPostalCode,
+          stressAddress: parsed.output.shippingStreetAddress,
+          addressLevel4: parsed.output.shippingAddressLevel4,
+          addressLevel3: parsed.output.shippingAddressLevel3,
+          addressLevel2: parsed.output.shippingAddressLevel2,
+        },
+      })
+
+      return Astro.redirect(`/orders/${orderId}`)
     }
-
-    const orderId = await createOrder({
-      email: parsed.output.email,
-      productId,
-      quantity: parsed.output.quantity,
-      billingAddress: {
-        lastName: parsed.output.billingLastName,
-        firstName: parsed.output.billingFirstName,
-        addressLevel1: '',
-        phone: parsed.output.billingPhone,
-        postalCode: parsed.output.billingPostalCode,
-        stressAddress: parsed.output.billingStreetAddress,
-        addressLevel4: parsed.output.billingAddressLevel4,
-        addressLevel3: parsed.output.billingAddressLevel3,
-        addressLevel2: parsed.output.billingAddressLevel2,
-      },
-      shippingAddress: {
-        lastName: parsed.output.shippingLastName,
-        firstName: parsed.output.shippingFirstName,
-        addressLevel1: '',
-        phone: parsed.output.shippingPhone,
-        postalCode: parsed.output.shippingPostalCode,
-        stressAddress: parsed.output.shippingStreetAddress,
-        addressLevel4: parsed.output.shippingAddressLevel4,
-        addressLevel3: parsed.output.shippingAddressLevel3,
-        addressLevel2: parsed.output.shippingAddressLevel2,
-      },
-    })
-
-    return Astro.redirect(`/orders/${orderId}`)
   }
 }
 ---
 
 <Layout title={product.name}>
-  <form method='POST' class='gap-8 diagonal-fractions lg:grid lg:grid-cols-12'>
+  <form class='gap-8 diagonal-fractions lg:grid lg:grid-cols-12' method='POST'>
     <Breadcrumb
       className='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'
     >
       <BreadcrumbItem link='/'>Home</BreadcrumbItem>
-      <BreadcrumbItem link='..'>{product.name}</BreadcrumbItem>
+      <BreadcrumbItem link={`/products/${product.id}`}>
+        {product.name}
+      </BreadcrumbItem>
       <BreadcrumbItemCurrent>Order</BreadcrumbItemCurrent>
     </Breadcrumb>
 
@@ -139,11 +133,12 @@ if (Astro.request.method === 'POST') {
     <div class='col-span-5 row-span-2 space-y-6'>
       <div class='text-lg font-medium leading-7'>Order summary</div>
       <OrderSummary
+        client:visible
         id={product.id}
-        name={product.name}
         image={product.image}
-        price={product.price}
         maxQuantity={product.quantity}
+        name={product.name}
+        price={product.price.toString()}
       />
     </div>
   </form>
