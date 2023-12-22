@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/astro.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="finish astro configurations">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/astro.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/astro.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/astro.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/components/Card.astro" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/layouts/Layout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/layouts/Layout.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/index.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,33 +57,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;migrate-to-astro&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/khanh/WebStormProjects/demo-sentry&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;npm.demo-sentry &gt; dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "migrate-to-astro",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.demo-sentry > dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Space Code Reviews" show_stripe_button="false" />
@@ -111,18 +108,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src" />
+      <recent name="$PROJECT_DIR$/app/src/components/product" />
+      <recent name="$PROJECT_DIR$/app/app/components/form" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/components/jobs" />
-      <recent name="$PROJECT_DIR$/components/workers/email-worker" />
-      <recent name="$PROJECT_DIR$/components/schema" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/components" />
+      <recent name="$PROJECT_DIR$/app/src/layouts" />
       <recent name="$PROJECT_DIR$/app-old" />
       <recent name="$PROJECT_DIR$/components/workers/email-worker/src" />
       <recent name="$PROJECT_DIR$/components/email-editor" />
-      <recent name="$PROJECT_DIR$/app/app/routes/_store.products_.$productId.order" />
-      <recent name="$PROJECT_DIR$/app/app/routes/_store.orders.$orderId" />
     </key>
   </component>
   <component name="RunManager">
@@ -140,7 +137,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-56bbcd2c060c-JavaScript-WS-233.11799.293" />
+        <option value="bundled-js-predefined-1d06a55b98c1-c44b541a36ca-JavaScript-WS-233.13135.92" />
       </set>
     </attachedChunks>
   </component>
@@ -174,17 +171,26 @@
       <workItem from="1703125927097" duration="78000" />
       <workItem from="1703168440512" duration="4093000" />
       <workItem from="1703172547350" duration="224000" />
-      <workItem from="1703172781721" duration="773000" />
+      <workItem from="1703172781721" duration="1632000" />
+      <workItem from="1703207163875" duration="698000" />
+      <workItem from="1703208623759" duration="691000" />
+      <workItem from="1703209316549" duration="2460000" />
+      <workItem from="1703211787252" duration="25000" />
+      <workItem from="1703211875248" duration="1282000" />
     </task>
+    <task id="LOCAL-00001" summary="finish astro configurations">
+      <option name="closed" value="true" />
+      <created>1703173563842</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703173563842</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/app/tailwind.config.mjs" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -196,5 +202,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="finish astro configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish astro configurations" />
   </component>
 </project>

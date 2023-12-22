@@ -27,31 +27,48 @@ const { title } = Astro.props
   </body>
 </html>
 <style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer base {
+    @font-face {
+      font-family: 'Inter fallback';
+      src: local('Arial');
+      size-adjust: 107.4014%;
+      ascent-override: 90.199%;
+      descent-override: 22.4836%;
+      line-gap-override: 0%;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    li::marker {
+      color: #d1d5db;
+    }
   }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+
+  @layer components {
+    .product-title {
+      view-transition-name: product-title;
+    }
+
+    ::view-transition-old(product-title),
+    ::view-transition-new(product-title) {
+      width: 100%;
+    }
+
+    .product-image {
+      view-transition-name: product-image;
+    }
+
+    ::view-transition-old(product-image),
+    ::view-transition-new(product-image) {
+      height: 100%;
+    }
   }
 </style>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  name: string
+  image: string
+}
+
+const { name, image } = Astro.props
+---
+
+<img
+  alt={name}
+  class='h-full w-full object-cover object-center group-hover:opacity-75'
+  src={image}
+/>
