@@ -1,6 +1,6 @@
 import { RecaptchaEnterpriseServiceClient } from '@google-cloud/recaptcha-enterprise'
 
-const credentials = JSON.parse(process.env.GCP_SERVICE_ACCOUNT as string)
+const credentials = JSON.parse(import.meta.env.GCP_SERVICE_ACCOUNT as string)
 
 const client = new RecaptchaEnterpriseServiceClient({ credentials });
 const projectPath = client.projectPath(credentials.project_id);

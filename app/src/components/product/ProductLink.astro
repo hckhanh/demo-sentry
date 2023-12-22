@@ -1,25 +1,30 @@
 ---
 import { formatCurrency } from '~/utils'
-
-import ProductImage from './ProductImage.astro'
+import type { Decimal } from 'schema'
 
 interface Props {
   link: string
   product: {
+    id: string
     name: string
     image: string
-    price: string
+    price: Decimal
   }
 }
 
 const { link, product } = Astro.props
 ---
 
-<a class='group' href={link}>
+<a class='group' href={link} data-astro-prefetch>
   <div
     class='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 w-full overflow-hidden rounded-lg bg-gray-200'
   >
-    <ProductImage image={product.image} link={link} name={product.name} />
+    <img
+      transition:name={`product-image-${product.id}`}
+      alt={product.name}
+      class='h-full w-full object-cover object-center group-hover:opacity-75'
+      src={product.image}
+    />
   </div>
   <h3 class='mt-4 text-sm text-gray-700'>{product.name}</h3>
   <p class='mt-1 text-lg font-medium slashed-zero text-gray-900'>

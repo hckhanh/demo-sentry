@@ -1,0 +1,84 @@
+---
+import Breadcrumb from '~/components/header/Breadcrumb.astro'
+import BreadcrumbItem from '~/components/header/BreadcrumbItem.astro'
+import BreadcrumbItemCurrent from '~/components/header/BreadcrumbItemCurrent.astro'
+import { formatCurrency } from '~/utils'
+import { prisma } from '../../../../components/schema'
+import Button from '~/components/form/Button'
+import Layout from '~/layouts/Layout.astro'
+
+const product = await prisma.product.findUniqueOrThrow({
+  where: { id: Astro.params.productId as string },
+  select: {
+    id: true,
+    name: true,
+    image: true,
+    price: true,
+    highlights: true,
+    introduction: true,
+    descriptions: true,
+    remainQuantity: true,
+  },
+})
+---
+
+<Layout title={`${product.name} | Product`}>
+  <div class='gap-8 diagonal-fractions lg:grid lg:grid-cols-12'>
+    <Breadcrumb class='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
+      <BreadcrumbItem link='/'>Home</BreadcrumbItem>
+      <BreadcrumbItemCurrent>{product.name}</BreadcrumbItemCurrent>
+    </Breadcrumb>
+    <div
+      class='col-span-5 col-start-2 row-span-2 2xl:col-span-7 2xl:col-start-1'
+    >
+      <img
+        alt={product.name}
+        src={product.image}
+        class='product-image aspect-1 sticky top-4 rounded-2xl'
+        transition:name={`product-image-${product.id}`}
+      />
+    </div>
+    <div class='col-span-5 mt-8 flex flex-col gap-6 lg:mt-0'>
+      <div>
+        <div class='product-title text-3xl font-medium text-gray-900'>
+          {product.name}
+        </div>
+        <div class='product-price text-xl font-medium text-gray-900'>
+          {formatCurrency(product.price)}
+        </div>
+      </div>
+
+      <div class='text-gray-500'>{product.introduction}</div>
+
+      {
+        product.remainQuantity > 0 ? (
+          <a>
+            <Button className='w-full'>Buy now</Button>
+          </a>
+        ) : (
+          <Button disabled className='w-full'>
+            Out of stock
+          </Button>
+        )
+      }
+
+      <div>
+        <div class='text-lg font-medium text-gray-900'>Highlights</div>
+        <ul class='mt-4 list-inside list-disc pl-2 text-gray-500'>
+          {product.highlights.map((highlight) => <li>{highlight}</li>)}
+        </ul>
+      </div>
+
+      <div>
+        <div class='text-lg font-medium text-gray-900'>Description</div>
+        <div class='mt-4 text-gray-500'>
+          {
+            product.descriptions.map((description) => (
+              <p class='mt-4'>{description}</p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

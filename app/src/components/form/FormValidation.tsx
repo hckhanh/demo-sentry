@@ -1,22 +1,21 @@
 import { createContext, useContext } from 'react'
-
 import type { FlatErrors } from 'valibot'
-
-import { useActionData } from '@remix-run/react'
 
 const FormValidationContext = createContext<FlatErrors<any> | undefined>(
   undefined,
 )
 
 type FormValidationProps = {
+  errors: FlatErrors
   children: React.ReactNode
 }
 
-export default function FormValidation({ children }: FormValidationProps) {
-  const actionData = useActionData<FlatErrors<any>>()
-
+export default function FormValidation({
+  errors,
+  children,
+}: FormValidationProps) {
   return (
-    <FormValidationContext.Provider value={actionData}>
+    <FormValidationContext.Provider value={errors}>
       {children}
     </FormValidationContext.Provider>
   )

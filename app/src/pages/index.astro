@@ -21,11 +21,7 @@ const products = await prisma.product.findMany({
       >
         {
           products.map((product) => (
-            <ProductLink
-              key={product.id}
-              link={`/products/${product.id}`}
-              product={product}
-            />
+            <ProductLink link={`/products/${product.id}`} product={product} />
           ))
         }
       </div>

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { Decimal } from '@prisma/client/runtime/library'
 
 export const prisma = new PrismaClient()
 
@@ -12,3 +13,5 @@ export type EmailQueueData = {
 export type OrderCancelQueueData = {
   orderId: string
 }
+
+export type { Decimal } from '@prisma/client/runtime/library'
