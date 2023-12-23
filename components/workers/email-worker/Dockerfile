@@ -1,5 +1,5 @@
 FROM node:lts-bullseye-slim as prisma
-WORKDIR /usr/src/app
+WORKDIR /temp/dev
 
 RUN curl -fsSL https://bun.sh/install | bash
 
@@ -17,8 +17,6 @@ WORKDIR /usr/src/app
 FROM base AS install
 RUN mkdir -p /temp/dev
 
-COPY prisma/ /temp/dev/prisma/
-
 COPY package.json bun.lockb /temp/dev/
 COPY app/package.json /temp/dev/app/package.json
 COPY app-old/package.json /temp/dev/app-old/package.json
@@ -29,7 +27,6 @@ COPY components/workers/email-worker/package.json /temp/dev/components/workers/e
 COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/dev && bun install --frozen-lockfile
-RUN bunx prisma generate
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
@@ -58,8 +55,7 @@ RUN bun turbo build --filter=email-worker
 # copy production dependencies and source code into final image
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=install /temp/dev/node_modules/.prisma/ node_modules/.prisma/
-COPY --from=install /temp/dev/node_modules/@prisma/client/ node_modules/@prisma/client/
+COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
 COPY --from=prerelease /usr/src/app/components/workers/email-worker/build/ .
 
 # run the app
