@@ -20,11 +20,10 @@ COPY components/workers/email-worker/package.json /temp/dev/components/workers/e
 COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/dev && bun install --frozen-lockfile
+RUN bun prisma generate
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
-
-COPY prisma/ /temp/prod/prisma/
 
 COPY package.json bun.lockb /temp/prod/
 COPY app/package.json /temp/prod/app/package.json
@@ -36,7 +35,6 @@ COPY components/workers/email-worker/package.json /temp/prod/components/workers/
 COPY components/workers/order-cancel-worker/package.json /temp/prod/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/prod && bun install --frozen-lockfile --production
-RUN bunx prisma generate
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
@@ -51,6 +49,7 @@ RUN bun turbo build --filter=email-worker
 # copy production dependencies and source code into final image
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=install /temp/dev/node_modules/.prisma/ node_modules/.prisma/
 COPY --from=prerelease /usr/src/app/components/workers/email-worker/build/ .
 
 # run the app
