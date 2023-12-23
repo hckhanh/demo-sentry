@@ -8,6 +8,8 @@ WORKDIR /usr/src/app
 FROM base AS install
 RUN mkdir -p /temp/dev
 
+COPY prisma/ /temp/dev/prisma/
+
 COPY package.json bun.lockb /temp/dev/
 COPY app/package.json /temp/dev/app/package.json
 COPY app-old/package.json /temp/dev/app-old/package.json
@@ -33,7 +35,6 @@ COPY components/workers/email-worker/package.json /temp/prod/components/workers/
 COPY components/workers/order-cancel-worker/package.json /temp/prod/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/prod && bun install --frozen-lockfile --production
-RUN bun prisma generate
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
@@ -48,6 +49,7 @@ RUN bun turbo build --filter=email-worker
 # copy production dependencies and source code into final image
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=install /temp/dev/node_modules/.prisma/ node_modules/.prisma/
 COPY --from=prerelease /usr/src/components/workers/email-worker/build/ .
 
 # run the app
