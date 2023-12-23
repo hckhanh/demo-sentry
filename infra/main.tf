@@ -2,7 +2,7 @@ terraform {
   required_providers {
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "= 2.32.0"
+      version = "~> 2.34.1"
     }
   }
 
@@ -18,14 +18,36 @@ resource "digitalocean_vpc" "network" {
   region = "sgp1"
 }
 
-resource "digitalocean_droplet" "web" {
-  region            = "sgp1"
-  image             = "ubuntu-22-04-x64"
-  size              = "s-1vcpu-1gb-35gb-intel"
-  name              = "web"
-  ssh_keys          = [digitalocean_ssh_key.default.fingerprint]
-  graceful_shutdown = true
-  vpc_uuid          = digitalocean_vpc.network.id
+resource "digitalocean_app" "demo_sentry" {
+  spec {
+    name   = "demo-sentry"
+    region = "sgp"
+
+    alert {
+      rule = "DEPLOYMENT_FAILED"
+    }
+
+    worker {
+      name               = "email-worker"
+      instance_count     = 1
+      instance_size_slug = "basic-xxs"
+
+      dockerfile_path = "components/workers/email-worker/Dockerfile"
+
+      github {
+        branch         = "migrate-to-astro"
+        repo           = "hckhanh/demo-sentry"
+        deploy_on_push = true
+      }
+
+      env {
+        key   = "RESEND_API_KEY"
+        value = var.resend_api_key
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+    }
+  }
 }
 
 resource "digitalocean_project" "demo_sentry" {
@@ -33,5 +55,5 @@ resource "digitalocean_project" "demo_sentry" {
   description = "This project is used to demo Sentry features"
   purpose     = "Class project / Educational purposes"
   environment = "Development"
-  resources   = [digitalocean_droplet.web.urn]
+  resources   = [digitalocean_app.demo_sentry.urn]
 }
