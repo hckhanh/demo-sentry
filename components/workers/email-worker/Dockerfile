@@ -1,3 +1,12 @@
+FROM node:lts-bullseye-slim as prisma
+WORKDIR /usr/src/app
+
+RUN curl -fsSL https://bun.sh/install | bash
+
+RUN bun init -y
+COPY prisma/ prisma/
+RUN bunx prisma generate
+
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 as base
