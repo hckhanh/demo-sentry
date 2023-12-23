@@ -55,4 +55,4 @@ COPY --from=prerelease /usr/src/app/components/workers/email-worker/build/ .
 # run the app
 USER bun
 
-ENTRYPOINT [ "bun", "index.ts" ]
+ENTRYPOINT [ "bun", "index.js" ]
