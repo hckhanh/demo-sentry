@@ -5,9 +5,9 @@ RUN apt-get update && apt-get install -y ca-certificates curl unzip
 RUN curl -fsSL https://bun.sh/install | bash
 RUN source /root/.bashrc 
 
-RUN bun init -y
+RUN ~/.bun/bin/bun init -y
 COPY prisma/ prisma/
-RUN bunx prisma generate
+RUN ~/.bun/bin/bunx prisma generate
 
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
