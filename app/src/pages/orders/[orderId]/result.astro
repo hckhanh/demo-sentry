@@ -1,0 +1,39 @@
+---
+import Breadcrumb from '~/components/header/Breadcrumb.astro'
+import BreadcrumbItem from '~/components/header/BreadcrumbItem.astro'
+import BreadcrumbItemCurrent from '~/components/header/BreadcrumbItemCurrent.astro'
+import OrderCanceled from '~/components/order/result/OrderCanceled.astro'
+import OrderSuccess from '~/components/order/result/OrderSuccess.astro'
+import { prisma } from 'schema'
+import Layout from '~/layouts/Layout.astro'
+
+const order = await prisma.order.findUniqueOrThrow({
+  where: { id: Astro.params.orderId as string },
+  select: { id: true, status: true },
+})
+
+if (order.status === 'CREATED') {
+  return Astro.redirect(`/orders/${order.id}`)
+}
+---
+
+<Layout title='Order Result'>
+  <main class='gap-8 lg:grid lg:grid-cols-12'>
+    <Breadcrumb class='col-span-full col-start-2 mb-8 lg:mb-0 2xl:col-start-1'>
+      <BreadcrumbItem link='/'>Home</BreadcrumbItem>
+      <BreadcrumbItemCurrent>Order Result</BreadcrumbItemCurrent>
+    </Breadcrumb>
+
+    <div
+      class='col-span-full mx-auto flex max-w-[33.75rem] flex-col text-center'
+    >
+      {
+        order.status === 'CANCELED' ? (
+          <OrderCanceled orderId={order.id} />
+        ) : (
+          <OrderSuccess orderId={order.id} />
+        )
+      }
+    </div>
+  </main>
+</Layout>

@@ -41,5 +41,5 @@ order.items = order.items.map((item) => ({
 ---
 
 <Layout title={`Order ${order.id}`}>
-  <OrderPaymentForm client:visible order={order} />
+  <OrderPaymentForm client:load order={order} />
 </Layout>
