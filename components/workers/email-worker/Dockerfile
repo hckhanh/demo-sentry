@@ -11,8 +11,8 @@ RUN mkdir -p /temp/dev
 COPY package.json bun.lockb /temp/dev/
 COPY app/package.json /temp/dev/app/package.json
 COPY app-old/package.json /temp/dev/app-old/package.json
-COPY components/worker/email-worker/package.json /temp/dev/components/worker/email-worker/package.json
-COPY components/worker/order-cancel-worker/package.json /temp/dev/components/worker/eorder-cancel-worker/package.json
+COPY components/workers/email-worker/package.json /temp/dev/components/workers/email-worker/package.json
+COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/dev && bun install --frozen-lockfile
 RUN bun generate
@@ -23,8 +23,8 @@ RUN mkdir -p /temp/prod
 COPY package.json bun.lockb /temp/prod/
 COPY app/package.json /temp/prod/app/package.json
 COPY app-old/package.json /temp/prod/app-old/package.json
-COPY components/worker/email-worker/package.json /temp/prod/components/worker/email-worker/package.json
-COPY components/worker/order-cancel-worker/package.json /temp/prod/components/worker/eorder-cancel-worker/package.json
+COPY components/workers/email-worker/package.json /temp/prod/components/workers/email-worker/package.json
+COPY components/workers/order-cancel-worker/package.json /temp/prod/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/prod && bun install --frozen-lockfile --production
 RUN bun generate
