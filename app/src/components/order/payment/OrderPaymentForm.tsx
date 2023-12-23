@@ -41,15 +41,12 @@ export default function OrderPaymentForm({ order }: OrderPaymentFormProps) {
       body: formData,
     })
 
-    const data = await response.json()
-
     if (response.ok) {
-      window.location.assign(`/orders/${data.orderId}/result`)
+      window.location.assign(`/orders/${order.id}/result`)
     } else if (response.status === 422) {
-      setErrors(data)
+      setErrors(await response.json())
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (

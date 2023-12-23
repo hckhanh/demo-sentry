@@ -1,7 +1,7 @@
 import { phone } from '~/validations'
 import cardValidator from 'card-validator'
 import {
-  coerce,
+  coerce, nullish,
   custom,
   email,
   merge,
@@ -56,7 +56,7 @@ export const defaultOrderSchema = merge([
 
 export const fullOrderSchema = merge([
   object({
-    sameAsShipping: string([value('on')]),
+    sameAsShipping: nullish(string([value('on')])),
   }),
   defaultOrderSchema,
   billingAddressSchema,

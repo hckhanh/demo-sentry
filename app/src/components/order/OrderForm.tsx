@@ -37,9 +37,8 @@ export default function OrderForm({ product }: OrderFormProps) {
       window.location.assign(`/orders/${data.orderId}`)
     } else if (response.status === 422) {
       setErrors(data)
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (
