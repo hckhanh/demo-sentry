@@ -1,12 +1,11 @@
 FROM node:lts-bullseye-slim as prisma
 WORKDIR /temp/dev
 
-RUN apt-get update && apt-get install -y ca-certificates curl unzip
-RUN curl -fsSL https://bun.sh/install | bash
+RUN npm install -g bun
 
-RUN ~/.bun/bin/bun init -y
+RUN bun init -y
 COPY prisma/ prisma/
-RUN ~/.bun/bin/bunx prisma generate
+RUN bunx prisma generate
 
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
