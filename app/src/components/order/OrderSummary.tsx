@@ -12,6 +12,7 @@ type OrderSummaryProps = {
   image: string
   price: string
   maxQuantity: number
+  loading?: boolean | undefined
 }
 
 type Price = {
@@ -25,6 +26,7 @@ export default function OrderSummary({
   id,
   name,
   image,
+  loading,
   maxQuantity,
   price: unitPrice,
 }: OrderSummaryProps) {
@@ -35,7 +37,7 @@ export default function OrderSummary({
   useEffect(() => {
     const controller = new AbortController()
 
-    fetch(`/products/${id}/order/price?quantity=${debouncedQuantity}`, {
+    fetch(`/api/products/${id}/order/price?quantity=${debouncedQuantity}`, {
       signal: controller.signal,
     })
       .then((res) => res.json() as Promise<Price>)
@@ -102,7 +104,7 @@ export default function OrderSummary({
       </div>
       <hr />
       <div className='p-6'>
-        <Button type='submit' className='w-full'>
+        <Button type='submit' loading={loading} className='w-full'>
           Confirm order
         </Button>
       </div>

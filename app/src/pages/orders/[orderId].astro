@@ -1,0 +1,45 @@
+---
+import OrderPaymentForm from '~/components/order/payment/OrderPaymentForm'
+import Layout from '~/layouts/Layout.astro'
+import { prisma } from 'schema'
+
+let order = await prisma.order.findUniqueOrThrow({
+  where: { id: Astro.params.orderId },
+  select: {
+    id: true,
+    email: true,
+    total: true,
+    taxes: true,
+    status: true,
+    taxRate: true,
+    subtotal: true,
+    createdAt: true,
+    shippingFee: true,
+    purchasedAt: true,
+    items: {
+      select: {
+        price: true,
+        quantity: true,
+        product: { select: { name: true, image: true } },
+      },
+    },
+  },
+})
+
+if (order.status !== 'CREATED') {
+  return Astro.redirect(`/orders/${order.id}/result`)
+}
+
+order.total = order.total.toString()
+order.taxes = order.taxes.toString()
+order.subtotal = order.subtotal.toString()
+order.shippingFee = order.shippingFee.toString()
+order.items = order.items.map((item) => ({
+  ...item,
+  price: item.price.toString(),
+}))
+---
+
+<Layout title={`Order ${order.id}`}>
+  <OrderPaymentForm client:visible order={order} />
+</Layout>

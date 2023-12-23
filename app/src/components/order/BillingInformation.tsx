@@ -1,17 +1,9 @@
 import { useCallback, useState } from 'react'
-import type { FlatErrors } from 'valibot'
 
 import CheckboxInput from '~/components/form/CheckboxInput'
-import FormValidation from '~/components/form/FormValidation'
 import TextInput from '~/components/form/TextInput'
 
-type BillingInformationProps = {
-  errors: FlatErrors
-}
-
-export default function BillingInformation({
-  errors,
-}: BillingInformationProps) {
+export default function BillingInformation() {
   const [isShipping, setIsShipping] = useState(true)
 
   const handleIsShipping = useCallback(
@@ -32,7 +24,7 @@ export default function BillingInformation({
       />
 
       {!isShipping && (
-        <FormValidation errors={errors}>
+        <>
           <TextInput
             required
             type='text'
@@ -96,7 +88,7 @@ export default function BillingInformation({
             name='billingPhone'
             className='col-span-full'
           />
-        </FormValidation>
+        </>
       )}
     </>
   )

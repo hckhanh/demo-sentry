@@ -1,3 +1,4 @@
+import { phone } from '~/validations'
 import cardValidator from 'card-validator'
 import {
   coerce,
@@ -11,7 +12,6 @@ import {
   string,
   value,
 } from 'valibot'
-import { phone } from '~/validations'
 
 const lastName = string([minLength(1, 'Enter last name')])
 const firstName = string([minLength(1, 'Enter first name')])
@@ -21,7 +21,7 @@ const address = string([minLength(1, 'Enter address')])
 const state = string([minLength(1, 'Enter state / province')])
 const postalCode = string([
   minLength(1, 'Enter postal code'),
-  custom((value) => cardValidator.postalCode(value).isValid, 'Must be numeric'),
+  custom((value) => cardValidator.postalCode(value).isValid, 'Must be valid'),
 ])
 
 const shippingAddressSchema = object({

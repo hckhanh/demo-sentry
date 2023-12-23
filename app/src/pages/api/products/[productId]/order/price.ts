@@ -1,7 +1,8 @@
-import type { APIRoute } from "astro";
-import { prisma } from "schema";
+import type { APIRoute } from 'astro'
 
-export const GET: APIRoute = async ({ request, params }) => {
+import { prisma } from 'schema'
+
+export const GET: APIRoute = async ({ params, request }) => {
   const searchParams = new URL(request.url).searchParams
   const product = await prisma.product.findUniqueOrThrow({
     select: { price: true },
@@ -20,6 +21,6 @@ export const GET: APIRoute = async ({ request, params }) => {
       unitPrice: product.price,
       total: subtotal.add(tax),
     }),
-    { status: 200 }
-  );
-};
+    { status: 200 },
+  )
+}

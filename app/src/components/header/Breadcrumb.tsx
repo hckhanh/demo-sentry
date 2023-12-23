@@ -1,5 +1,3 @@
-import { Link } from '@remix-run/react'
-
 type BreadcrumbProps = {
   className?: string
   children?: React.ReactNode
@@ -22,15 +20,9 @@ function BreadcrumbItem({ link, children }: BreadcrumbItemProps) {
   return (
     <li>
       <div className='flex items-center'>
-        <Link
-          unstable_viewTransition
-          to={link}
-          relative='path'
-          prefetch='intent'
-          className='mr-2 text-sm font-medium text-gray-900'
-        >
+        <a href={link} className='mr-2 text-sm font-medium text-gray-900'>
           {children}
-        </Link>
+        </a>
         <svg
           width={16}
           height={20}

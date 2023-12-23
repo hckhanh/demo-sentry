@@ -4,8 +4,8 @@ type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  loading?: boolean
   noPadding?: boolean
+  loading?: boolean | undefined
   variant?: 'default' | 'outline'
 }
 
@@ -23,7 +23,7 @@ export default function Button({
       {...props}
       disabled={disabled || loading}
       className={clsx(
-        'appearance-auto flex select-none items-center justify-center rounded-md border text-base font-medium focus:outline-none',
+        'flex select-none appearance-auto items-center justify-center rounded-md border text-base font-medium focus:outline-none',
         {
           'px-8 py-3': !noPadding,
           'cursor-not-allowed': loading,
