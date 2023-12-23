@@ -18,7 +18,7 @@ COPY components/workers/email-worker/package.json /temp/dev/components/workers/e
 COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/dev && bun install --frozen-lockfile
-RUN bun generate
+RUN bun prisma generate
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
@@ -33,7 +33,7 @@ COPY components/workers/email-worker/package.json /temp/prod/components/workers/
 COPY components/workers/order-cancel-worker/package.json /temp/prod/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/prod && bun install --frozen-lockfile --production
-RUN bun generate
+RUN bun prisma generate
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
