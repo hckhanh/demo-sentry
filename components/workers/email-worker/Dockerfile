@@ -3,7 +3,6 @@ WORKDIR /temp/dev
 
 RUN apt-get update && apt-get install -y ca-certificates curl unzip
 RUN curl -fsSL https://bun.sh/install | bash
-RUN source /root/.bashrc 
 
 RUN ~/.bun/bin/bun init -y
 COPY prisma/ prisma/
