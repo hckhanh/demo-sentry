@@ -1,8 +1,7 @@
 FROM node:lts-bullseye-slim as prisma
 WORKDIR /temp/dev
 
-RUN apt-get install curl -y
-RUN curl -fsSL https://bun.sh/install | bash
+RUN wget -qO- https://bun.sh/install | bash
 
 RUN bun init -y
 COPY prisma/ prisma/
