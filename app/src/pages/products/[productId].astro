@@ -1,11 +1,11 @@
 ---
+import Button from '~/components/form/Button'
 import Breadcrumb from '~/components/header/Breadcrumb.astro'
 import BreadcrumbItem from '~/components/header/BreadcrumbItem.astro'
 import BreadcrumbItemCurrent from '~/components/header/BreadcrumbItemCurrent.astro'
-import { formatCurrency } from '~/utils'
-import { prisma } from '../../../../components/schema'
-import Button from '~/components/form/Button'
 import Layout from '~/layouts/Layout.astro'
+import { formatCurrency } from '~/utils'
+import { prisma } from 'schema'
 
 const product = await prisma.product.findUniqueOrThrow({
   where: { id: Astro.params.productId as string },
@@ -33,8 +33,8 @@ const product = await prisma.product.findUniqueOrThrow({
     >
       <img
         alt={product.name}
-        src={product.image}
         class='product-image aspect-1 sticky top-4 rounded-2xl'
+        src={product.image}
         transition:name={`product-image-${product.id}`}
       />
     </div>
@@ -52,11 +52,11 @@ const product = await prisma.product.findUniqueOrThrow({
 
       {
         product.remainQuantity > 0 ? (
-          <a>
+          <a href={`/products/${product.id}/order`}>
             <Button className='w-full'>Buy now</Button>
           </a>
         ) : (
-          <Button disabled className='w-full'>
+          <Button className='w-full' disabled>
             Out of stock
           </Button>
         )

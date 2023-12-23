@@ -8,11 +8,7 @@ const { link } = Astro.props
 
 <li>
   <div class='flex items-center'>
-    <a
-      class='mr-2 text-sm font-medium text-gray-900'
-      data-astro-prefetch
-      href={link}
-    >
+    <a class='mr-2 text-sm font-medium text-gray-900' href={link}>
       <slot />
     </a>
     <svg
