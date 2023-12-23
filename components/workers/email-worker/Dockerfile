@@ -12,6 +12,8 @@ COPY package.json bun.lockb /temp/dev/
 COPY app/package.json /temp/dev/app/package.json
 COPY app-old/package.json /temp/dev/app-old/package.json
 COPY infra/package.json /temp/dev/infra/package.json
+COPY components/eslint-plugin-config/package.json /temp/dev/components/eslint-plugin-config/package.json
+COPY components/schema/package.json /temp/dev/components/schema/package.json
 COPY components/workers/email-worker/package.json /temp/dev/components/workers/email-worker/package.json
 COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
@@ -25,6 +27,8 @@ COPY package.json bun.lockb /temp/prod/
 COPY app/package.json /temp/prod/app/package.json
 COPY app-old/package.json /temp/prod/app-old/package.json
 COPY infra/package.json /temp/prod/infra/package.json
+COPY components/eslint-plugin-config/package.json /temp/prod/components/eslint-plugin-config/package.json
+COPY components/schema/package.json /temp/prod/components/schema/package.json
 COPY components/workers/email-worker/package.json /temp/prod/components/workers/email-worker/package.json
 COPY components/workers/order-cancel-worker/package.json /temp/prod/components/workers/order-cancel-worker/package.json
 
