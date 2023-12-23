@@ -20,7 +20,7 @@ COPY components/workers/email-worker/package.json /temp/dev/components/workers/e
 COPY components/workers/order-cancel-worker/package.json /temp/dev/components/workers/order-cancel-worker/package.json
 
 RUN cd /temp/dev && bun install --frozen-lockfile
-RUN bun prisma generate
+RUN bunx prisma generate
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
