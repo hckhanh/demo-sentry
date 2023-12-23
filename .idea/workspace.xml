@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="add more changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-old/app/components/Breadcrumb.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app-old/app/components/Breadcrumb.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/form/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/form/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/order/BillingInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/order/BillingInformation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/order/OrderSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/order/OrderSummary.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/components/order/PersonalInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/components/order/PersonalInformation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/pages/products/[productId]/order/price.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/api/products/[productId]/order/price.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/schemas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-    </list>
+    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="add more changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,7 +173,7 @@
       <workItem from="1703211787252" duration="25000" />
       <workItem from="1703211875248" duration="1542000" />
       <workItem from="1703246752648" duration="2997000" />
-      <workItem from="1703298893411" duration="10048000" />
+      <workItem from="1703298893411" duration="10102000" />
     </task>
     <task id="LOCAL-00001" summary="finish astro configurations">
       <option name="closed" value="true" />
