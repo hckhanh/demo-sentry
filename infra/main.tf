@@ -86,6 +86,11 @@ resource "digitalocean_app" "demo_sentry" {
       http_port       = 4321
       dockerfile_path = "app/Dockerfile"
 
+      health_check {
+        http_path             = "/"
+        initial_delay_seconds = 15
+      }
+
       github {
         branch         = "migrate-to-astro"
         repo           = "hckhanh/demo-sentry"
