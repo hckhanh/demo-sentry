@@ -58,6 +58,7 @@ RUN bun turbo build --filter=app
 # copy production dependencies and source code into final image
 FROM base AS release
 ENV NODE_ENV=production
+ENV HOST=0.0.0.0
 
 COPY --from=install /temp/prod/node_modules/ node_modules/
 COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
