@@ -3,10 +3,9 @@ WORKDIR /usr/src/app
 
 RUN npm install -g bun
 
-RUN jq 'del(.workspaces)' package.json > tmp.json && mv tmp.json package.json
-
 COPY prisma/ prisma/
 COPY package.json ./
+RUN jq 'del(.workspaces)' package.json > tmp.json && mv tmp.json package.json
 
 RUN bun install
 
