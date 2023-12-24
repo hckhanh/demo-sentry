@@ -32,13 +32,20 @@ resource "digitalocean_app" "demo_sentry" {
     region = "sgp"
 
     alert {
-      rule = "DEPLOYMENT_FAILED"
+      rule     = "DEPLOYMENT_FAILED"
+      disabled = true
     }
 
     domain {
       name = "iprice.run"
       type = "PRIMARY"
-      zone = "iprice.run"
+      zone = local.zone
+    }
+
+    domain {
+      name = "www.iprice.run"
+      type = "ALIAS"
+      zone = local.zone
     }
 
     database {
@@ -85,7 +92,7 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_URL"
-        value = digitalocean_database_cluster.demo_sentry_db.uri
+        value = local.database_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -121,7 +128,7 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_URL"
-        value = digitalocean_database_connection_pool.demo_sentry_db.uri
+        value = local.database_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -135,19 +142,14 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_REPLICA_URLS"
-        value = jsonencode(
-          tolist([
-            digitalocean_database_replica.demo_sentry_db_1.uri,
-            digitalocean_database_replica.demo_sentry_db_2.uri
-          ])
-        )
+        value = local.replica_urls
         scope = "RUN_TIME"
         type  = "SECRET"
       }
 
       env {
         key   = "REDIS_URL"
-        value = digitalocean_database_cluster.demo_sentry_redis.uri
+        value = local.redis_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -175,7 +177,7 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_URL"
-        value = digitalocean_database_connection_pool.demo_sentry_db.uri
+        value = local.database_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -189,18 +191,14 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_REPLICA_URLS"
-        value = jsonencode(
-          tolist([
-            digitalocean_database_replica.demo_sentry_db_1.uri, digitalocean_database_replica.demo_sentry_db_2.uri
-          ])
-        )
+        value = local.replica_urls
         scope = "RUN_TIME"
         type  = "SECRET"
       }
 
       env {
         key   = "REDIS_URL"
-        value = digitalocean_database_cluster.demo_sentry_redis.uri
+        value = local.redis_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }

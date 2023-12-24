@@ -23,8 +23,10 @@ resource "digitalocean_database_connection_pool" "demo_sentry_db" {
   cluster_id = digitalocean_database_cluster.demo_sentry_db.id
   name       = "demo-sentry-db-pool"
   mode       = "transaction"
-  size       = 5
-  db_name    = digitalocean_database_cluster.demo_sentry_db.database
+  size       = local.connection_pool_size
+
+  user    = digitalocean_database_cluster.demo_sentry_db.user
+  db_name = digitalocean_database_cluster.demo_sentry_db.database
 }
 
 resource "digitalocean_database_replica" "demo_sentry_db_1" {
