@@ -49,6 +49,35 @@ resource "digitalocean_app" "demo_sentry" {
       production   = true
     }
 
+    job {
+      name               = "migrate-db"
+      kind               = "PRE_DEPLOY"
+      instance_size_slug = "basic-xxs"
+      instance_count     = 1
+
+      dockerfile_path = "components/jobs/migrate-db/Dockerfile"
+
+      github {
+        branch         = "migrate-to-astro"
+        repo           = "hckhanh/demo-sentry"
+        deploy_on_push = true
+      }
+
+      env {
+        key   = "DATABASE_URL"
+        value = digitalocean_database_connection_pool.demo_sentry_db.uri
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DIRECT_URL"
+        value = digitalocean_database_cluster.demo_sentry_db.uri
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+    }
+
     worker {
       name               = "email-worker"
       instance_size_slug = "basic-xxs"

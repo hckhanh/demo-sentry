@@ -24,9 +24,6 @@ FROM base AS migrate
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
-# tests & build
-ENV NODE_ENV=production
-
 # run the app
 USER bun
 
