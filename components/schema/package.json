@@ -9,9 +9,8 @@
   "types": "./index.ts",
   "scripts": {
     "dev": "bun build ./index.ts --outfile build/index.js --no-bundle --watch",
-    "build:dev": "bun build ./index.ts --outfile build/index.js --no-bundle",
-    "seed": "prisma db seed",
-    "build": "prisma migrate deploy"
+    "build": "bun build ./index.ts --outfile build/index.js --no-bundle",
+    "seed": "prisma db seed"
   },
   "dependencies": {
     "@prisma/client": "5.7.1",

@@ -6,10 +6,10 @@
       "persistent": true
     },
     "app-old#dev": {
-      "dependsOn": ["schema#build:dev", "//#generate"]
+      "dependsOn": ["schema#build", "//#generate"]
     },
     "email-worker#dev": {
-      "dependsOn": ["schema#build:dev", "//#generate"]
+      "dependsOn": ["schema#build", "//#generate"]
     },
     "schema#build:dev": {
       "cache": false
@@ -20,6 +20,15 @@
 
     "build": {
       "cache": false
+    },
+    "app#build": {
+      "dependsOn": ["schema#build", "//#generate"]
+    },
+    "email-worker#build": {
+      "dependsOn": ["schema#build", "//#generate"]
+    },
+    "order-cancel-worker#build": {
+      "dependsOn": ["schema#build", "//#generate"]
     },
     "start": {
       "cache": false
