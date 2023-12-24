@@ -21,8 +21,9 @@ COPY components/workers/order-cancel-worker/package.json /temp/dev/components/wo
 RUN cd /temp/dev && bun install --frozen-lockfile
 
 FROM base AS migrate
+COPY prisma/ prisma/
+COPY package.json bun.lockb ./
 COPY --from=install /temp/dev/node_modules node_modules
-COPY . .
 
 # run the app
 USER bun
