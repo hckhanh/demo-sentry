@@ -43,7 +43,7 @@ const worker = new Worker<EmailQueueData>(
 )
 
 worker.on('error', (error) => {
-  console.log('Worker Error ' + error)
+  console.log('Worker Error ' + JSON.stringify(error))
 })
 
 worker.on('failed', (job, error) => {
