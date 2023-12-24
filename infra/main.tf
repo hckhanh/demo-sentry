@@ -35,6 +35,12 @@ resource "digitalocean_app" "demo_sentry" {
       rule = "DEPLOYMENT_FAILED"
     }
 
+    domain {
+      name = "iprice.run"
+      type = "PRIMARY"
+      zone = "iprice.run"
+    }
+
     database {
       name         = "demo-sentry-db"
       cluster_name = digitalocean_database_cluster.demo_sentry_db.name
@@ -46,6 +52,20 @@ resource "digitalocean_app" "demo_sentry" {
       name         = "demo-sentry-redis"
       cluster_name = digitalocean_database_cluster.demo_sentry_redis.name
       engine       = "REDIS"
+      production   = true
+    }
+
+    database {
+      name         = "demo-sentry-db-replica-1"
+      cluster_name = digitalocean_database_replica.demo_sentry_db_1.name
+      engine       = "PG"
+      production   = true
+    }
+
+    database {
+      name         = "demo-sentry-db-replica-2"
+      cluster_name = digitalocean_database_replica.demo_sentry_db_2.name
+      engine       = "PG"
       production   = true
     }
 
@@ -65,21 +85,15 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DATABASE_URL"
-        value = replace(
-          digitalocean_database_cluster.demo_sentry_db.uri, "://:",
-          format("://%s:", digitalocean_database_cluster.demo_sentry_db.user)
-        )
-        scope = "BUILD_TIME"
+        value = digitalocean_database_cluster.demo_sentry_db.uri
+        scope = "RUN_TIME"
         type  = "SECRET"
       }
 
       env {
         key   = "DIRECT_URL"
-        value = replace(
-          digitalocean_database_cluster.demo_sentry_db.uri, "://:",
-          format("://%s:", digitalocean_database_cluster.demo_sentry_db.user)
-        )
-        scope = "BUILD_TIME"
+        value = local.direct_url
+        scope = "RUN_TIME"
         type  = "SECRET"
       }
     }
@@ -114,7 +128,7 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DIRECT_URL"
-        value = digitalocean_database_cluster.demo_sentry_db.uri
+        value = local.direct_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -168,7 +182,7 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DIRECT_URL"
-        value = digitalocean_database_cluster.demo_sentry_db.uri
+        value = local.direct_url
         scope = "RUN_TIME"
         type  = "SECRET"
       }
