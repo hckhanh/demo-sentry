@@ -1,11 +1,19 @@
 import { PrismaClient } from '@prisma/client'
 import { readReplicas } from '@prisma/extension-read-replicas'
 
-export const prisma = new PrismaClient().$extends(
-  readReplicas({
-    url: JSON.parse(Bun.env.DATABASE_REPLICA_URLS as string),
-  }),
-)
+function initPrismaClient() {
+  if (Bun.env.NODE_ENV === 'production') {
+    return new PrismaClient().$extends(
+      readReplicas({
+        url: JSON.parse(process.env.DATABASE_REPLICA_URLS as string),
+      }),
+    )
+  }
+
+  return new PrismaClient()
+}
+
+export const prisma = initPrismaClient()
 
 export type EmailQueueData = {
   email: string
