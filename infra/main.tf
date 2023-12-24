@@ -72,7 +72,9 @@ resource "digitalocean_app" "demo_sentry" {
 
       env {
         key   = "DIRECT_URL"
-        value = digitalocean_database_cluster.demo_sentry_db.uri
+        value = replace(
+          digitalocean_database_cluster.demo_sentry_db.uri, "://:", format("://%s:", digitalocean_database_cluster.demo_sentry_db.user)
+        )
         scope = "BUILD_TIME"
         type  = "SECRET"
       }
@@ -117,8 +119,7 @@ resource "digitalocean_app" "demo_sentry" {
         key   = "DATABASE_REPLICA_URLS"
         value = jsonencode(
           tolist([
-            digitalocean_database_replica.demo_sentry_db_1.uri,
-            digitalocean_database_replica.demo_sentry_db_2.uri
+            digitalocean_database_replica.demo_sentry_db_1.uri, digitalocean_database_replica.demo_sentry_db_2.uri
           ])
         )
         scope = "RUN_TIME"
@@ -171,8 +172,7 @@ resource "digitalocean_app" "demo_sentry" {
         key   = "DATABASE_REPLICA_URLS"
         value = jsonencode(
           tolist([
-            digitalocean_database_replica.demo_sentry_db_1.uri,
-            digitalocean_database_replica.demo_sentry_db_2.uri
+            digitalocean_database_replica.demo_sentry_db_1.uri, digitalocean_database_replica.demo_sentry_db_2.uri
           ])
         )
         scope = "RUN_TIME"
