@@ -1,0 +1,10 @@
+{
+  "name": "migrate-db",
+  "private": true,
+  "scripts": {
+    "migrate": "prisma migrate deploy"
+  },
+  "devDependencies": {
+    "prisma": "5.7.1"
+  }
+}
