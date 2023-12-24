@@ -52,7 +52,7 @@ COPY . .
 
 # tests & build
 ENV NODE_ENV=production
-RUN bun turbo build --filter=email-worker
+RUN bun turbo build --filter=app
 
 # copy production dependencies and source code into final image
 FROM base AS release
@@ -60,9 +60,9 @@ ENV NODE_ENV=production
 
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
-COPY --from=prerelease /usr/src/app/components/workers/email-worker/build/ .
+COPY --from=prerelease /usr/src/app/app/dist/ .
 
 # use bun user
 USER bun
 
-ENTRYPOINT [ "bun", "index.js" ]
+ENTRYPOINT [ "bun", "server", "entry.mjs" ]

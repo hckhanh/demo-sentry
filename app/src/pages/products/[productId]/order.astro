@@ -19,9 +19,9 @@ if (product.remainQuantity === 0) {
   return Astro.redirect(`/products/${product.id}`)
 }
 
-product.price = product.price.toString()
+const productData = { ...product, price: product.price.toString() }
 ---
 
 <Layout title={product.name}>
-  <OrderForm client:visible product={product} />
+  <OrderForm client:visible product={productData} />
 </Layout>

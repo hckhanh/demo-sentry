@@ -37,7 +37,7 @@ node_modules
 
 # Astro
 .astro
-build
+dist
 
 # Dotenv
 .env*
@@ -47,3 +47,6 @@ build
 
 # Turbo
 .turbo
+
+# Builds
+build

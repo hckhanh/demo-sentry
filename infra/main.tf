@@ -78,6 +78,61 @@ resource "digitalocean_app" "demo_sentry" {
       }
     }
 
+    service {
+      name               = "demo-sentry-app"
+      instance_size_slug = "basic-xxs"
+      instance_count     = 1
+
+      http_port       = 4321
+      dockerfile_path = "app/Dockerfile"
+
+      github {
+        branch         = "migrate-to-astro"
+        repo           = "hckhanh/demo-sentry"
+        deploy_on_push = true
+      }
+
+      env {
+        key   = "RESEND_API_KEY"
+        value = var.resend_api_key
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DATABASE_URL"
+        value = digitalocean_database_connection_pool.demo_sentry_db.uri
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DIRECT_URL"
+        value = digitalocean_database_cluster.demo_sentry_db.uri
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DATABASE_REPLICA_URLS"
+        value = jsonencode(
+          tolist([
+            digitalocean_database_replica.demo_sentry_db_1.uri,
+            digitalocean_database_replica.demo_sentry_db_2.uri
+          ])
+        )
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "REDIS_URL"
+        value = digitalocean_database_cluster.demo_sentry_redis.uri
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+    }
+
     worker {
       name               = "email-worker"
       instance_size_slug = "basic-xxs"
@@ -132,4 +187,8 @@ resource "digitalocean_app" "demo_sentry" {
       }
     }
   }
+}
+
+output "app_url" {
+  value = digitalocean_app.demo_sentry.live_url
 }

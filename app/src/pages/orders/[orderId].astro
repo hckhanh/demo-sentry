@@ -4,7 +4,7 @@ import Layout from '~/layouts/Layout.astro'
 import { prisma } from 'schema'
 
 let order = await prisma.order.findUniqueOrThrow({
-  where: { id: Astro.params.orderId },
+  where: { id: Astro.params.orderId as string },
   select: {
     id: true,
     email: true,
@@ -30,16 +30,19 @@ if (order.status !== 'CREATED') {
   return Astro.redirect(`/orders/${order.id}/result`)
 }
 
-order.total = order.total.toString()
-order.taxes = order.taxes.toString()
-order.subtotal = order.subtotal.toString()
-order.shippingFee = order.shippingFee.toString()
-order.items = order.items.map((item) => ({
-  ...item,
-  price: item.price.toString(),
-}))
+const orderData = {
+  ...order,
+  total: order.total.toString(),
+  taxes: order.taxes.toString(),
+  subtotal: order.subtotal.toString(),
+  shippingFee: order.shippingFee.toString(),
+  items: order.items.map((item) => ({
+    ...item,
+    price: item.price.toString(),
+  })),
+}
 ---
 
 <Layout title={`Order ${order.id}`}>
-  <OrderPaymentForm client:load order={order} />
+  <OrderPaymentForm client:load order={orderData} />
 </Layout>

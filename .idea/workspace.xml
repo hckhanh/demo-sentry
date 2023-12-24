@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="add more changes" />
+    <list default="true" id="42f736d0-cfb7-49a1-a6e6-dcc95799e31b" name="Changes" comment="Update build processes for Docker and Astro&#10;&#10;This commit optimizes the Dockerfiles for both 'migrate-db' and 'email-worker' components, improving the order and efficiency of copy commands for necessary dependencies and modules. Furthermore, adjustments are made to Astro build scripts and page scripts for order calculation, aiming to enhance code consistency and efficiency.">
+      <change afterPath="$PROJECT_DIR$/app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/demo-sentry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo-sentry.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/api/orders/[orderId]/payment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/api/orders/[orderId]/payment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/orders/[orderId].astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/orders/[orderId].astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/pages/products/[productId]/order.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/email-worker/build.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/email-worker/build.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/main.tf" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "migrate-to-astro",
-    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app/src/components/order",
+    "last_opened_file_path": "/Users/khanh/WebStormProjects/demo-sentry/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -69,7 +81,7 @@
     "nodejs_package_manager_path": "pnpm",
     "npm.demo-sentry > dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
     "ts.external.directory.path": "/Users/khanh/WebStormProjects/demo-sentry/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -103,11 +115,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/components/jobs/prisma-migrate-deploy" />
       <recent name="$PROJECT_DIR$/app/src/components/order" />
       <recent name="$PROJECT_DIR$/app/src/pages/api/products/[productId]/order" />
       <recent name="$PROJECT_DIR$/app/src/components/header" />
-      <recent name="$PROJECT_DIR$/app/src/components/form" />
-      <recent name="$PROJECT_DIR$/app/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/components/order/payment" />
@@ -174,6 +186,9 @@
       <workItem from="1703211875248" duration="1542000" />
       <workItem from="1703246752648" duration="2997000" />
       <workItem from="1703298893411" duration="10102000" />
+      <workItem from="1703340745792" duration="8863000" />
+      <workItem from="1703377294510" duration="9283000" />
+      <workItem from="1703388348193" duration="5739000" />
     </task>
     <task id="LOCAL-00001" summary="finish astro configurations">
       <option name="closed" value="true" />
@@ -191,7 +206,111 @@
       <option name="project" value="LOCAL" />
       <updated>1703293994651</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add db replicas">
+      <option name="closed" value="true" />
+      <created>1703380326773</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1703380326773</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add worker ready event">
+      <option name="closed" value="true" />
+      <created>1703380893560</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703380893560</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refine error logging in email worker&#10;&#10;Changed the error logging method in the email worker component. Instead of logging just the error message, the updated code now logs the entire error object as a JSON string. This provides more detailed debugging information when an error occurs.">
+      <option name="closed" value="true" />
+      <created>1703381409028</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703381409028</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update email worker to use ioredis package&#10;&#10;Switched from using default Redis to the ioredis package in the email worker component. The code now also logs the count of orders in the system, providing more insightful information for debugging.">
+      <option name="closed" value="true" />
+      <created>1703383860721</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703383860721</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Remove console log for order count in email worker&#10;&#10;The console log that prints the count of orders in the system has been removed from the email worker. This clean-up enhances code readability and performance by eliminating unnecessary logging.">
+      <option name="closed" value="true" />
+      <created>1703385016563</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703385016563</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update schema index for environment-specific Prisma client initialization&#10;&#10;The schema index now initializes the Prisma client according to the environment. For production, it uses the readReplicas extension with the given DATABASE_REPLICA_URLS. In other environments, a standard PrismaClient is returned. This enhances performance in production and simplifies initialization elsewhere.">
+      <option name="closed" value="true" />
+      <created>1703385634325</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703385634325</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Create Sentry demo project database and Redis in DigitalOcean &#10;&#10;Added a new DigitalOcean database and Redis cluster structure for the demo Sentry project which includes a main database, two replicas and a connection pool, also added firewall rules to these resources. Various environment variables have been updated in the main application to utilize these new database resources. Additionally, the default SSH key resource has been removed.">
+      <option name="closed" value="true" />
+      <created>1703385657998</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1703385657998</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Create Sentry demo project database and Redis in DigitalOcean &#10;&#10;Added a new DigitalOcean database and Redis cluster structure for the demo Sentry project which includes a main database, two replicas and a connection pool, also added firewall rules to these resources. Various environment variables have been updated in the main application to utilize these new database resources. Additionally, the default SSH key resource has been removed.">
+      <option name="closed" value="true" />
+      <created>1703385674055</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1703385674055</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add migrate-db job and update dependencies&#10;&#10;Added a new job 'migrate-db' that sets up a Docker container to manage database migrations. Dependencies for this job have been included in package.json files for Docker setups. Also updated the paths of dependencies in existing Dockerfile of the 'email-worker'.">
+      <option name="closed" value="true" />
+      <created>1703386428510</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1703386428510</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add migrate-db job to infrastructure&#10;&#10;This commit adds a new job named &quot;migrate-db&quot; to the main.tf Terraform file. It also removes the unnecessary NODE_ENV setting in the Dockerfile associated with the migrate-db job. This new job will handle database migrations in our infrastructure. The required environment variables have been set up for this job to run successfully.">
+      <option name="closed" value="true" />
+      <created>1703388653764</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703388653764</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Adjust Dockerfile copy actions for email-worker and migrate-db&#10;&#10;This commit reorders the Dockerfile copy actions for email-worker, and includes essential files to migrate-db's Dockerfile. The change in email-worker aims to ensure the Prisma modules are copied before the application build. For the migrate-db, Prisma schema and package files are now copied to properly set up the migration environment.">
+      <option name="closed" value="true" />
+      <created>1703389320776</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703389320776</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update Dockerfile of migrate-db and email-worker&#10;&#10;The Dockerfile of both migrate-db and email-worker have been updated to optimize copy actions and file inclusion. The copy actions in email-worker are rearranged to make sure Prisma modules are copied before application build, while for migrate-db, essential schema and package files are now included to properly set up the migration environment.">
+      <option name="closed" value="true" />
+      <created>1703390371830</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703390371830</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Optimize Dockerfile for migrate-db and email-worker&#10;&#10;The Dockerfile of migrate-db and email-worker have been modified to streamline the build process. The focus is on improving the order and efficiency of copy commands to ensure necessary dependencies and modules, such as the Prisma modules in the email-worker, are effectively and accurately copied over for the application builds.">
+      <option name="closed" value="true" />
+      <created>1703390463255</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703390463255</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +330,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finish astro configurations" />
     <MESSAGE value="add more changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="add more changes" />
+    <MESSAGE value="add db replicas" />
+    <MESSAGE value="add worker ready event" />
+    <MESSAGE value="Refine error logging in email worker&#10;&#10;Changed the error logging method in the email worker component. Instead of logging just the error message, the updated code now logs the entire error object as a JSON string. This provides more detailed debugging information when an error occurs." />
+    <MESSAGE value="Update email worker to use ioredis package&#10;&#10;Switched from using default Redis to the ioredis package in the email worker component. The code now also logs the count of orders in the system, providing more insightful information for debugging." />
+    <MESSAGE value="Remove console log for order count in email worker&#10;&#10;The console log that prints the count of orders in the system has been removed from the email worker. This clean-up enhances code readability and performance by eliminating unnecessary logging." />
+    <MESSAGE value="Update schema index for environment-specific Prisma client initialization&#10;&#10;The schema index now initializes the Prisma client according to the environment. For production, it uses the readReplicas extension with the given DATABASE_REPLICA_URLS. In other environments, a standard PrismaClient is returned. This enhances performance in production and simplifies initialization elsewhere." />
+    <MESSAGE value="Create Sentry demo project database and Redis in DigitalOcean &#10;&#10;Added a new DigitalOcean database and Redis cluster structure for the demo Sentry project which includes a main database, two replicas and a connection pool, also added firewall rules to these resources. Various environment variables have been updated in the main application to utilize these new database resources. Additionally, the default SSH key resource has been removed." />
+    <MESSAGE value="Add migrate-db job and update dependencies&#10;&#10;Added a new job 'migrate-db' that sets up a Docker container to manage database migrations. Dependencies for this job have been included in package.json files for Docker setups. Also updated the paths of dependencies in existing Dockerfile of the 'email-worker'." />
+    <MESSAGE value="Add migrate-db job to infrastructure&#10;&#10;This commit adds a new job named &quot;migrate-db&quot; to the main.tf Terraform file. It also removes the unnecessary NODE_ENV setting in the Dockerfile associated with the migrate-db job. This new job will handle database migrations in our infrastructure. The required environment variables have been set up for this job to run successfully." />
+    <MESSAGE value="Adjust Dockerfile copy actions for email-worker and migrate-db&#10;&#10;This commit reorders the Dockerfile copy actions for email-worker, and includes essential files to migrate-db's Dockerfile. The change in email-worker aims to ensure the Prisma modules are copied before the application build. For the migrate-db, Prisma schema and package files are now copied to properly set up the migration environment." />
+    <MESSAGE value="Update Dockerfile of migrate-db and email-worker&#10;&#10;The Dockerfile of both migrate-db and email-worker have been updated to optimize copy actions and file inclusion. The copy actions in email-worker are rearranged to make sure Prisma modules are copied before application build, while for migrate-db, essential schema and package files are now included to properly set up the migration environment." />
+    <MESSAGE value="Optimize Dockerfile for migrate-db and email-worker&#10;&#10;The Dockerfile of migrate-db and email-worker have been modified to streamline the build process. The focus is on improving the order and efficiency of copy commands to ensure necessary dependencies and modules, such as the Prisma modules in the email-worker, are effectively and accurately copied over for the application builds." />
+    <MESSAGE value="Update build processes for Docker and Astro&#10;&#10;This commit optimizes the Dockerfiles for both 'migrate-db' and 'email-worker' components, improving the order and efficiency of copy commands for necessary dependencies and modules. Furthermore, adjustments are made to Astro build scripts and page scripts for order calculation, aiming to enhance code consistency and efficiency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update build processes for Docker and Astro&#10;&#10;This commit optimizes the Dockerfiles for both 'migrate-db' and 'email-worker' components, improving the order and efficiency of copy commands for necessary dependencies and modules. Furthermore, adjustments are made to Astro build scripts and page scripts for order calculation, aiming to enhance code consistency and efficiency." />
   </component>
 </project>

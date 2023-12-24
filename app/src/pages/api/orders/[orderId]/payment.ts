@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ params, request }) => {
     })
   }
 
-  const paymentMethod = cardValidator.number(parsed.data.cardNumber).card
+  const paymentMethod = cardValidator.number(parsed.output.cardNumber).card
 
   if (!paymentMethod) {
     return new Response('Invalid payment method', {
