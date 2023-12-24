@@ -26,4 +26,3 @@ COPY . .
 
 # run the migration
 USER bun
-RUN bun prisma migrate deploy

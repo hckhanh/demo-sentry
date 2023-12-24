@@ -56,6 +56,7 @@ resource "digitalocean_app" "demo_sentry" {
       instance_count     = 1
 
       dockerfile_path = "components/jobs/migrate-db/Dockerfile"
+      run_command     = "bun prisma migrate deploy"
 
       github {
         branch         = "migrate-to-astro"
@@ -66,14 +67,14 @@ resource "digitalocean_app" "demo_sentry" {
       env {
         key   = "DATABASE_URL"
         value = digitalocean_database_connection_pool.demo_sentry_db.uri
-        scope = "BUILD_TIME"
+        scope = "RUN_TIME"
         type  = "SECRET"
       }
 
       env {
         key   = "DIRECT_URL"
         value = digitalocean_database_cluster.demo_sentry_db.uri
-        scope = "BUILD_TIME"
+        scope = "RUN_TIME"
         type  = "SECRET"
       }
     }
