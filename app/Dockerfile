@@ -73,4 +73,4 @@ COPY --from=prerelease /usr/src/app/app/dist/ .
 # use bun user
 USER bun
 
-ENTRYPOINT [ "bun", "server", "entry.mjs" ]
+ENTRYPOINT [ "bun", "server/entry.mjs" ]
