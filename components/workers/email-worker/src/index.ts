@@ -5,8 +5,6 @@ import mjml2html from 'mjml'
 import { Resend } from 'resend'
 import { type EmailQueueData, prisma } from 'schema'
 
-console.log(await prisma.order.count())
-
 const connection = new Redis(Bun.env.REDIS_URL as string, {
   maxRetriesPerRequest: null,
   retryStrategy: (times) => Math.max(Math.min(Math.exp(times), 20000), 1000),
