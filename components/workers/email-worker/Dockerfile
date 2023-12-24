@@ -1,11 +1,17 @@
 FROM node:lts-bullseye-slim as prisma
 WORKDIR /temp/dev
 
+RUN apt-get update
+RUN apt-get install -y jq
 RUN npm install -g bun
 
-RUN bun init -y
 COPY prisma/ prisma/
-RUN bunx prisma generate
+COPY package.json ./
+RUN jq 'del(.workspaces)' package.json > tmp.json && mv tmp.json package.json
+
+RUN bun install
+
+RUN bun prisma generate
 
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
