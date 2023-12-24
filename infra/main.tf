@@ -66,14 +66,14 @@ resource "digitalocean_app" "demo_sentry" {
       env {
         key   = "DATABASE_URL"
         value = digitalocean_database_connection_pool.demo_sentry_db.uri
-        scope = "RUN_TIME"
+        scope = "BUILD_TIME"
         type  = "SECRET"
       }
 
       env {
         key   = "DIRECT_URL"
         value = digitalocean_database_cluster.demo_sentry_db.uri
-        scope = "RUN_TIME"
+        scope = "BUILD_TIME"
         type  = "SECRET"
       }
     }
