@@ -1,7 +1,11 @@
 import { PrismaClient } from '@prisma/client'
-import { Decimal } from '@prisma/client/runtime/library'
+import { readReplicas } from '@prisma/extension-read-replicas'
 
-export const prisma = new PrismaClient()
+export const prisma = new PrismaClient().$extends(
+  readReplicas({
+    url: JSON.parse(Bun.env.DATABASE_REPLICA_URLS as string),
+  }),
+)
 
 export type EmailQueueData = {
   email: string

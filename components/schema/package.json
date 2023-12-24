@@ -14,7 +14,8 @@
     "build": "prisma migrate deploy"
   },
   "dependencies": {
-    "@prisma/client": "5.7.1"
+    "@prisma/client": "5.7.1",
+    "@prisma/extension-read-replicas": "0.3.0"
   },
   "devDependencies": {
     "eslint": "8.55.0",
