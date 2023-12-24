@@ -56,9 +56,9 @@ RUN bun turbo build --filter=email-worker
 
 # copy production dependencies and source code into final image
 FROM base AS release
+COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
 COPY --from=prerelease /usr/src/app/components/workers/email-worker/build/ .
-COPY --from=install /temp/prod/node_modules node_modules
 
 # run the app
 USER bun
