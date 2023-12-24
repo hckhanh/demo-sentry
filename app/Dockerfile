@@ -48,6 +48,7 @@ RUN cd /temp/prod && bun install --frozen-lockfile --production
 # then copy all (non-ignored) project files into the image
 FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
+COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
 COPY . .
 
 # tests & build
@@ -59,10 +60,9 @@ FROM base AS release
 ENV NODE_ENV=production
 
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
-COPY --from=prerelease /usr/src/app/app/dist/ .
+COPY --from=prerelease /usr/src/app/app/dist/server/ .
 
 # use bun user
 USER bun
 
-ENTRYPOINT [ "bun", "server", "entry.mjs" ]
+ENTRYPOINT [ "bun", "entry.mjs" ]
