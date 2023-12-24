@@ -24,7 +24,6 @@ FROM base AS migrate
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
-# run the app
+# run the migration
 USER bun
-
-ENTRYPOINT [ "bun", "prisma", "migrate", "deploy" ]
+RUN bun prisma migrate deploy
