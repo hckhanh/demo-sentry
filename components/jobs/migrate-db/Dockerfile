@@ -10,4 +10,3 @@ RUN jq 'del(.workspaces)' package.json > tmp.json && mv tmp.json package.json
 RUN bun install
 
 RUN bun prisma migrate deploy
-RUN bun prisma db seed
