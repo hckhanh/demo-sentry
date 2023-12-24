@@ -43,15 +43,19 @@ const worker = new Worker<EmailQueueData>(
 )
 
 worker.on('error', (error) => {
-  console.log('Error ' + error)
+  console.log('Worker Error ' + error)
 })
 
 worker.on('failed', (job, error) => {
-  console.log('Failed ' + error)
+  console.log('Worker Failed ' + error)
 })
 
 worker.on('completed', (job) => {
-  console.log('Completed ' + job.id)
+  console.log('Worker Completed ' + job.id)
+})
+
+worker.on('ready', () => {
+  console.log('Worker Ready')
 })
 
 process.on('SIGINT', cleanup)
