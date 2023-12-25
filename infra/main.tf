@@ -13,7 +13,7 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-resource "digitalocean_vpc" "network" {
+resource "digitalocean_vpc" "demo_sentry" {
   name        = "demo-saladin"
   description = "This VPC is used to demo Sentry features"
   region      = "sgp1"

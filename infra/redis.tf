@@ -10,7 +10,7 @@ resource "digitalocean_database_cluster" "demo_sentry_redis" {
   # https://docs.bullmq.io/guide/connections#:~:text=Make%20sure%20that,errors%20in%20BullMQ
   eviction_policy = "noeviction"
 
-  private_network_uuid = digitalocean_vpc.network.id
+  private_network_uuid = digitalocean_vpc.demo_sentry.id
   project_id           = digitalocean_project.demo_sentry.id
 }
 

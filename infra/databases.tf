@@ -6,7 +6,7 @@ resource "digitalocean_database_cluster" "demo_sentry_db" {
   region     = "sgp1"
   node_count = 1
 
-  private_network_uuid = digitalocean_vpc.network.id
+  private_network_uuid = digitalocean_vpc.demo_sentry.id
   project_id           = digitalocean_project.demo_sentry.id
 }
 
@@ -35,7 +35,7 @@ resource "digitalocean_database_replica" "demo_sentry_db_1" {
   size       = "db-s-1vcpu-1gb"
   region     = "sgp1"
 
-  private_network_uuid = digitalocean_vpc.network.id
+  private_network_uuid = digitalocean_vpc.demo_sentry.id
 }
 
 resource "digitalocean_database_firewall" "demo_sentry_db_1" {
@@ -53,7 +53,7 @@ resource "digitalocean_database_replica" "demo_sentry_db_2" {
   size       = "db-s-1vcpu-1gb"
   region     = "sgp1"
 
-  private_network_uuid = digitalocean_vpc.network.id
+  private_network_uuid = digitalocean_vpc.demo_sentry.id
 }
 
 resource "digitalocean_database_firewall" "demo_sentry_db_2" {
