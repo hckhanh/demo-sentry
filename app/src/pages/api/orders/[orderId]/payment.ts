@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro'
 
-import { emailQueue, orderCancelQueue } from 'app-old/app/queues.ts'
-import { cardSchema } from 'app-old/app/routes/_store.orders.$orderId/schemas.ts'
-import { formatCurrency, formatPercent } from 'app-old/app/utils.ts'
+import { emailQueue, orderCancelQueue } from '~/queues.ts'
+import { cardSchema } from '~/schemas.ts'
+import { formatCurrency, formatPercent } from '~/utils.ts'
 import cardValidator from 'card-validator'
 import { format } from 'date-fns'
 import { prisma } from 'schema'
