@@ -16,7 +16,6 @@ RUN bun prisma generate
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 as base
-ARG WORKER_DIR=order-cancel-worker
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
@@ -59,7 +58,7 @@ COPY . .
 
 # tests & build
 ENV NODE_ENV=production
-RUN bun turbo build --filter=${WORKER_DIR}
+RUN bun turbo build --filter=order-cancel-worker
 
 # copy production dependencies and source code into final image
 FROM base AS release
@@ -67,7 +66,7 @@ ENV NODE_ENV=production
 
 COPY --from=install /temp/prod/node_modules/ node_modules/
 COPY --from=prisma /temp/dev/node_modules/.prisma/ node_modules/.prisma/
-COPY --from=prerelease /usr/src/app/components/workers/${WORKER_DIR}/build/ .
+COPY --from=prerelease /usr/src/app/components/workers/order-cancel-worker/build/ .
 
 # use bun user
 USER bun
