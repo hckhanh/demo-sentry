@@ -17,6 +17,7 @@
     "@prisma/extension-read-replicas": "0.3.0"
   },
   "devDependencies": {
+    "@types/bun": "1.0.0",
     "eslint": "8.55.0",
     "eslint-plugin-config": "workspace:*"
   }

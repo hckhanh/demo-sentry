@@ -141,8 +141,8 @@ resource "digitalocean_app" "demo_sentry" {
       }
 
       env {
-        key   = "DATABASE_REPLICA_URLS"
-        value = local.replica_urls
+        key   = "DATABASE_REPLICAS"
+        value = local.db_replicas
         scope = "RUN_TIME"
         type  = "SECRET"
       }
@@ -190,8 +190,50 @@ resource "digitalocean_app" "demo_sentry" {
       }
 
       env {
-        key   = "DATABASE_REPLICA_URLS"
-        value = local.replica_urls
+        key   = "DATABASE_REPLICAS"
+        value = local.db_replicas
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "REDIS_URL"
+        value = local.redis_url
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+    }
+
+    worker {
+      name               = "order-cancel-worker"
+      instance_size_slug = "basic-xxs"
+      instance_count     = 1
+
+      dockerfile_path = "components/workers/order-cancel-worker/Dockerfile"
+
+      github {
+        branch         = "migrate-to-astro"
+        repo           = "hckhanh/demo-sentry"
+        deploy_on_push = true
+      }
+
+      env {
+        key   = "DATABASE_URL"
+        value = local.database_url
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DIRECT_URL"
+        value = local.direct_url
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "DATABASE_REPLICAS"
+        value = local.db_replicas
         scope = "RUN_TIME"
         type  = "SECRET"
       }

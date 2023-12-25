@@ -53,6 +53,7 @@ export async function createOrder(data: Order) {
 
         assessment: {
           create: {
+            reasons: [],
             fingerprintId: '',
             subFingerprintId: '',
             ipAddress: '127.0.0.1',

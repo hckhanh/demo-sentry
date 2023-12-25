@@ -1,5 +1,5 @@
 import { Worker } from 'bullmq'
-import Redis from 'ioredis'
+import { Redis } from 'ioredis'
 import { type OrderCancelQueueData, prisma } from 'schema'
 
 const connection = new Redis(Bun.env.REDIS_URL as string, {
@@ -30,15 +30,19 @@ const worker = new Worker<OrderCancelQueueData>(
 )
 
 worker.on('error', (error) => {
-  console.log('Error ' + error)
+  console.log('Worker Error ' + JSON.stringify(error))
 })
 
 worker.on('failed', (job, error) => {
-  console.log('Failed ' + error)
+  console.log('Worker Failed ' + error)
 })
 
 worker.on('completed', (job) => {
-  console.log('Completed ' + job.id)
+  console.log('Worker Completed ' + job.id)
+})
+
+worker.on('ready', () => {
+  console.log('Worker Ready')
 })
 
 process.on('SIGINT', cleanup)
