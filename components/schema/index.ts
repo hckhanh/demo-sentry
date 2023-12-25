@@ -5,7 +5,7 @@ function initPrismaClient() {
   if (Bun.env.NODE_ENV === 'production') {
     return new PrismaClient().$extends(
       readReplicas({
-        url: JSON.parse(process.env.DATABASE_REPLICA_URLS as string),
+        url: JSON.parse(Bun.env.DATABASE_REPLICAS as string),
       }),
     )
   }

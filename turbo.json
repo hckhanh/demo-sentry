@@ -25,9 +25,11 @@
       "dependsOn": ["schema#build", "//#generate"]
     },
     "email-worker#build": {
+      "cache": false,
       "dependsOn": ["schema#build", "//#generate"]
     },
     "order-cancel-worker#build": {
+      "cache": false,
       "dependsOn": ["schema#build", "//#generate"]
     },
     "start": {
