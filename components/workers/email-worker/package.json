@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@remix-run/eslint-config": "2.4.0",
+    "@types/bun": "1.0.0",
     "@types/mjml": "4.7.4",
     "eslint": "8.55.0",
     "eslint-plugin-config": "workspace:*"
