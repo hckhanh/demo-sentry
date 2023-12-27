@@ -8,7 +8,7 @@ variable "resend_api_key" {
   type        = string
 }
 
-variable "replica_size" {
+variable "replica_count" {
   description = "Number of replicas"
   type        = number
   default     = 2
@@ -25,7 +25,26 @@ variable "domain" {
   type        = string
 }
 
-variable "instance_size" {
+variable "instance_size_slug" {
   description = "Slug of size of all instances"
   type        = string
+  default     = "basic-xxs"
+}
+
+variable "instance_count" {
+  description = "Number of service instances"
+  type        = number
+  default     = 1
+}
+
+variable "db_size_slug" {
+  description = "Slug of size of all db instances"
+  type        = string
+  default     = "db-s-1vcpu-1gb"
+}
+
+variable "db_node_count" {
+  description = "Number of db nodes in cluster"
+  type        = number
+  default     = 1
 }

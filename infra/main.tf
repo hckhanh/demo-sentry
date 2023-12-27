@@ -75,7 +75,7 @@ resource "digitalocean_app" "demo_sentry" {
     job {
       name               = "migrate-db"
       kind               = "PRE_DEPLOY"
-      instance_size_slug = var.instance_size
+      instance_size_slug = var.instance_size_slug
       instance_count     = 1
 
       dockerfile_path = "components/jobs/migrate-db/Dockerfile"
@@ -103,8 +103,8 @@ resource "digitalocean_app" "demo_sentry" {
 
     service {
       name               = "demo-sentry-app"
-      instance_size_slug = var.instance_size
-      instance_count     = 1
+      instance_size_slug = var.instance_size_slug
+      instance_count     = var.instance_count
 
       http_port       = 4321
       dockerfile_path = "app/Dockerfile"
@@ -153,7 +153,7 @@ resource "digitalocean_app" "demo_sentry" {
 
     worker {
       name               = "email-worker"
-      instance_size_slug = var.instance_size
+      instance_size_slug = var.instance_size_slug
       instance_count     = 1
 
       dockerfile_path = "components/workers/email-worker/Dockerfile"
@@ -202,7 +202,7 @@ resource "digitalocean_app" "demo_sentry" {
 
     worker {
       name               = "order-cancel-worker"
-      instance_size_slug = var.instance_size
+      instance_size_slug = var.instance_size_slug
       instance_count     = 1
 
       dockerfile_path = "components/workers/order-cancel-worker/Dockerfile"

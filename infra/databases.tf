@@ -2,9 +2,9 @@ resource "digitalocean_database_cluster" "demo_sentry_db" {
   name       = "demo-sentry-db-cluster"
   engine     = "pg"
   version    = "15"
-  size       = "db-s-1vcpu-1gb"
   region     = "sgp1"
-  node_count = 1
+  size       = var.db_size_slug
+  node_count = var.db_node_count
 
   private_network_uuid = digitalocean_vpc.demo_sentry.id
   project_id           = digitalocean_project.demo_sentry.id
@@ -30,17 +30,17 @@ resource "digitalocean_database_connection_pool" "demo_sentry_db" {
 }
 
 resource "digitalocean_database_replica" "demo_sentry_db" {
-  count      = var.replica_size
+  count      = var.replica_count
   cluster_id = digitalocean_database_cluster.demo_sentry_db.id
   name       = "demo-sentry-db-replica-${count.index}"
-  size       = "db-s-1vcpu-1gb"
   region     = "sgp1"
+  size       = var.db_size_slug
 
   private_network_uuid = digitalocean_vpc.demo_sentry.id
 }
 
 resource "digitalocean_database_firewall" "demo_sentry_db_replica" {
-  count      = var.replica_size
+  count      = var.replica_count
   cluster_id = digitalocean_database_replica.demo_sentry_db[count.index].uuid
 
   rule {
