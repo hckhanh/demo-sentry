@@ -23,41 +23,25 @@ resource "digitalocean_database_connection_pool" "demo_sentry_db" {
   cluster_id = digitalocean_database_cluster.demo_sentry_db.id
   name       = "demo-sentry-db-pool"
   mode       = "transaction"
-  size       = local.connection_pool_size
+  size       = var.connection_pool_size
 
   user    = digitalocean_database_cluster.demo_sentry_db.user
   db_name = digitalocean_database_cluster.demo_sentry_db.database
 }
 
-resource "digitalocean_database_replica" "demo_sentry_db_1" {
+resource "digitalocean_database_replica" "demo_sentry_db" {
+  count      = var.replica_size
   cluster_id = digitalocean_database_cluster.demo_sentry_db.id
-  name       = "demo-sentry-db-replica-1"
+  name       = "demo-sentry-db-replica-${count.index}"
   size       = "db-s-1vcpu-1gb"
   region     = "sgp1"
 
   private_network_uuid = digitalocean_vpc.demo_sentry.id
 }
 
-resource "digitalocean_database_firewall" "demo_sentry_db_1" {
-  cluster_id = digitalocean_database_replica.demo_sentry_db_1.uuid
-
-  rule {
-    type  = "app"
-    value = digitalocean_app.demo_sentry.id
-  }
-}
-
-resource "digitalocean_database_replica" "demo_sentry_db_2" {
-  cluster_id = digitalocean_database_cluster.demo_sentry_db.id
-  name       = "demo-sentry-db-replica-2"
-  size       = "db-s-1vcpu-1gb"
-  region     = "sgp1"
-
-  private_network_uuid = digitalocean_vpc.demo_sentry.id
-}
-
-resource "digitalocean_database_firewall" "demo_sentry_db_2" {
-  cluster_id = digitalocean_database_replica.demo_sentry_db_2.uuid
+resource "digitalocean_database_firewall" "demo_sentry_db_replica" {
+  count      = var.replica_size
+  cluster_id = digitalocean_database_replica.demo_sentry_db[count.index].uuid
 
   rule {
     type  = "app"

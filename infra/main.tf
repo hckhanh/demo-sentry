@@ -39,13 +39,13 @@ resource "digitalocean_app" "demo_sentry" {
     domain {
       name = "iprice.run"
       type = "PRIMARY"
-      zone = local.zone
+      zone = var.domain
     }
 
     domain {
       name = "www.iprice.run"
       type = "ALIAS"
-      zone = local.zone
+      zone = var.domain
     }
 
     database {
@@ -62,24 +62,20 @@ resource "digitalocean_app" "demo_sentry" {
       production   = true
     }
 
-    database {
-      name         = "demo-sentry-db-replica-1"
-      cluster_name = digitalocean_database_replica.demo_sentry_db_1.name
-      engine       = "PG"
-      production   = true
-    }
-
-    database {
-      name         = "demo-sentry-db-replica-2"
-      cluster_name = digitalocean_database_replica.demo_sentry_db_2.name
-      engine       = "PG"
-      production   = true
+    dynamic "database" {
+      for_each = local.db_replicas_name
+      content {
+        name         = "demo-sentry-db-replica-${database.key}"
+        cluster_name = database.value
+        engine       = "PG"
+        production   = true
+      }
     }
 
     job {
       name               = "migrate-db"
       kind               = "PRE_DEPLOY"
-      instance_size_slug = "basic-xxs"
+      instance_size_slug = var.instance_size
       instance_count     = 1
 
       dockerfile_path = "components/jobs/migrate-db/Dockerfile"
@@ -107,7 +103,7 @@ resource "digitalocean_app" "demo_sentry" {
 
     service {
       name               = "demo-sentry-app"
-      instance_size_slug = "basic-xxs"
+      instance_size_slug = var.instance_size
       instance_count     = 1
 
       http_port       = 4321
@@ -157,7 +153,7 @@ resource "digitalocean_app" "demo_sentry" {
 
     worker {
       name               = "email-worker"
-      instance_size_slug = "basic-xxs"
+      instance_size_slug = var.instance_size
       instance_count     = 1
 
       dockerfile_path = "components/workers/email-worker/Dockerfile"
@@ -206,7 +202,7 @@ resource "digitalocean_app" "demo_sentry" {
 
     worker {
       name               = "order-cancel-worker"
-      instance_size_slug = "basic-xxs"
+      instance_size_slug = var.instance_size
       instance_count     = 1
 
       dockerfile_path = "components/workers/order-cancel-worker/Dockerfile"
@@ -246,6 +242,17 @@ resource "digitalocean_app" "demo_sentry" {
       }
     }
   }
+}
+
+data "digitalocean_domain" "demo_sentry" {
+  name = var.domain
+}
+
+resource "digitalocean_project_resources" "demo_sentry" {
+  project   = digitalocean_project.demo_sentry.id
+  resources = [
+    data.digitalocean_domain.demo_sentry.urn,
+  ]
 }
 
 output "app_url" {
