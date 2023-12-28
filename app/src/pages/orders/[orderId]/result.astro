@@ -4,12 +4,12 @@ import BreadcrumbItem from '~/components/header/BreadcrumbItem.astro'
 import BreadcrumbItemCurrent from '~/components/header/BreadcrumbItemCurrent.astro'
 import OrderCanceled from '~/components/order/result/OrderCanceled.astro'
 import OrderSuccess from '~/components/order/result/OrderSuccess.astro'
-import { prisma } from 'schema'
 import Layout from '~/layouts/Layout.astro'
+import { prisma } from 'schema'
 
 const order = await prisma.order.findUniqueOrThrow({
-  where: { id: Astro.params.orderId as string },
   select: { id: true, status: true },
+  where: { id: Astro.params.orderId as string },
 })
 
 if (order.status === 'CREATED') {
