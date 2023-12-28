@@ -59,11 +59,12 @@ model Order {
 }
 
 model Assessment {
-  id               String @id @default(cuid()) @db.VarChar(30)
-  assessmentId     String @unique
+  id               String   @id @default(cuid()) @db.VarChar(30)
+  assessmentId     String   @unique
   fingerprintId    String
   subFingerprintId String
-  ipAddress        String @db.Inet
+  ipAddress        String   @db.Inet
+  reasons          String[] @db.Text
 
   orders Order[]
 }
