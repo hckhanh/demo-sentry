@@ -6,10 +6,10 @@
   "type": "module",
   "main": "./build/index.js",
   "module": "./build/index.js",
-  "types": "./index.ts",
+  "types": "./src/index.ts",
   "scripts": {
-    "dev": "bun build ./index.ts --outfile build/index.js --no-bundle --watch",
-    "build": "bun build ./index.ts --outfile build/index.js --no-bundle",
+    "dev": "bun build src/index.ts --outfile build/index.js --no-bundle --watch",
+    "build": "bun build src/index.ts --outfile build/index.js --no-bundle",
     "seed": "prisma db seed"
   },
   "dependencies": {
