@@ -5,7 +5,7 @@
       "cache": false,
       "persistent": true
     },
-    "app-old#dev": {
+    "app#dev": {
       "dependsOn": ["schema#build", "//#generate"]
     },
     "email-worker#dev": {
